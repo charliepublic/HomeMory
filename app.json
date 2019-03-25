@@ -1,7 +1,8 @@
 {
   "pages": [
+    "pages/main/main",
     "pages/Me/Me",
-    "pages/main/main"
+    "pages/home/home"
    
   ],
   "window": {
@@ -18,6 +19,12 @@
         "iconPath": "./static/picture/Home.png",
         "selectedIconPath": "./static/picture/selectedHome.png"
       },
+      {
+        "pagePath": "pages/home/home",
+        "text": "我的家庭",
+        "iconPath": "./static/picture/Home.png",
+        "selectedIconPath": "./static/picture/selectedHome.png"
+      },  
       {
         "pagePath": "pages/Me/Me",
         "text": "我的信息",

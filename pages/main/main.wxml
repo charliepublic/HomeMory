@@ -1,2 +1,16 @@
 <!--pages/main/main.wxml-->
-<text class='h1' >欢迎来到HomeMory 家庭管理</text>
+<view>
+  <text class='h1' >欢迎来到HomeMory 家庭管理</text>
+</view>
+
+<view style=' text-align: center;'>
+  <text>家庭信息</text>
+  <view>家庭名称————我爱我家</view>
+</view>
+<view >
+  <view>
+    
+    <button>删除</button>
+  </view>
+</view>
+
