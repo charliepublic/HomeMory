@@ -27,3 +27,6 @@
 <view style=' text-align: center;'>
   档案管理积分：10086
 </view>
+
+<button>修改信息</button>
+<button>修改信息</button>
