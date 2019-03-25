@@ -1,15 +1,17 @@
 <!--pages/main/main.wxml-->
-<view>
-  <text class='h1' >欢迎来到HomeMory 家庭管理</text>
+<view style=' text-align: center;'>
+  <text>
+    欢迎来到HomeMory 家庭管理
+  </text>
 </view>
 
 <view style=' text-align: center;'>
   <text>家庭信息</text>
   <view>家庭名称————我爱我家</view>
 </view>
-<view >
+<view wx:for= "{{[0,1,2,3,4]}}" wx:for-item = "item" >
   <view>
-    
+    {{item}}
     <button>删除</button>
   </view>
 </view>

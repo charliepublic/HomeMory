@@ -1,18 +1,28 @@
 {
+  
   "pages": [
+    "pages/timeCapsule/timeCapsule",
     "pages/main/main",
     "pages/Me/Me",
     "pages/home/home"
-   
   ],
+ 
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "HomeMory",
     "navigationBarTextStyle": "black"
   },
+
+
   "tabBar": {
     "list": [
+      {
+        "pagePath": "pages/timeCapsule/timeCapsule",
+        "text": "时间胶囊",
+        "iconPath": "./static/picture/Home.png",
+        "selectedIconPath": "./static/picture/selectedHome.png"
+      },
       {
         "pagePath": "pages/main/main",
         "text": "首页",
