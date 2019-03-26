@@ -25,4 +25,4 @@
 <view style=' text-align: center;'>
   openid：{{openid}}
 </view>
-<button bindtap='cahngeInfo'>修改信息</button>
+<button bindtap='changeInfo'>修改信息</button>

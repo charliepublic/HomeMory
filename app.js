@@ -49,6 +49,7 @@ App({
         var code = res.code //返回code
         var secrete = "d0c5dcd84878c4f42f00c8cca148f546"
         var appid = "wx69327bfafa39d94a"
+        var that  = this
         wx.request({
           url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secrete + '&js_code=' + code + '&grant_type=authorization_code',
           data: {},

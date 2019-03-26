@@ -16,9 +16,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onShow: function () {
+
+    // 初始化openid
     var openid = app.globalData.openid 
-    if(openid ==""){
+    if(openid =="" && this.openid == ""){
       var that = this
       wx.login({
         //获取code
@@ -50,6 +52,11 @@ Page({
         }
       })
     }
+    console.log(openid)
+    this.setData({
+      openid:openid
+    })
+    
     //获取用户信息
     wx.request({
       // 修改url
@@ -73,6 +80,6 @@ Page({
   },
 
   changeInfo:function(){
-    console.log(app.globalData.openid)
+    console.log("值是",this.openid)
   }
 })
