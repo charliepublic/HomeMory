@@ -1,9 +1,10 @@
 {
   
   "pages": [
+    "pages/Me/Me",
     "pages/timeCapsule/timeCapsule",
     "pages/main/main",
-    "pages/Me/Me",
+    "pages/newFamily/newFamily",
     "pages/home/home"
   ],
  
@@ -18,22 +19,22 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/timeCapsule/timeCapsule",
-        "text": "时间胶囊",
-        "iconPath": "./static/picture/Home.png",
-        "selectedIconPath": "./static/picture/selectedHome.png"
-      },
-      {
         "pagePath": "pages/main/main",
         "text": "首页",
         "iconPath": "./static/picture/Home.png",
         "selectedIconPath": "./static/picture/selectedHome.png"
       },
       {
+        "pagePath": "pages/timeCapsule/timeCapsule",
+        "text": "时间胶囊",
+        "iconPath": "./static/picture/timeCapsule.png",
+        "selectedIconPath": "./static/picture/selectedTimeCapsule.png"
+      },
+      {
         "pagePath": "pages/home/home",
-        "text": "我的家庭",
-        "iconPath": "./static/picture/Home.png",
-        "selectedIconPath": "./static/picture/selectedHome.png"
+        "text": "我的家庭信息",
+        "iconPath": "./static/picture/family.png",
+        "selectedIconPath": "./static/picture/selectedFamily.png"
       },  
       {
         "pagePath": "pages/Me/Me",

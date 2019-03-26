@@ -1,18 +1,24 @@
 // pages/timeCapsule/timeCapsule.js
+// 导入工具包格式化时间
+var util = require("../../utils/util.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    date:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var DATE = util.formatDate(new Date());
+    this.setData({
+      date: DATE,
+    });
   },
 
   /**
@@ -62,5 +68,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  // 修改页面显示时间
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
 })

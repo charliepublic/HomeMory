@@ -1,7 +1,7 @@
 <!--pages/Me/Me.wxml-->
 <view class="userinfo">
-  <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-  <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl"></open-data>
+  <open-data class="userinfo-nickname" type="userNickName"></open-data>
 </view>
 
 <view style=' text-align: center;'>
@@ -19,14 +19,10 @@
 <view style=' text-align: center;'>
   家乡：阿里巴巴
 </view>
-
-<button>
-家庭信息
-</button>
-
 <view style=' text-align: center;'>
   档案管理积分：10086
 </view>
-
-<button>修改信息</button>
-<button>修改信息</button>
+<view style=' text-align: center;'>
+  openid：{{openid}}
+</view>
+<button bindtap='cahngeInfo'>修改信息</button>

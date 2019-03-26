@@ -1,2 +1,6 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view>
+  <!-- 该页面进行文件的上传下载 -->
+  <button bindtap='upload'>上传文件</button>
+</view>
+
