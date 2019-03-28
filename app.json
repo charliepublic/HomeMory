@@ -1,10 +1,12 @@
 {
   
   "pages": [
-    "pages/Me/Me",
-    "pages/timeCapsule/timeCapsule",
     "pages/main/main",
     "pages/newFamily/newFamily",
+    "pages/Me/Me",
+    "pages/timeCapsule/timeCapsule",
+    
+    
     "pages/home/home"
   ],
  

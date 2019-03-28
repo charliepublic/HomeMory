@@ -1,6 +1,6 @@
 <!--pages/timeCapsule/timeCapsule.wxml-->
 <view>
-  <input auto-focus placeholder="写下你的时光胶囊吧" maxlength="300" confirm-type='done'></input>
+  <input auto-focus placeholder="写下你的时光胶囊吧" maxlength="300"></input>
   <button type='primary'>完成</button>
 </view>
 <view>
