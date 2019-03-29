@@ -1,6 +1,6 @@
 <!--pages/newFamily/newFamily.wxml-->
 <view>
   <text>输入你的家庭的姓名</text>
-  <input auto-focus placeholder="10个字以内" maxlength="300"></input>
+  <input auto-focus placeholder="10个字以内" maxlength="300" bindinput='homeName'></input>
   <button bindtap='goBack'>完成</button>
 </view>

@@ -1,11 +1,14 @@
-// pages/newFamily/newFamily.js
+// pages/changeInfo/changeInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    homeName:""
+    date:"",
+    name:"",
+    location:"",
+    homeland:""
   },
 
   /**
@@ -64,34 +67,55 @@ Page({
 
   },
 
-  homeName(e){
+  setLocation:function(e){
     this.setData({
-      homeName:e.detail.value
+      location:e.detail.value
     })
   },
 
-  goBack: function (options){
+  setHomeland:function(e){
+    this.setData({
+      homeland: e.detail.value
+    })
+  },
+
+  setName:function(e){
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
+
+  submit:function(){
     var openid = getApp().globalData.openid 
     var that = this
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
       url: 'www.baidu.com',
       data: {
-        openid: openid
+        openid: openid,
+        date: that.date,
+        name: that.name,
+        location: that.location,
+        homeland: that.homeland
+
+        // TODO：！！！！！！！！！！！！！
+
+        //添加其他相对应键值对
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        if (res != "") {
-          that.setData({
-            haveFamily: true
-          })
-        }
         wx.showToast({
-          title: '创建家庭成功',
+          title: '修改信息成功',
           icon: 'success',
           duration: 1500//持续的时间
         })
@@ -100,8 +124,5 @@ Page({
         })
       }
     })
-    
-
-  },
-
+  }
 })

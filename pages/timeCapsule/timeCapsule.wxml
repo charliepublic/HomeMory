@@ -1,7 +1,7 @@
 <!--pages/timeCapsule/timeCapsule.wxml-->
 <view>
-  <input auto-focus placeholder="写下你的时光胶囊吧" maxlength="300"></input>
-  <button type='primary'>完成</button>
+  <input auto-focus placeholder="写下你的时光胶囊吧" maxlength="300" bindinput='timeTxt'></input>
+  <button type='primary' bindtap='submit'>完成</button>
 </view>
 <view>
   <picker mode = 'date' bindchange="bindDateChange">胶囊打开的的时间是{{date}}</picker>

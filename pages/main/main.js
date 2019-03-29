@@ -1,4 +1,7 @@
 // pages/main/main.js
+
+
+const app = getApp();
 Page({
 
   /**
@@ -12,7 +15,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
+    
+    //获取用户的家庭信息
+    var openid = app.globalData.openid 
+    var that = this
+    wx.request({
+
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'www.baidu.com',
+      data: {
+        openid: openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if(res != ""){
+            that.setData({
+              haveFamily: true
+            })
+        }
+
+        // TODO：！！！！！！！！！！！！！
+
+        //针对获取的信息对于家庭信息的一个管理
+      }
+    })
   },
 
   /**

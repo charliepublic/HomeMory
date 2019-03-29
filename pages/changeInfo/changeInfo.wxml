@@ -1,0 +1,18 @@
+<!--pages/changeInfo/changeInfo.wxml-->
+<view>
+  <text>选择你的生日</text>
+  <picker mode = 'date' bindchange="bindDateChange">你的生日是{{date}}</picker>
+</view>
+<view>
+  <text>输入你的所在地区</text>
+  <input auto-focus placeholder="地区" maxlength="20" bindinput='setLocation'></input>
+</view>
+<view>
+  <text>输入你的家乡</text>
+  <input auto-focus placeholder="家乡" maxlength="20" bindinput='setHomeland'></input>
+</view>
+<view>
+  <text>修改你的姓名</text>
+  <input auto-focus placeholder="姓名" maxlength="20" bindinput='setName'></input>
+</view>
+<button bindtap='submit'>submit</button>

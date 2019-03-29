@@ -52,13 +52,15 @@ Page({
         }
       })
     }
-    console.log(openid)
     this.setData({
       openid:openid
     })
     
     //获取用户信息
     wx.request({
+
+      // TODO：！！！！！！！！！！！！！
+
       // 修改url
       url: 'www.baidu.com',
       data: {
@@ -69,6 +71,8 @@ Page({
       },
       success: function (res) {
       
+        // TODO：！！！！！！！！！！！！！
+
       }
     })
   },
@@ -80,6 +84,8 @@ Page({
   },
 
   changeInfo:function(){
-    console.log("值是",this.openid)
+    wx.navigateTo({
+      url: '../changeInfo/changeInfo',
+    })
   }
 })

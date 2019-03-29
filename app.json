@@ -1,13 +1,14 @@
 {
   
   "pages": [
+    
     "pages/main/main",
     "pages/newFamily/newFamily",
     "pages/Me/Me",
     "pages/timeCapsule/timeCapsule",
-    
-    
+    "pages/changeInfo/changeInfo",
     "pages/home/home"
+   
   ],
  
   "window": {

@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    date:""
+    date:"",
+    timeTxt:""
   },
 
   /**
@@ -16,9 +17,28 @@ Page({
    */
   onLoad: function (options) {
     var DATE = util.formatDate(new Date());
+    var openid = getApp().globalData.openid 
     this.setData({
       date: DATE,
     });
+
+    wx.request({
+
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'www.baidu.com',
+      data: {
+        openid: openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        
+         // TODO：！！！！！！！！！！！！！
+      // 加载以往时光胶囊信息
+      }
+    })
   },
 
   /**
@@ -69,6 +89,37 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  timeTxt:function(e){
+    this.setData({
+      timeTxt:e.detail.value
+    })
+  },
+
+
+  submit:function(){
+    var openid = getApp().globalData.openid 
+    wx.request({
+
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'www.baidu.com',
+      data: {
+        openid: openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '提交胶囊成功',
+          icon: 'success',
+          duration: 1500//持续的时间
+        })
+      }
+    })
+  },
+
 
   // 修改页面显示时间
   bindDateChange: function (e) {
