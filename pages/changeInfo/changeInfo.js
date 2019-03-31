@@ -96,8 +96,10 @@ Page({
     var openid = getApp().globalData.openid 
     var that = this
     wx.request({
+
       // TODO：！！！！！！！！！！！！！
       // 修改url
+      
       url: 'www.baidu.com',
       data: {
         openid: openid,

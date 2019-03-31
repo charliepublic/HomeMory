@@ -3,8 +3,11 @@ App({
 
   globalData:{
     openid:"",
-    userInfo: null
+    userInfo: null,
+    shareTicket:"",
+    isNew:true
   },
+
 
   onLaunch: function () {
     
@@ -26,11 +29,18 @@ App({
           success: function (res) {
             var openid = res.data.openid //返回openid
             var app = getApp();
-            app.globalData.openid = openid
+            app.globalData.openid = openid            
           }
         })
       }
     })
+
+    
+  },
+
+  // todo:添加检测函数
+  checkIsNew: function (openid) {
+    return true
   },
 
 })

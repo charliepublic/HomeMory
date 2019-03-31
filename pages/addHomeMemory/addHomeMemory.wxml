@@ -1,0 +1,4 @@
+<!--pages/addHomeMemory/addHomeMemory.wxml-->
+<input auto-focus placeholder="写下你的备注吧" maxlength="300" bindinput='timeTxt'></input>
+<button bindtap='upload'>上传文件</button>
+<button bindtap='submit'> 完成</button>

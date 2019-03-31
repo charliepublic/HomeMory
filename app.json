@@ -1,13 +1,13 @@
 {
-  
   "pages": [
-    
     "pages/main/main",
+    "pages/homeInfo/home",
     "pages/newFamily/newFamily",
     "pages/Me/Me",
     "pages/timeCapsule/timeCapsule",
     "pages/changeInfo/changeInfo",
-    "pages/home/home"
+    "pages/addHomeMemory/addHomeMemory"
+    
    
   ],
  
@@ -34,7 +34,7 @@
         "selectedIconPath": "./static/picture/selectedTimeCapsule.png"
       },
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/homeInfo/home",
         "text": "我的家庭信息",
         "iconPath": "./static/picture/family.png",
         "selectedIconPath": "./static/picture/selectedFamily.png"

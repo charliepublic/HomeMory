@@ -1,0 +1,12 @@
+<!--pages/home/home.wxml-->
+<view>
+  <!-- 该页面进行文件的上传下载 -->
+  <button plain='true' bindtap='input'> <image src='../../static/picture/add.png' mode='widthFix'></image></button>
+  
+</view>
+<view wx:for= "{{[0,1,2,3,4]}}" wx:for-item = "member" >
+    <view>
+      {{member}}
+      <button>删除</button>
+    </view>
+  </view>

@@ -1,4 +1,7 @@
-// pages/home/home.js
+// pages/addHomeMemory/addHomeMemory.js
+
+var util = require("../../utils/util.js")
+
 Page({
 
   /**
@@ -83,4 +86,36 @@ Page({
       }
     })
   },
+
+  submit: function () {
+    var openid = getApp().globalData.openid
+    var that = this
+    wx.request({
+
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+
+      url: 'www.baidu.com',
+      data: {
+        // TODO：！！！！！！！！！！！！！
+        //添加其他相对应键值对
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+
+        var Time = util.formatTime(new Date());
+        console.log(Time)
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          duration: 1500//持续的时间
+        })
+        wx.navigateBack({
+
+        })
+      }
+    })
+  }
 })
