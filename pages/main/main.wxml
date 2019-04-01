@@ -25,6 +25,11 @@
       <button>删除</button>
     </view>
   </view>
+  <view>
+    <button bindtap='quit'>
+    退出该家庭
+    </button>
+  </view>
 </view>
 
 

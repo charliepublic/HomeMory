@@ -11,7 +11,7 @@ Page({
     haveFamily : true,
 
     //由于测试需要改false为true
-    homeNumber :""
+    homeNumber :"123456"
   },
 
   /**
@@ -87,6 +87,28 @@ Page({
   createNewFamily:function(options){
     wx.navigateTo({
       url: '../newFamily/newFamily',
+    })
+  },
+
+  quit:function(){
+    var that = this
+    wx.request({
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'www.baidu.com',
+      data: {
+        openid: that.data.openid,
+        homeNumber: that.data.homeNumber
+        // homeNumber作为更新或者进入已有家庭
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          homeNumber : ""
+        })
+      }
     })
   }
 })

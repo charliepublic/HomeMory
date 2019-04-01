@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/main/main",
     "pages/homeInfo/home",
-    "pages/newFamily/newFamily",
-    "pages/Me/Me",
+    "pages/main/main",
     "pages/timeCapsule/timeCapsule",
-    "pages/changeInfo/changeInfo",
-    "pages/addHomeMemory/addHomeMemory"
     
    
+    "pages/newFamily/newFamily",
+    "pages/Me/Me",
+    "pages/changeInfo/changeInfo",
+    "pages/addHomeMemory/addHomeMemory" 
   ],
  
   "window": {
