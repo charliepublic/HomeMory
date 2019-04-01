@@ -11,31 +11,22 @@ Page({
     location:"",
     record:"",
     openid:"",
-    isNew: true
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function () {
-
     // 初始化openid
     var openid = app.globalData.openid 
-    var isNew = app.checkIsNew(openid)
-    if (isNew != true) {
-      that.setData({
-        isNew: false
-      })
-    }
     this.setData({
       openid:openid
-    })
-    
+    })    
     //获取用户信息
     wx.request({
 
       // TODO：！！！！！！！！！！！！！
-
       // 修改url
       url: 'www.baidu.com',
       data: {

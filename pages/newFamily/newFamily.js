@@ -85,18 +85,12 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        if (res != "") {
-          that.setData({
-            haveFamily: true
-          })
-        }
         wx.showToast({
           title: '创建家庭成功',
           icon: 'success',
           duration: 1500//持续的时间
         })
         wx.navigateBack({
-
         })
       }
     })
