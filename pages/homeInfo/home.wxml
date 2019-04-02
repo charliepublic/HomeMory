@@ -8,13 +8,13 @@
 </view>
 <view>
   <input auto-focus placeholder="查找关键字" maxlength="20" bindinput='setTxt'></input>
-  <button>查询</button>
+  <button bindtap='search'>查询</button>
 </view>
 
 
-<view wx:for= "{{[0,1,2,3,4]}}" wx:for-item = "member" >
+<view wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
     <view>
       {{member}}
-      <button>删除</button>
+      <button  bindtap='delet' data-index='{{index}}'>删除</button>
     </view>
   </view>

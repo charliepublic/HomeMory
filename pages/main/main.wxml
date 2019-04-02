@@ -14,7 +14,7 @@
 <view wx:else = "{{haveFamily}}">
   <view style=' text-align: center;'>
     <text>家庭信息</text>
-    <view>家庭名称————我爱我家</view>
+    <view>家庭名称————{{homeName}}</view>
   </view>
 
   <!-- 此处需要将button缩小并去掉边框颜色 -->

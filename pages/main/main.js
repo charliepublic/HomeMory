@@ -9,7 +9,7 @@ Page({
    */
   data: {
     haveFamily : true,
-
+    homeName: "我爱李自成",
     //由于测试需要改false为true
     homeNumber :"123456"
   },
@@ -92,22 +92,37 @@ Page({
 
   quit:function(){
     var that = this
-    wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'www.baidu.com',
-      data: {
-        openid: that.data.openid,
-        homeNumber: that.data.homeNumber
-        // homeNumber作为更新或者进入已有家庭
-      },
-      header: {
-        'content-type': 'application/json'
-      },
+    wx.showModal({
+      title: '提示',
+      content: '确认要退出该家庭么？',
       success: function (res) {
-        that.setData({
-          homeNumber : ""
-        })
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.setData({
+            haveFamily: false,
+            homeNumber: ""
+          })
+          wx.request({
+            // TODO：！！！！！！！！！！！！！
+            // 修改url
+            url: 'www.baidu.com',
+            data: {
+              openid: that.data.openid
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 1500//持续的时间
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   }

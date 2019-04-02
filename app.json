@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/homeInfo/home",
+    
     "pages/main/main",
     "pages/timeCapsule/timeCapsule",
-    
+    "pages/homeInfo/home",
    
     "pages/newFamily/newFamily",
     "pages/Me/Me",

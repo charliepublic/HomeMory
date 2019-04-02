@@ -22,6 +22,7 @@ Page({
     var openid = getApp().globalData.openid 
     this.setData({
       date: DATE,
+      //获取当前时间，用于返回后台计算剩余多少天可以打开
     });
 
     wx.request({
@@ -82,47 +83,50 @@ Page({
     })
   },
 
-  delet:function(e){
-    // console.log(e)
-    // var list = this.data.timeCapsuleList
-    // var listA = this.data.timeCapsuleList
-    // var listB = this.data.timeCapsuleList
-    // console.log(list)
-    // var index = e.currentTarget.dataset.index
-    // var length = this.data.timeCapsuleList.length
-    // console.log(length)
-    // console.log(index)
-    // var lista = list.splice(0,index)
-    // console.log("list is " + listA)
-    // console.log("list a is "+lista)
-    // var listb =list.splice(index+1,list.length-index)
-    // console.log("list is " + listB)
-    // console.log("list b is " + listb)
-    // var newlist = lista.concat(listb)
 
-    //删除功能 真的服气！！！
-    this.setData({
-      timeCapsuleList:newlist
-    })
-    
-    wx.request({
 
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'www.baidu.com',
-      data: {
-          item:this.data.timeCapsuleList[index]
-      },
-      header: {
-        'content-type': 'application/json'
-      },
+
+  delet: function (e) {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认要删除此条信息么？',
       success: function (res) {
-        wx.showToast({
-          title: '删除胶囊成功',
-          icon: 'success',
-          duration: 1500//持续的时间
-        })
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var list = that.data.timeCapsuleList
+          var index = e.currentTarget.dataset.index
+          var item = list[index]
+          list.splice(index, 1)
+          that.setData({
+            timeCapsuleList: list
+          })
+
+          wx.request({
+
+            // TODO：！！！！！！！！！！！！！
+            // 修改url
+            url: 'www.baidu.com',
+            data: {
+              item: item
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 1500//持续的时间
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
-  }
+
+  },
+
 })
