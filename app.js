@@ -1,11 +1,9 @@
 //app.js
 App({
-
   globalData:{
     openid:"",
     homeNumber:"",
-
-
+    havePicture: false
   },
 
 
@@ -18,8 +16,7 @@ App({
       success: function (res) {
         var code = res.code //返回code
         var secrete = "d0c5dcd84878c4f42f00c8cca148f546"
-        var appid = "wx69327bfafa39d94a"
-        
+        var appid = "wx69327bfafa39d94a" 
         wx.request({
           url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secrete + '&js_code=' + code + '&grant_type=authorization_code',
           data: {},
@@ -48,8 +45,8 @@ App({
       },
       success: function (res) {
         that.setData({
-          // homeNumber:""
-
+          homeNumber:res.data.homeNumber,
+          havePicture:res.data.havePicture
         })
         // TODO：！！！！！！！！！！！！！
 

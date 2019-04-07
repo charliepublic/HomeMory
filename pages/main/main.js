@@ -8,9 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    haveFamily : true,
+    haveFamily : false,
     homeName: "我爱李自成",
-    //由于测试需要改false为true
     homeNumber :"123456"
   },
 
@@ -19,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     //获取用户的家庭信息
+    console.log("传入的option是")
     console.log(options)
     var openid = app.globalData.openid 
     var homeNumber
@@ -29,7 +29,7 @@ Page({
     else{
       homeNumber = app.globalData.homeNumber
     }
-    if(homeNumber != ""){
+    if(homeNumber != undefined){
       this.setData({
         haveFamily: true,
       })
@@ -59,7 +59,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -71,7 +70,7 @@ Page({
     }
     return {
       title: '加入我的家庭吧',
-      path: '/pages/main/main?homeNumber=1234567&&invited=true',
+      path: '/pages/main/main?homeNumber=' + that.data.homeNumber + '&&invited = true',
       imageUrl:"",
       success: function (res) {
         

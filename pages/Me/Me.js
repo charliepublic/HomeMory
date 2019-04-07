@@ -6,12 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    name:"",
     age:"",
     homeland:"",
     location:"",
     record:"",
     openid:"",//用户唯一识别码
-
+    picture:"",
+    havePicture: getApp().globalData.havePicture
   },
 
   /**
@@ -19,31 +21,30 @@ Page({
    */
   onShow: function () {
     // 初始化openid
-    var openid = app.globalData.openid 
-    this.setData({
-      openid:openid
-    })    
+    var openid = getApp().globalData.openid
+    console.log(openid)
     var that = this
     //获取用户信息
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'www.baidu.com',
+      url: 'http://192.168.43.130:8777/getInfo',
       data: {
-        openid:openid
+        wyt : "123123",
+        openId : openid
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-
-        // TODO：！！！！！！！！！！！！！
-        // that.setData({
-        //   age: "",
-        //   homeland: "",
-        //   location: "",
-        //   record: "",
-        // })
+        console.log(res)
+        that.setData({
+          age: res.data.age,
+          name: res.data.userName,
+          homeland: res.data.homeLand,
+          location: res.data.location,
+          // record: "",
+        })
       }
     })
   },

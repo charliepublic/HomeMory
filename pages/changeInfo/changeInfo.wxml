@@ -1,5 +1,11 @@
 <!--pages/changeInfo/changeInfo.wxml-->
-<image  mode="aspectFill" src =""></image>
+<view wx:if = "{{!havePicture}}">
+  <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl" bindtap='changePicture'></open-data>
+</view>
+<view wx:else = "{{havePicture}}">
+  <image  mode="aspectFill" src ="{{picture}}"  bindtap='changePicture'></image>
+</view>
+<view style=' text-align: center;'>修改你的头像</view>
 <view>
   <text>选择你的生日</text>
   <picker mode = 'date' bindchange="bindDateChange">你的生日是{{date}}</picker>

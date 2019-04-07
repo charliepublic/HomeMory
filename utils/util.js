@@ -6,7 +6,7 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 // 获取当前时间
@@ -15,7 +15,7 @@ const formatDate = date => {
   const month = date.getMonth() + 1
   const day = date.getDate()
 
-  return [year, month, day].map(formatNumber).join('/')
+  return [year, month, day].map(formatNumber).join('-')
 }
 
 const formatNumber = n => {
