@@ -1,4 +1,5 @@
 <!--pages/changeInfo/changeInfo.wxml-->
+<image  mode="aspectFill" src =""></image>
 <view>
   <text>选择你的生日</text>
   <picker mode = 'date' bindchange="bindDateChange">你的生日是{{date}}</picker>
@@ -15,4 +16,4 @@
   <text>修改你的姓名</text>
   <input auto-focus placeholder="姓名" maxlength="20" bindinput='setName'></input>
 </view>
-<button bindtap='submit'>submit</button>
+<button bindtap='submit'>提交信息</button>

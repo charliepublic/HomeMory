@@ -3,7 +3,7 @@
   <!-- 该页面进行文件的上传下载 -->
   
   
-  <button plain='true' bindtap='input'> <image src='../../static/picture/add.png' mode='widthFix'></image></button>
+  <button plain='true' bindtap='input'> <image src='../../static/picture/add.png' mode='top right '></image></button>
   
 </view>
 <view>
@@ -14,6 +14,7 @@
 
 <view wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
     <view>
+      <image  mode="aspectFill" src =""></image>
       {{member}}
       <button  bindtap='delet' data-index='{{index}}'>删除</button>
     </view>

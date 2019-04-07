@@ -10,7 +10,7 @@ Page({
     homeland:"",
     location:"",
     record:"",
-    openid:"",
+    openid:"",//用户唯一识别码
 
   },
 
@@ -23,9 +23,9 @@ Page({
     this.setData({
       openid:openid
     })    
+    var that = this
     //获取用户信息
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
       url: 'www.baidu.com',
@@ -38,17 +38,17 @@ Page({
       success: function (res) {
 
         // TODO：！！！！！！！！！！！！！
-
+        // that.setData({
+        //   age: "",
+        //   homeland: "",
+        //   location: "",
+        //   record: "",
+        // })
       }
     })
   },
-  /*
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
 
+  //跳转修改用户信息页面
   changeInfo:function(){
     wx.navigateTo({
       url: '../changeInfo/changeInfo',

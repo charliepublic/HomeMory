@@ -21,6 +21,7 @@
   <button open-type='share' plain='true'> <image src='../../static/picture/invite.png' mode='widthFix'></image></button>
   <view wx:for= "{{[0,1,2,3,4]}}" wx:for-item = "member" >
     <view>
+      <image  mode="aspectFill" src =""></image>
       {{member}}
       <button>删除</button>
     </view>
