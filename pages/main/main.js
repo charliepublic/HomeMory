@@ -25,6 +25,8 @@ Page({
     if(options.invited = true){
       homeNumber = options.homeNumber
       console.log("homeNumber 在邀请中获取为"+homeNumber)
+
+      
     }
     else{
       homeNumber = app.globalData.homeNumber
@@ -39,7 +41,7 @@ Page({
       // 修改url
       url: 'www.baidu.com',
       data: {
-        openid: that.openid,
+        openId: that.openid,
         homeNumber:homeNumber
         // homeNumber作为更新或者进入已有家庭
       },

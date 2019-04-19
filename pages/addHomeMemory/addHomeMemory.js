@@ -46,6 +46,9 @@ Page({
     * 采用递归的方式上传多张
     */
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
+    if (length == 0) {
+      return
+    }
     var that = this;
     var openid = getApp().globalData.openid
     var Time = util.formatTime(new Date());

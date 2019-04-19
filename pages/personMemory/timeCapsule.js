@@ -10,24 +10,25 @@ Page({
   data: {
     date:"",
     timeTxt:"",
-    timeCapsuleList:[0,1,2,3,4,5,6]
-    //此处响应要做修改
+    timeCapsuleList:[],
+    t_length:0,
+    flag : true,
+    clickMessage: "切换到解封的记忆"
       },
 
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     var DATE = util.formatDate(new Date());
     var openid = getApp().globalData.openid 
+    var that = this
     this.setData({
       date: DATE,
       //获取当前时间，用于返回后台计算剩余多少天可以打开
     });
-
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
       url: 'www.baidu.com',
@@ -38,16 +39,20 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        
          // TODO：！！！！！！！！！！！！！
       // 加载以往时光胶囊信息
+      that.setData({
+        changeTimeCapsuleList: res.data
+      })
       }
     })
   },
 
   //文本绑定函数
   setTimeTxt:function(e){
+    var t_text = e.detail.value.length;
     this.setData({
+      t_length: t_text,
       timeTxt:e.detail.value
     })
   },
@@ -123,7 +128,6 @@ Page({
     var that = this
     console.log(this.data.timeTxt)
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
       url: 'www.baidu.com',
@@ -141,9 +145,7 @@ Page({
           icon: 'success',
           duration: 1500//持续的时间
         })
-        that.setData({
-          // timeCapsuleList:
-        })
+        that.onShow()
       }
     })
   },
@@ -193,6 +195,68 @@ Page({
 
   },
 
+  //新建一个人记忆
+  newPersonMemory:function(){
+    wx.navigateTo({
+      url: '../addPersonMemory/addPersonMemory',
+    })
+  },
+  //  下拉刷新函数
+  onReachBottom: function (option) {
+    console.log('--------下拉刷新-------')
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.changeTimeCapsuleList()
+  },
+
+  //响应修改函数内容
+  changeTimeCapsuleList: function (option) {
+    var sequence = this.data.sequence + 1
+    var openid = getApp().globalData.openid
+    var that = this
+    wx.request({
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'http://192.168.43.130:8777/upload/*******',
+      data: {
+        openId: openid,
+        homeId: that.data.homeId,
+        sequence: sequence
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var newList = that.data.timeCapsuleList.concat(res.data)
+        that.setData({
+          timeCapsuleList: newList
+        })
+        // TODO：！！！！！！！！！！！！！
+       
+        console.log(that.data.changeTimeCapsuleList)
+      },
+      complete: function () {
+        // complete
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
+
+      }
+    })
+  }   ,
+
+  clickButton: function () {
+    this.setData({
+      flag: !this.data.flag
+    })
+    if (this.data.flag == true) {
+      this.setData({
+        clickMessage: "切换到解封的记忆"
+      })
+    } else {
+      this.setData({
+        clickMessage: "切换到未解封的记忆"
+      })
+    }
+  },   
 })
 
 

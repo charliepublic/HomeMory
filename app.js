@@ -32,9 +32,7 @@ App({
       }
     })
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
-
       // 修改url
       url: 'www.baidu.com',
       data: {
@@ -49,16 +47,11 @@ App({
           havePicture:res.data.havePicture
         })
         // TODO：！！！！！！！！！！！！！
-
       }
     })
 
     
   },
 
-  // todo:添加检测函数
-  checkIsNew: function (openid) {
-    return true
-  },
 
 })

@@ -1,0 +1,25 @@
+<view>
+  <view>
+    <input auto-focus placeholder="给你的记忆取个名字" maxlength="20" bindinput='setTimeTitle'></input>
+  </view>
+
+  <view>
+    <textarea auto-focus placeholder="写下你的个人记忆吧" maxlength="300" bindinput='setTimeTxt'></textarea>
+    <text>{{t_length}}/300</text> 
+  </view>
+  
+  <view>添加标签</view>
+  <view></view>
+  <view></view>
+
+  <view wx:for = "{{images}}" wx:for-item = "member">
+    <image  mode="aspectFill" data-idx="{{index}}" src ="{{member}}"></image>
+  </view>
+  <view>
+    <button bindtap='upload'>上传图片</button>
+    <button type='primary' bindtap='submit'>完成</button>
+  </view>
+</view>
+<view>
+  <picker mode = 'date' bindchange="bindDateChange">记忆将会在{{date}}再次打开</picker>
+</view>

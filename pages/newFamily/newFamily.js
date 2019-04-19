@@ -24,7 +24,7 @@ Page({
       // 修改url
       url: 'www.baidu.com',
       data: {
-        openid: openid,
+        openId: openid,
         homeName:that.data.homeName
       },
       header: {

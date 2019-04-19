@@ -2,12 +2,13 @@
   "pages": [
     
     "pages/main/main",
-    "pages/timeCapsule/timeCapsule",
+    "pages/personMemory/timeCapsule",
     "pages/homeInfo/home",
     "pages/newFamily/newFamily",
     "pages/Me/Me",
     "pages/changeInfo/changeInfo",
-    "pages/addHomeMemory/addHomeMemory"
+    "pages/addHomeMemory/addHomeMemory",
+    "pages/addPersonMemory/addPersonMemory"
     
   ],
  
@@ -29,8 +30,8 @@
         "selectedIconPath": "./static/picture/selectedHome.png"
       },
       {
-        "pagePath": "pages/timeCapsule/timeCapsule",
-        "text": "时间胶囊",
+        "pagePath": "pages/personMemory/timeCapsule",
+        "text": "个人记忆",
         "iconPath": "./static/picture/timeCapsule.png",
         "selectedIconPath": "./static/picture/selectedTimeCapsule.png"
       },
