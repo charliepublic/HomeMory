@@ -85,6 +85,8 @@ Page({
     })
   },
 
+
+  // 修改头像
   changePicture:function(){
     console.log("--------point-------")
     var that = this;
@@ -107,8 +109,11 @@ Page({
       },
     });
   },
+
+
   /**
     * 采用递归的方式上传多张
+    *此处只需要调用一次，只有一个头像
     */
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
     var that = this;

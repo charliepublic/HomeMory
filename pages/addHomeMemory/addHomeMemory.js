@@ -14,6 +14,7 @@ Page({
     clickMessage:"点击修改为仅自己可见"
   },
 
+  // 绑定函数
   setTxt: function (e) {
     this.setData({
       txt: e.detail.value
@@ -38,6 +39,8 @@ Page({
 
       },
     });
+
+
   },
   /**
     * 采用递归的方式上传多张
@@ -85,6 +88,8 @@ Page({
     })
   },
 
+
+  // 点击设置权限为是否都可见
   clickButton:function(){   
     this.setData({
       isPrivate: !this.data.isPrivate

@@ -14,6 +14,7 @@ Page({
     //此处响应要做修改
       },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -127,7 +128,7 @@ Page({
       // 修改url
       url: 'www.baidu.com',
       data: {
-        openid: openid,
+        openId: openid,
         date: that.data.date,
         timeTxt: that.data.timeTxt
       },
@@ -193,3 +194,14 @@ Page({
   },
 
 })
+
+
+//计算时间的相差天数
+function dateDifference(presentData, openData) {    
+  var dateSpan,iDays;
+  presentData = Date.parse(presentData);
+  openData = Date.parse(openData);
+  dateSpan = openData - presentData;
+  iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
+  return iDays
+};

@@ -5,21 +5,27 @@
 <view wx:else = "{{havePicture}}">
   <image  mode="aspectFill" src ="{{picture}}"  bindtap='changePicture'></image>
 </view>
-<view style=' text-align: center;'>修改你的头像</view>
-<view>
-  <text>选择你的生日</text>
-  <picker mode = 'date' bindchange="bindDateChange">你的生日是{{date}}</picker>
-</view>
-<view>
-  <text>输入你的所在地区</text>
-  <input auto-focus placeholder="地区" maxlength="20" bindinput='setLocation'></input>
-</view>
-<view>
-  <text>输入你的家乡</text>
-  <input auto-focus placeholder="家乡" maxlength="20" bindinput='setHomeland'></input>
-</view>
-<view>
-  <text>修改你的姓名</text>
-  <input auto-focus placeholder="姓名" maxlength="20" bindinput='setName'></input>
-</view>
-<button bindtap='submit'>提交信息</button>
+
+  <view class='submit-content'>
+    <view class='birthday-group'>
+      <text class='birthday-text'>选择您的生日</text>
+      <picker class='birthday-picker' mode = 'date' bindchange="bindDateChange"><text class='birthday-date'>出生日期: </text> <text class='date'>{{date}}                   </text></picker>
+    </view>
+
+    <view class='location-group'>
+      <text class='location-text'>输入您的所在地区</text>
+      <input class='input-size' placeholder-class='placeholder-size'  placeholder="地区" maxlength="20" bindinput='setLocation'></input>
+    </view>
+
+    <view class='homeland-group'>
+      <text class='homeland-text'>输入您的家乡</text>
+      <input class='input-size' placeholder-class='placeholder-size'  placeholder="家乡" maxlength="20" bindinput='setHomeland'></input>
+    </view>
+
+    <view class='name-group'>
+      <text class='name-text'>修改您的姓名</text>
+      <input class='input-size' placeholder-class='placeholder-size'  placeholder="姓名" maxlength="20" bindinput='setName'></input>
+    </view>
+
+    <button class='submit-button' bindtap='submit'>提交</button>
+  </view>

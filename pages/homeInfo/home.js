@@ -6,39 +6,53 @@ Page({
    */
   data: {
     searchTxt:"",
-    memoryList:[0,1,2,3,4,5,6]
+    memoryList:[],
+    homeId:"1",
+    sequence : 0
+    //编译需要改homeId "" 为1
   },
-  onLoad: function (options) {
-    var openid = getApp().globalData.openid
-    wx.request({
 
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'www.baidu.com',
-      data: {
-        openid: openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-
-        // TODO：！！！！！！！！！！！！！
-        // 加载以往说说信息即修改memoryList
-      }
-    })
+  onLoad:function(options){
+    this.onShow()
   },
+  // 加载函数，加载所有的家庭说说信息
+  onShow: function (options) {
+    this.changeMemoryList("onload")
+  },
+
+  // 控件绑定
   setTxt: function (e) {
     this.setData({
       searchTxt: e.detail.value
     })
   },
 
+
+  // 添加说说事件绑定
   input:function(){
-    wx.navigateTo({
-      url: '../addHomeMemory/addHomeMemory',
-    })
+    if(this.data.homeId == ""){
+      wx.showModal({
+        title: '提示',
+        content: '请先创建你的家庭',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: '../newFamily/newFamily',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../addHomeMemory/addHomeMemory',
+      })
+    }
   },
+
+  // 进行查找
   search: function () {
     var openid = getApp().globalData.openid
     var that = this
@@ -67,6 +81,7 @@ Page({
       
   },
 
+  // 删除说说，要进行权限验证
   delet: function (e) {
     var that = this
     wx.showModal({
@@ -78,35 +93,93 @@ Page({
           var list =that.data.memoryList
           var index = e.currentTarget.dataset.index
           var item = list[index]
-          list.splice(index, 1)
-          that.setData({
-            memoryList: list
-          })
 
-          wx.request({
-
-            // TODO：！！！！！！！！！！！！！
-            // 修改url
-            url: 'www.baidu.com',
-            data: {
-              item: item
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function (res) {
-              wx.showToast({
-                title: '删除成功',
-                icon: 'success',
-                duration: 1500//持续的时间
-              })
-            }
-          })
+          //此处进行权限认证
+          if(item.openid != that.data.openid){
+            wx.showToast({
+              title: '您无权删除该项说说',
+              icon: 'none',
+              duration: 1500//持续的时间
+            })
+            return
+          }else{
+            list.splice(index, 1) //删除功能实现
+            that.setData({
+              memoryList: list
+            })
+            wx.request({
+              // TODO：！！！！！！！！！！！！！
+              // 修改url deletememory
+              url: 'http://192.168.43.130:8777/upload/deletememory',
+              data: {
+                id: item.id
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                  duration: 1500//持续的时间
+                })
+              }
+            })
+          }
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
-
   },
+
+
+  onReachBottom:function() {
+    console.log('--------下拉刷新-------')
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.changeMemoryList("PullDown")
+  },
+
+  changeMemoryList:function(option){
+    var sequence
+    if (option == "PullDown"){
+      sequence = this.data.sequence + 1
+    }else{
+      sequence = 0
+    }
+    var openid = getApp().globalData.openid
+
+    var that = this
+    wx.request({
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'http://192.168.43.130:8777/upload/testquery',
+      data: {
+        openId: openid,
+        homeId: that.data.homeId,
+        sequence: sequence
+        // 此处未定义homeID
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var newList = that.data.memoryList.concat(res.data)
+        that.setData({
+          memoryList: newList
+        })
+        // TODO：！！！！！！！！！！！！！
+        // 加载以往说说信息即修改memoryList
+        console.log(that.data.memoryList)
+      },
+      complete: function () {
+        // complete
+        if(option == "PullDown"){
+          wx.hideNavigationBarLoading() //完成停止加载
+          wx.stopPullDownRefresh() //停止下拉刷新
+        }
+
+      }
+    })
+  }               
 })

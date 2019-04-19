@@ -14,8 +14,7 @@
 
 <view wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
     <view>
-      <image  mode="aspectFill" src =""></image>
-      {{member}}
+      <image  mode="aspectFill" src ="data:image/{{member.type}};base64,{{member.content}}"></image>
       <button  bindtap='delet' data-index='{{index}}'>删除</button>
     </view>
   </view>

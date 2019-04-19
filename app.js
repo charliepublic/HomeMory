@@ -2,7 +2,7 @@
 App({
   globalData:{
     openid:"",
-    homeNumber:"",
+    homeId:"",
     havePicture: false
   },
 
@@ -45,7 +45,7 @@ App({
       },
       success: function (res) {
         that.setData({
-          homeNumber:res.data.homeNumber,
+          homeId:res.data.homeId,
           havePicture:res.data.havePicture
         })
         // TODO：！！！！！！！！！！！！！

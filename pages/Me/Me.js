@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid: "",//用户唯一识别码
     name:"",
     age:"",
     homeland:"",
     location:"",
     record:"",
-    openid:"",//用户唯一识别码
     picture:"",
     havePicture: getApp().globalData.havePicture
   },
