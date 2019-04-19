@@ -12,12 +12,35 @@ Page({
     //编译需要改homeId "" 为1
   },
 
-  onLoad:function(options){
-    this.onShow()
-  },
   // 加载函数，加载所有的家庭说说信息
   onShow: function (options) {
-    this.changeMemoryList("onload")
+    this.setData({
+      sequence : 0,
+      memoryList : []
+    })
+    var openid = getApp().globalData.openid
+    var that = this
+    wx.request({
+      // TODO：！！！！！！！！！！！！！
+      // 修改url
+      url: 'http://192.168.43.130:8777/upload/testquery',
+      data: {
+        openId: openid,
+        homeId: that.data.homeId,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var newList = that.data.memoryList.concat(res.data)
+        that.setData({
+          memoryList: newList
+        })
+        // TODO：！！！！！！！！！！！！！
+        // 加载以往说说信息即修改memoryList
+        console.log(that.data.memoryList)
+      }
+    })
   },
 
   // 控件绑定
@@ -54,31 +77,34 @@ Page({
 
   // 进行查找
   search: function () {
+    this.setData({
+      sequence: 0,
+      memoryList: []
+    })
     var openid = getApp().globalData.openid
     var that = this
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'www.baidu.com',
+      url: 'http://192.168.43.130:8777/upload/*****',
       data: {
-        openid: openid,
-        searchTxt:that.data.searchTxt
-
+        openId: openid,
+        homeId: that.data.homeId,
+        searchTxt: that.data.searchTxt
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-
-        // TODO：！！！！！！！！！！！！！
+        var newList = that.data.memoryList.concat(res.data)
         that.setData({
-          // 此处获取返回结果
-          // memoryList:""
+          memoryList: newList
         })
+        // TODO：！！！！！！！！！！！！！
+        // 加载以往说说信息即修改memoryList
+        console.log(that.data.memoryList)
       }
     })
-      
   },
 
   // 删除说说，要进行权限验证
@@ -112,12 +138,14 @@ Page({
               // 修改url deletememory
               url: 'http://192.168.43.130:8777/upload/deletememory',
               data: {
-                id: item.id
+                id: item.id,
+                openId: getApp().globalData.openid
               },
               header: {
                 'content-type': 'application/json'
               },
               success: function (res) {
+                console.log(res)
                 wx.showToast({
                   title: '删除成功',
                   icon: 'success',
@@ -133,32 +161,26 @@ Page({
     })
   },
 
-
-  onReachBottom:function() {
+  //  下拉刷新函数
+  onReachBottom:function(option) {
     console.log('--------下拉刷新-------')
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.changeMemoryList("PullDown")
+    this.changeMemoryList()
   },
 
+  //响应修改函数内容
   changeMemoryList:function(option){
-    var sequence
-    if (option == "PullDown"){
-      sequence = this.data.sequence + 1
-    }else{
-      sequence = 0
-    }
+    var sequence = this.data.sequence + 1
     var openid = getApp().globalData.openid
-
     var that = this
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://192.168.43.130:8777/upload/testquery',
+      url: 'http://192.168.43.130:8777/upload/*******',
       data: {
         openId: openid,
         homeId: that.data.homeId,
         sequence: sequence
-        // 此处未定义homeID
       },
       header: {
         'content-type': 'application/json'
@@ -174,10 +196,8 @@ Page({
       },
       complete: function () {
         // complete
-        if(option == "PullDown"){
           wx.hideNavigationBarLoading() //完成停止加载
           wx.stopPullDownRefresh() //停止下拉刷新
-        }
 
       }
     })
