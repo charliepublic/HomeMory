@@ -8,21 +8,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    date:"",
-    timeTxt:"",
-    timeCapsuleList:[],
-    t_length:0,
-    flag : true,
+    date: "",
+    timeTxt: "",
+    timeCapsuleList: [1, 2, 3, 4],
+    t_length: 0,
+    isOpen: false,
     clickMessage: "切换到解封的记忆"
-      },
+  },
 
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function (options) {
+  onShow: function(options) {
     var DATE = util.formatDate(new Date());
-    var openid = getApp().globalData.openid 
+    var openid = getApp().globalData.openid
     var that = this
     this.setData({
       date: DATE,
@@ -38,27 +38,27 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
-         // TODO：！！！！！！！！！！！！！
-      // 加载以往时光胶囊信息
-      that.setData({
-        changeTimeCapsuleList: res.data
-      })
+      success: function(res) {
+        // TODO：！！！！！！！！！！！！！
+        // 加载以往时光胶囊信息
+        that.setData({
+          changeTimeCapsuleList: res.data
+        })
       }
     })
   },
 
   //文本绑定函数
-  setTimeTxt:function(e){
+  setTimeTxt: function(e) {
     var t_text = e.detail.value.length;
     this.setData({
       t_length: t_text,
-      timeTxt:e.detail.value
+      timeTxt: e.detail.value
     })
   },
 
   // 修改页面显示时间
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
@@ -66,15 +66,15 @@ Page({
   },
 
   /**
-  * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
-  */
-  upload: function () {
+   * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
+   */
+  upload: function() {
     var that = this;
     wx.chooseImage({
       count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         var successUp = 0; //成功
         var failUp = 0; //失败
         var length = res.tempFilePaths.length; //总数
@@ -84,8 +84,8 @@ Page({
     });
   },
   /**
-    * 采用递归的方式上传多张
-    */
+   * 采用递归的方式上传多张
+   */
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
     var that = this;
     wx.showLoading({
@@ -94,15 +94,15 @@ Page({
     wx.uploadFile({
       url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
       filePath: imgPaths[count],
-      name: count.toString(),//示例，使用顺序给文件命名
-      success: function (e) {
-        successUp++;//成功+1
+      name: count.toString(), //示例，使用顺序给文件命名
+      success: function(e) {
+        successUp++; //成功+1
       },
-      fail: function (e) {
-        failUp++;//失败+1
+      fail: function(e) {
+        failUp++; //失败+1
       },
-      complete: function (e) {
-        count++;//下一张
+      complete: function(e) {
+        count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
@@ -123,7 +123,7 @@ Page({
   // 提交函数上传时光胶囊 
   // TODO！！
   // 修改data内容
-  submit: function () {
+  submit: function() {
     var openid = getApp().globalData.openid
     var that = this
     console.log(this.data.timeTxt)
@@ -139,11 +139,11 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         wx.showToast({
           title: '提交胶囊成功',
           icon: 'success',
-          duration: 1500//持续的时间
+          duration: 1500 //持续的时间
         })
         that.onShow()
       }
@@ -152,12 +152,12 @@ Page({
 
 
   // 删除函数
-  delet: function (e) {
+  delet: function(e) {
     var that = this
     wx.showModal({
       title: '提示',
       content: '确认要删除此条信息么？',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
           var list = that.data.timeCapsuleList
@@ -179,11 +179,11 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (res) {
+            success: function(res) {
               wx.showToast({
                 title: '删除成功',
                 icon: 'success',
-                duration: 1500//持续的时间
+                duration: 1500 //持续的时间
               })
             }
           })
@@ -196,20 +196,20 @@ Page({
   },
 
   //新建一个人记忆
-  newPersonMemory:function(){
+  newPersonMemory: function() {
     wx.navigateTo({
       url: '../addPersonMemory/addPersonMemory',
     })
   },
   //  下拉刷新函数
-  onReachBottom: function (option) {
+  onReachBottom: function(option) {
     console.log('--------下拉刷新-------')
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.changeTimeCapsuleList()
   },
 
   //响应修改函数内容
-  changeTimeCapsuleList: function (option) {
+  changeTimeCapsuleList: function(option) {
     var sequence = this.data.sequence + 1
     var openid = getApp().globalData.openid
     var that = this
@@ -225,29 +225,29 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         var newList = that.data.timeCapsuleList.concat(res.data)
         that.setData({
           timeCapsuleList: newList
         })
         // TODO：！！！！！！！！！！！！！
-       
+
         console.log(that.data.changeTimeCapsuleList)
       },
-      complete: function () {
+      complete: function() {
         // complete
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
 
       }
     })
-  }   ,
+  },
 
-  clickButton: function () {
+  clickButton: function() {
     this.setData({
-      flag: !this.data.flag
+      isOpen: !this.data.isOpen
     })
-    if (this.data.flag == true) {
+    if (this.data.isOpen == false) {
       this.setData({
         clickMessage: "切换到解封的记忆"
       })
@@ -256,13 +256,13 @@ Page({
         clickMessage: "切换到未解封的记忆"
       })
     }
-  },   
+  },
 })
 
 
 //计算时间的相差天数
-function dateDifference(presentData, openData) {    
-  var dateSpan,iDays;
+function dateDifference(presentData, openData) {
+  var dateSpan, iDays;
   presentData = Date.parse(presentData);
   openData = Date.parse(openData);
   dateSpan = openData - presentData;

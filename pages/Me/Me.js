@@ -6,20 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openid: "",//用户唯一识别码
-    name:"",
-    age:"",
-    homeland:"",
-    location:"",
-    record:"",
-    picture:"",
+    openid: "", //用户唯一识别码
+    name: "",
+    age: "",
+    homeland: "",
+    location: "",
+    record: "",
+    picture: "",
     havePicture: getApp().globalData.havePicture
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function () {
+  onShow: function() {
     // 初始化openid
     var openid = getApp().globalData.openid
     console.log(openid)
@@ -30,13 +30,13 @@ Page({
       // 修改url
       url: 'http://192.168.43.130:8777/getInfo',
       data: {
-        wyt : "123123",
-        openId : openid
+        wyt: "123123",
+        openId: openid
       },
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         that.setData({
           age: res.data.age,
@@ -50,7 +50,7 @@ Page({
   },
 
   //跳转修改用户信息页面
-  changeInfo:function(){
+  changeInfo: function() {
     wx.navigateTo({
       url: '../changeInfo/changeInfo',
     })

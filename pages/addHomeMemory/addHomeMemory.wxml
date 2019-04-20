@@ -1,7 +1,7 @@
 <!--pages/addHomeMemory/addHomeMemory.wxml-->
 <input auto-focus placeholder="写下你的备注吧" maxlength="300" bindinput='setTxt'></input>
-<view wx:for = "{{images}}" wx:for-item = "member">
-  <image  mode="aspectFill" data-idx="{{index}}" src ="{{member}}"></image>
+<view wx:for="{{images}}" wx:for-item="member">
+  <image mode="aspectFill" data-idx="{{index}}" src="{{member}}"></image>
 </view>
 <button bindtap="clickButton">{{clickMessage}}</button>
 <button bindtap='upload'>上传照片</button>

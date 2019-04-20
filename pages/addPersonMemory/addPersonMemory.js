@@ -10,7 +10,7 @@ Page({
   data: {
     images: [],
     date: "",
-    timeTitle:"",
+    timeTitle: "",
     timeTxt: "",
     t_length: 0
   },
@@ -19,7 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function (options) {
+  onShow: function(options) {
     var DATE = util.formatDate(new Date());
     var openid = getApp().globalData.openid
     var that = this
@@ -37,7 +37,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         // TODO：！！！！！！！！！！！！！
         // 加载以往时光胶囊信息
         that.setData({
@@ -48,7 +48,7 @@ Page({
   },
 
   //文本绑定函数
-  setTimeTxt: function (e) {
+  setTimeTxt: function(e) {
     var t_text = e.detail.value.length;
     this.setData({
       t_length: t_text,
@@ -56,15 +56,15 @@ Page({
     })
   },
 
-  setTimeTitle:function(){
+  setTimeTitle: function() {
     var title = e.detail.value;
     this.setData({
-      timeTitle:title
+      timeTitle: title
     })
   },
 
   // 修改页面显示时间
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
@@ -72,15 +72,15 @@ Page({
   },
 
   /**
-  * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
-  */
-  upload: function () {
+   * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
+   */
+  upload: function() {
     var that = this;
     wx.chooseImage({
       count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         var successUp = 0; //成功
         var failUp = 0; //失败
         var length = res.tempFilePaths.length; //总数
@@ -93,11 +93,11 @@ Page({
     });
   },
   /**
-    * 采用递归的方式上传多张
-    */
+   * 采用递归的方式上传多张
+   */
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
-    if (length == 0){
-      return 
+    if (length == 0) {
+      return
     }
     var that = this;
     var openid = getApp().globalData.openid
@@ -108,7 +108,7 @@ Page({
     wx.uploadFile({
       url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
       filePath: imgPaths[count],
-      name: "file",//示例，使用顺序给文件命名
+      name: "file", //示例，使用顺序给文件命名
       formData: {
         timeTitle: that.data.timeTitle,
         openId: openid,
@@ -116,14 +116,14 @@ Page({
         timeTxt: that.data.timeTxt
       }, // HTTP 请求中其他额外的 form data
 
-      success: function (e) {
-        successUp++;//成功+1
+      success: function(e) {
+        successUp++; //成功+1
       },
-      fail: function (e) {
-        failUp++;//失败+1
+      fail: function(e) {
+        failUp++; //失败+1
       },
-      complete: function (e) {
-        count++;//下一张
+      complete: function(e) {
+        count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
@@ -144,7 +144,7 @@ Page({
   // 提交函数上传时光胶囊 
   // TODO！！
   // 修改data内容
-  submit: function () {
+  submit: function() {
     var successUp = 0; //成功
     var failUp = 0; //失败
     var length = this.data.images.length; //总数
@@ -156,4 +156,3 @@ Page({
   },
 
 })
-

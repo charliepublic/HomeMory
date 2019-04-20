@@ -1,20 +1,27 @@
 <!--pages/home/home.wxml-->
 <view>
   <!-- 该页面进行文件的上传下载 -->
-  
-  
-  <button plain='true' bindtap='input'> <image src='../../static/picture/add.png' mode='top right '></image></button>
-  
+
+
+  <button plain='true' bindtap='input'>
+    <image src='../../static/picture/add.png' mode='top right '></image>
+  </button>
+
 </view>
 <view>
-  <input auto-focus placeholder="查找关键字" maxlength="20" bindinput='setTxt'></input>
+  <input auto-focus placeholder="查找关键字" maxlength="20" bindinput='setTxt' value="{{searchTxt}}"></input>
   <button bindtap='search'>查询</button>
 </view>
 
 
-<view wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
+<view wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
+  <view>
+    <image mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
     <view>
-      <image  mode="aspectFill" src ="data:image/{{member.type}};base64,{{member.content}}"></image>
-      <button  bindtap='delet' data-index='{{index}}'>删除</button>
+      <text>context</text>
+      <text>发布人  XXXXX </text>
+      <text>发布时间   XXXXX/XXXX/XXXXXXX </text>
     </view>
+    <button bindtap='delet' data-index='{{index}}'>删除</button>
   </view>
+</view>

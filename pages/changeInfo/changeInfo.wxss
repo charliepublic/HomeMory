@@ -1,23 +1,24 @@
 /* pages/changeinfo/changeinfo.wxss */
-page{background-color: #D6EAF8;}
 
+page {
+  background-color: #d6eaf8;
+}
 
-.submit-content{
+.submit-content {
   height: 800rpx;
   margin: 15% auto;
   width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1rpx solid #BADBEF;
+  border: 1rpx solid #badbef;
   box-sizing: border-box;
   border-radius: 20rpx;
   background-color: white;
-  box-shadow: 0px 0px 10px #B6D9F0 inset;
+  box-shadow: 0px 0px 10px #b6d9f0 inset;
 }
 
-
-.birthday-group, .location-group, .homeland-group, .name-group{
+.birthday-group, .location-group, .homeland-group, .name-group {
   height: 150rpx;
   width: 90%;
   border-bottom: 2rpx solid #e4e4e4;
@@ -26,17 +27,21 @@ page{background-color: #D6EAF8;}
   padding: 20rpx;
 }
 
-.birthday-group .birthday-picker  .birthday-date{
-  color: #787B7D;
+.birthday-group .birthday-picker  .birthday-date {
+  color: #787b7d;
   font-size: 32rpx;
 }
 
-.placeholder-size{font-size: 32rpx;}
+.placeholder-size {
+  font-size: 32rpx;
+}
 
-.birthday-group .date{font-size: 36rpx;}
+.birthday-group .date {
+  font-size: 36rpx;
+}
 
-
-.birthday-group .birthday-text, .location-group .location-text, .homeland-group .homeland-text, .name-group .name-text{
+.birthday-group .birthday-text, .location-group .location-text,
+.homeland-group .homeland-text, .name-group .name-text {
   display: inline-block;
   width: 80%;
   font-size: 34rpx;
@@ -44,10 +49,11 @@ page{background-color: #D6EAF8;}
   color: #104264;
 }
 
-.input-size{font-size: 36rpx;}
+.input-size {
+  font-size: 36rpx;
+}
 
-
-.submit-button{
+.submit-button {
   width: 30%;
   border-radius: 20rpx;
   margin-top: 10%;
@@ -55,4 +61,6 @@ page{background-color: #D6EAF8;}
   border: 2rpx solid #e4e4e4;
 }
 
-.submit-button::after{border: 0;}
+.submit-button::after {
+  border: 0;
+}
