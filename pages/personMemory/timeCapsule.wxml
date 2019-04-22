@@ -13,7 +13,7 @@
   <view style=' text-align: center;'>
     现在已经打开的个人记忆
   </view>
-  <view wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
+  <view wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
     <view>
       <text>title</text>
     </view>

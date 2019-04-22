@@ -8,27 +8,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    haveFamily: false,
+    haveFamily: true,
     homeName: "我爱李自成",
-    homeNumber: "123456"
+    homeId: "123456",
+    homeMumberList: [1,2,3,4],
+    isAdministrator:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onShow: function(options) {
+    // this.setData({
+    //   haveFamily: false,
+    //   homeId: "",
+    //   homeName: "",
+    //   homeMumberList: []
+    // })
     //获取用户的家庭信息
     console.log("传入的option是")
     console.log(options)
     var openid = app.globalData.openid
     var homeNumber
-    if (options.invited = true) {
+
+    
+    if (options != null) {
       homeNumber = options.homeNumber
       console.log("homeNumber 在邀请中获取为" + homeNumber)
-
-
     } else {
-      homeNumber = app.globalData.homeNumber
+      homeNumber = app.globalData.homeId
     }
     if (homeNumber != undefined) {
       this.setData({
@@ -41,7 +49,7 @@ Page({
         url: 'www.baidu.com',
         data: {
           openId: that.openid,
-          homeNumber: homeNumber
+          homeId: homeNumber
           // homeNumber作为更新或者进入已有家庭
         },
         header: {
@@ -51,6 +59,11 @@ Page({
           that.setData({
             // TODO：！！！！！！！！！！！！！
             // 显示家庭人员的信息列表
+            haveFamily: true,
+            homeName: res.data,
+            homeId: res.data,
+            homeMumberList: res.data,
+            isAdministrator: res.data
           })
         }
       })
@@ -71,7 +84,7 @@ Page({
     }
     return {
       title: '加入我的家庭吧',
-      path: '/pages/main/main?homeNumber=' + that.data.homeNumber + '&&invited = true',
+      path: '/pages/main/main?homeNumber=' + that.data.homeId + '&&invited = true',
       imageUrl: "",
       success: function(res) {
 
@@ -86,9 +99,18 @@ Page({
   // 删除函数
   delet: function(e) {
     var that = this
+    if(this.data.isAdministrator == false){
+      wx.showToast({
+        title: '您无权删除该成员',
+        icon: 'none',
+        duration: 1500 //持续的时间
+      })
+      return
+    }
+
     wx.showModal({
       title: '提示',
-      content: '确认要删除此条信息么？',
+      content: '确认要删除此家庭成员么？',
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
@@ -129,6 +151,14 @@ Page({
 
   //创建家庭
   createNewFamily: function(options) {
+    if(getApp().globalData.homeId != ""){
+        wx.showToast({
+          title: '请退出当前家庭',
+          icon: 'none',
+          duration: 1500 //持续的时间
+        })
+        return
+    }
     wx.navigateTo({
       url: '../newFamily/newFamily',
     })
@@ -142,21 +172,25 @@ Page({
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          that.setData({
-            haveFamily: false,
-            homeNumber: ""
-          })
+       
           wx.request({
             // TODO：！！！！！！！！！！！！！
             // 修改url
             url: 'www.baidu.com',
             data: {
-              openid: that.data.openid
+              openid: that.data.openid,
+              isAdministrator:that.data.isAdministrator
             },
             header: {
               'content-type': 'application/json'
             },
             success: function(res) {
+              that.setData({
+                haveFamily: false,
+                homeId: "",
+                homeName:"",
+                homeMumberList:[]
+              })
               wx.showToast({
                 title: '删除成功',
                 icon: 'success',

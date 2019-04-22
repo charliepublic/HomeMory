@@ -1,25 +1,30 @@
-<view>
-  <view>
-    <input auto-focus placeholder="给你的记忆取个名字" maxlength="20" bindinput='setTimeTitle'></input>
+<view class='all'>
+  <view class='memory-name'>
+    <input class='memory-input' placeholder-class='memory-name-text' placeholder="快给你的记忆取个名字" maxlength="18" bindinput='setTimeTitle'></input>
   </view>
 
-  <view>
-    <textarea auto-focus placeholder="写下你的个人记忆吧" maxlength="300" bindinput='setTimeTxt'></textarea>
-    <text>{{t_length}}/300</text>
+  <view class='memory-content'>
+    <textarea class='memory-text' placeholder-class='memory-size' placeholder="写下你的个人记忆吧..." maxlength="300" bindinput='setTimeTxt'></textarea>
+    <view wx:for = "{{images}}" wx:for-item = "member">
+      <image  mode="aspectFill" data-idx="{{index}}" src ="{{member}}"></image>
+    </view>
   </view>
 
-  <view>添加标签</view>
-  <view></view>
-  <view></view>
-
-  <view wx:for="{{images}}" wx:for-item="member">
-    <image mode="aspectFill" data-idx="{{index}}" src="{{member}}"></image>
-  </view>
-  <view>
-    <button bindtap='upload'>上传图片</button>
-    <button type='primary' bindtap='submit'>完成</button>
-  </view>
+<view class='size-tips-group'>
+    <view class='add-tips'>
+        <text>添加标签</text>
+    </view>
+    <view class='text-length-group'>
+      <text class='text-length'>{{t_length}}/300</text> 
+    </view>
 </view>
-<view>
-  <picker mode='date' bindchange="bindDateChange">记忆将会在{{date}}再次打开</picker>
-</view>
+
+  <view class='mid-group'>
+    <button class='upload-button' bindtap='upload'>上传图片</button>
+    <button class='submit-button' bindtap='submit'>完成</button>
+  </view>
+
+  <view class='bottom-group'>
+    <picker mode = 'date' bindchange="bindDateChange">记忆将会在{{date}}再次打开</picker>
+  </view>
+</view> 

@@ -28,7 +28,7 @@ Page({
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://192.168.43.130:8777/getInfo',
+      url: 'http://192.168.1.101:8777/getInfo',
       data: {
         wyt: "123123",
         openId: openid

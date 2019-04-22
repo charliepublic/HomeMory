@@ -1,1 +1,77 @@
 /* pages/addPersonMemory/addPersonMemory.wxss */
+page{background-color: #fffffb;}
+
+.memory-name{
+  box-shadow: 0 0 3rpx inset;
+  margin: 5% auto;
+  background-color: #fcfaf2;
+  border-radius: 15rpx;
+  width: 85%;
+  height: 80rpx;
+  border: 2rpx solid #BDC0BA;
+  box-sizing: border-box;
+}
+
+.memory-text{width: 100%;}
+.memory-size{font-size: 30rpx;}
+
+.memory-name .memory-input{text-align: center;padding: 16rpx;}
+
+.memory-name .memory-name-text{
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.memory-content{
+  width: 95%;
+  margin: 0 auto;
+  border: 2rpx solid #BDC0BA;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+
+.size-tips-group{
+  margin-left: 0;
+  margin-bottom: 0;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.size-tips-group .text-length-group{
+    font-size: 26rpx;
+    padding-top: 8rpx;
+    border-bottom: 2rpx solid #e4e4e4;
+    color: #BDC0BA;
+}
+.size-tips-group .add-tips{
+    border: 2rpx solid #F0F3F4;
+    box-sizing: border-box;
+    color: #BDC0BA;
+    border-radius: 15rpx;
+    font-size: 28rpx;
+    box-shadow: 0px 0px 10px #F0F3F4 inset;
+}
+
+.mid-group .upload-button, .mid-group .submit-button{
+  width: 50%;
+}
+
+.mid-group{margin-top: 10%;}
+
+.upload-button, .submit-button{background-color: white; box-shadow: 0px 0px 10px #F0F3F4 inset;}
+.upload-button::after{border: none;}
+.submit-button::after{border: none;}
+
+.submit-button{margin-top: 10%;}
+
+.bottom-group{
+  font-size: 30rpx;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20%;
+  border-bottom: 2rpx solid whitesmoke;
+  text-align: center;
+  color: #BDC0BA;
+}

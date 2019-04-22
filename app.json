@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/main/main",
     "pages/personMemory/timeCapsule",
     "pages/homeInfo/home",
