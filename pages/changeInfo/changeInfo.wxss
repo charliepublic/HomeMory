@@ -4,6 +4,14 @@ page {
   background-color: #d6eaf8;
 }
 
+.userinfo {
+  /* border: 1px solid black;
+  box-sizing: border-box; */
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .submit-content {
   height: 800rpx;
   margin: 15% auto;

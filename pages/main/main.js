@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    haveFamily: true,
+    haveFamily: false,
     homeName: "我爱李自成",
     homeId: "123456",
     homeMumberList: [1,2,3,4],
@@ -38,7 +38,7 @@ Page({
     } else {
       homeNumber = app.globalData.homeId
     }
-    if (homeNumber != undefined) {
+    if (homeNumber != "") {
       this.setData({
         haveFamily: true,
       })
@@ -59,11 +59,11 @@ Page({
           that.setData({
             // TODO：！！！！！！！！！！！！！
             // 显示家庭人员的信息列表
-            haveFamily: true,
-            homeName: res.data,
-            homeId: res.data,
-            homeMumberList: res.data,
-            isAdministrator: res.data
+            // haveFamily: true,
+            // homeName: res.data,
+            // homeId: res.data,
+            // homeMumberList: res.data,
+            // isAdministrator: res.data
           })
         }
       })

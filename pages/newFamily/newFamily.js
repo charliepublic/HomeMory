@@ -16,9 +16,9 @@ Page({
   goBack: function(options) {
     var openid = getApp().globalData.openid
     var that = this
+    getApp().globalData.homeId ="123456"
     wx.navigateBack({})
     wx.request({
-
       // TODO：！！！！！！！！！！！！！
       // 修改url
       url: 'www.baidu.com',
@@ -38,7 +38,14 @@ Page({
           icon: 'success',
           duration: 1500 //持续的时间
         })
-
+       
+      },
+      fail:function(res){
+        wx.showToast({
+          title: '创建家庭失败',
+          icon: 'none',
+          duration: 1500 //持续的时间
+        })
       }
       
     })

@@ -1,5 +1,5 @@
 <!--pages/changeInfo/changeInfo.wxml-->
-<view wx:if="{{!havePicture}}">
+<view class="userinfo" wx:if="{{!havePicture}}">
   <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl" bindtap='changePicture'></open-data>
 </view>
 <view wx:else="{{havePicture}}">

@@ -36,9 +36,6 @@ page {
   align-items: center;
 }
 
-.age-group {
-  margin-top: 80rpx;
-}
 
 .age-group, .city-group, .homeland-group, .file-group, .openid-group {
   width: 95%;

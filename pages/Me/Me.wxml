@@ -13,21 +13,22 @@
 <view class='all-content'>
   <!-- 下半部分 -->
   <view class='bottom-content'>
+
+    <view class='file-group' style=' text-align: center;'>
+      <text class='file-text'>昵称：{{name}}</text>
+    </view>
     <view class='age-group' style=' text-align: center;'>
       <text class='age-text'>年龄：{{age}}</text>
     </view>
-
-    <view class='city-group' style=' text-align: center;'>
-      <text class='city-text'>所在城市：<open-data type="userCity"></open-data></text>
+     <view class='city-group' style=' text-align: center;'>
+      <text class='city-text'>所在城市：{{location}}</text>
     </view>
-
     <view class='homeland-group' style=' text-align: center;'>
       <text class='homeland-text'>家乡：{{homeland}}</text>
     </view>
 
-    <view class='file-group' style=' text-align: center;'>
-      <text class='file-text'>档案管理积分：10086</text>
-    </view>
+   
+
   </view>
 
   <view class='button-group'>
