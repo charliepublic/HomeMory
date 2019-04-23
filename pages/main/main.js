@@ -62,7 +62,7 @@ Page({
             // haveFamily: true,
             // homeName: res.data,
             // homeId: res.data,
-            // homeMumberList: res.data,
+            // homeMemberList: res.data,
             // isAdministrator: res.data
           })
         }

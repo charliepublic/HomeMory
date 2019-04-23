@@ -22,27 +22,7 @@ Page({
     })
     var openid = getApp().globalData.openid
     var that = this
-    wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'http://192.168.43.130:8777/upload/testquery',
-      data: {
-        openId: openid,
-        homeId: that.data.homeId,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        var newList = that.data.memoryList.concat(res.data)
-        that.setData({
-          memoryList: newList
-        })
-        // TODO：！！！！！！！！！！！！！
-        // 加载以往说说信息即修改memoryList
-        console.log(that.data.memoryList)
-      }
-    })
+    this.changeMemoryList(0)
   },
 
   // 控件绑定
@@ -87,28 +67,7 @@ Page({
     })
     var openid = getApp().globalData.openid
     var that = this
-    wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'http://192.168.43.130:8777/upload/*****',
-      data: {
-        openId: openid,
-        homeId: that.data.homeId,
-        searchTxt: that.data.searchTxt
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        var newList = that.data.memoryList.concat(res.data)
-        that.setData({
-          memoryList: newList
-        })
-        // TODO：！！！！！！！！！！！！！
-        // 加载以往说说信息即修改memoryList
-        console.log(that.data.memoryList)
-      }
-    })
+    this.changeMemoryList(0)
   },
 
   // 删除说说，要进行权限验证
@@ -169,12 +128,12 @@ Page({
   onReachBottom: function(option) {
     console.log('--------下拉刷新-------')
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.changeMemoryList()
+    var sequence = this.data.sequence + 1
+    this.changeMemoryList(sequence)
   },
 
   //响应修改函数内容
-  changeMemoryList: function(option) {
-    var sequence = this.data.sequence + 1
+  changeMemoryList: function(sequence) {
     var openid = getApp().globalData.openid
     var that = this
     wx.request({

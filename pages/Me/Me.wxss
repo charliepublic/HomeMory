@@ -1,67 +1,59 @@
-page {
-  background-color: #d6eaf8;
-}
+page{background-color: #D6EAF8;}
 
-.userinfo {
+.userinfo{
   /* border: 1px solid black;
   box-sizing: border-box; */
-  margin-top: 20rpx;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.userinfo .avatar-group {
-  width: 160rpx;
-  height: 160rpx;
   border-radius: 50%;
   overflow: hidden;
-  margin: 20rpx;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 
-.userinfo .nickname-group {
-  margin-bottom: 20rpx;
-  font-size: 40rpx;
-}
+.userinfo .nickname-group{margin-bottom: 20rpx; font-size: 40rpx;}
 
 .userinfo .nickname-group .userinfo-nickname {
   color: black;
 }
-
 /************************************************/
 
-.all-content .bottom-content {
+.all-content .bottom-content{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.file-group{margin-top: 80rpx; }
 
-.age-group, .city-group, .homeland-group, .file-group, .openid-group {
+.age-group, .city-group, .homeland-group, .file-group, .openid-group{
   width: 95%;
   height: 80rpx;
   /* border: 1px solid beige; */
   margin-bottom: 20rpx;
   line-height: 80rpx;
-  background-color: #f4f6f6;
+  background-color: #F4F6F6;
   box-shadow: 0 0 8rpx #104e5e;
   border-radius: 10rpx;
 }
 
-.age-group .age-text, .city-group .city-text, .homeland-group .homeland-text,
-.file-group .file-text, .openid-group .openid-text {
+.age-group .age-text, .city-group .city-text, .homeland-group .homeland-text, .file-group .file-text, .openid-group .openid-text{
   float: left;
   font-size: 30rpx;
   margin-left: 20rpx;
   font-family: Microsoft Yahei;
 }
 
-.button-group {
-  margin-top: 40rpx;
-}
+.button-group{margin-top: 40rpx;}
 
-.button-group .button1 {
-  background-color: #d1e4f0;
-  color: #787b7d;
+.button-group .button1{
+  background-color: #D1E4F0;
+  color: #787B7D;
   width: 95%;
 }
+
+

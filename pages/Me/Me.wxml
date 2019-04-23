@@ -1,14 +1,16 @@
 <!--pages/Me/Me.wxml-->
 
 <!-- 如果用户没有头像获取微信头像 -->
-<view class="userinfo" wx:if="{{!havePicture}}">
-  <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl"></open-data>
-</view>
+<view class='avatar-group'>
+  <view class="userinfo" wx:if = "{{!havePicture}}">
+    <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl"></open-data>
+  </view>
 
-<!-- 如果用户有头像，获取数据库中头像 -->
-<view class="userinfo" wx:elif="{{havePicture}}">
-  <image mode="aspectFill" src='{{picture}}'></image>
-</view>
+  <!-- 如果用户有头像，获取数据库中头像 -->
+  <view class="userinfo" wx:elif = "{{havePicture}}">
+    <image  mode="aspectFill" src='{{picture}}'></image>
+  </view>
+</view>  
 
 <view class='all-content'>
   <!-- 下半部分 -->

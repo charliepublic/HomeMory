@@ -1,44 +1,45 @@
 <!--pages/timeCapsule/timeCapsule.wxml-->
-<view>
-  <!-- 该页面进行文件的上传下载 -->
-
-
-  <button plain='true' bindtap='newPersonMemory'>
-    <image src='../../static/picture/add.png' mode='top right '></image>
-  </button>
-
-</view>
-<button bindtap='clickButton'>{{clickMessage}}</button>
-<view wx:if="{{isOpen}}">
-  <view style=' text-align: center;'>
-    现在已经打开的个人记忆
-  </view>
-  <view wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
-    <view>
-      <text>title</text>
+<view class='all'>
+  <view class='top-container'>
+    <view class='image-group'>
+      <image class='image' bindtap='newPersonMemory' src='../../static/picture/add.png' mode='top right '></image>
     </view>
-    <view>
-      <text>context</text> {{capsule}}
-    </view>
-    <view>
-      <text> (种下时间)XXX/xxxxxx/xxxxxxx ------ (打开时间)xxxxxxx/xxxxxxxxx/xxxxxxxxx</text>
-      <!-- ToDo!!!!!!!!! 记录记忆的内容-->
-      <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+
+    <view class='change-group'>
+      <button class='change-button' bindtap='clickButton'><text>{{clickMessage}}</text></button>
     </view>
   </view>
-</view>
-<view wx:else>
-  <view style=' text-align: center;'>
-    现在已经种下的个人记忆
-  </view>
-  <view style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
-    <view>
-      <text>title</text>
+  <view wx:if="{{isOpen}}">
+    <view style=' text-align: center;'>
+      现在已经打开的个人记忆
     </view>
-    <view>
-      <text>  还有xxxx天打开</text>
-      <!-- ToDo!!!!!!!!! 记录记忆的内容-->
-      <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+    <view wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
+      <view>
+        <text>title</text>
+      </view>
+      <view>
+        <text>context</text> {{capsule}}
+      </view>
+      <view>
+        <text> (种下时间)XXX/xxxxxx/xxxxxxx ------ (打开时间)xxxxxxx/xxxxxxxxx/xxxxxxxxx</text>
+        <!-- ToDo!!!!!!!!! 记录记忆的内容-->
+        <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view style=' text-align: center;'>
+      现在已经种下的个人记忆
+    </view>
+    <view style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
+      <view>
+        <text>title</text>
+      </view>
+      <view>
+        <text>  还有xxxx天打开</text>
+        <!-- ToDo!!!!!!!!! 记录记忆的内容-->
+        <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+      </view>
     </view>
   </view>
 </view>

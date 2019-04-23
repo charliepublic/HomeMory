@@ -10,13 +10,13 @@ page{background-color: #fffffb;}
   margin: 10% auto;
   background-color: white;
   box-shadow: 4rpx 4rpx 10rpx #104e5e;
-  
+ 
 }
 
 .content-group .input-style{font-size: 30rpx;}
 
 .content-group{
-  width: 90%;
+  width: 92%;
   height: 500rpx;
   border: 2rpx solid #e4e4e4;
   box-sizing: border-box;
@@ -27,7 +27,7 @@ page{background-color: #fffffb;}
 }
 .text-container{width: 100%; }
 
-.content-group .image-container{}
+.content-group .image-container{overflow: hidden；}
 
 .button-group{
   width: 80%;

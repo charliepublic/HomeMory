@@ -1,1 +1,82 @@
 /* pages/home/home.wxss */
+page{background-color: #D6EAF8;}
+
+.search-group{padding: 10rpx; margin: 5rpx 0 5rpx 0; display: flex; flex-direction: row-reverse; justify-content: space-between;}
+
+.searchtext-group{
+  height: 70rpx; 
+  background-color: #F4F6F6;
+  box-shadow: 0 0 8rpx #104e5e;
+  box-sizing: border-box; 
+  flex-grow: 1; 
+  border-radius: 25rpx;
+  margin-left: 4%;
+}
+
+.searchtext-group .placeholder{
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+
+.search-input{margin-left: 20rpx;}
+
+.searchtext-group .search-input, .searchlogo .search-button{
+  height: 70rpx;
+}
+
+.searchlogo{margin-right: 3%;}
+.searchlogo .image{
+  width: 70rpx; 
+  height: 70rpx;
+  margin-left: 10rpx;
+}
+
+.line{width: 60%; border-bottom: 2rpx solid #dad8d8; margin: 30rpx auto;}
+
+.submit-button .submit, .bottom-content .delete-button .delete{
+  width: 25%;
+  height: 15%;
+  background-color: whitesmoke;
+  box-shadow: 0 0 8rpx #104e5e;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  border-radius: 30rpx;
+}
+
+.bottom-content{
+  padding-top: 4rpx;
+  width: 90%;
+  height: 780rpx;
+  box-shadow: 0 0 8rpx #104e5e;
+  background-color: #F4F6F6;
+  border-radius: 15rpx;
+  margin: 10rpx auto;
+}
+
+.bottom-content .image-group{
+  width: 90%;
+  height: 400rpx;
+  margin: 30rpx auto;
+  margin-top: 30rpx;
+  /* border: 2rpx solid #104e5e; */
+  box-shadow: 0 0 8rpx #104e5e;
+  overflow: hidden;
+  border-radius: 15rpx;
+}
+
+.bottom-content .people-time{
+  width: 90%;
+  height: 150rpx;
+  box-shadow: 0 0 8rpx #104e5e;
+  text-align: center;
+  border-radius: 15rpx;
+  margin: 0 auto;
+  margin-bottom: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bottom-content .people-time text{
+  font-size: 32rpx;
+}

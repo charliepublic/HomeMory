@@ -1,1 +1,44 @@
-/* pages/newFamily/newFamily.wxss */
+
+page{background-color: #fffffb;}
+
+.addfamily{
+  width: 70%;
+  height: 700rpx;
+  border: 2rpx solid #BDC0BA;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+  margin: 15% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  text-align: center;
+  box-shadow: 0px 0px 10px #e4e4e4 inset;
+}
+
+.input-familyname{
+  /* text-align: center; */
+  font-size: 34rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 70%;
+  height: 80rpx;
+  border-bottom: 2rpx solid #e4e4e4;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-top: 20rpx;
+}
+
+.familyname{
+  width: 90%;
+  height: 100rpx;
+  border: 2rpx solid #e4e4e4;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border-radius: 15rpx;
+  /* text-align: center; */
+}
+
+.placeholder{text-align: center; font-size: 28rpx;}
+
+.submit{width: 70%; border-radius: 10rpx; background-color: white; box-shadow: 0px 0px 10px #F0F3F4 inset;}
+.submit::after{border: none;}

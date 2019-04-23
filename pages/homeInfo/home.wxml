@@ -1,27 +1,33 @@
-<!--pages/home/home.wxml-->
-<view>
-  <!-- 该页面进行文件的上传下载 -->
-
-
-  <button plain='true' bindtap='input'>
-    <image src='../../static/picture/add.png' mode='top right '></image>
-  </button>
-
-</view>
-<view>
-  <input auto-focus placeholder="查找关键字" maxlength="20" bindinput='setTxt' value="{{searchTxt}}"></input>
-  <button bindtap='search'>查询</button>
-</view>
-
-
-<view wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
-  <view>
-    <image mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
-    <view>
-      <text>context</text>
-      <text>发布人  XXXXX </text>
-      <text>发布时间   XXXXX/XXXX/XXXXXXX </text>
+  <!--pages/home/home.wxml-->
+<view class='both'>
+  <view class='search-group'>
+    <view class='searchlogo'>
+      <!-- 该页面进行文件的上传下载 -->
+      <image bindtap='input' class='image' src='../../static/picture/add.png' mode='top right '></image>
     </view>
-    <button bindtap='delet' data-index='{{index}}'>删除</button>
+    <view class='searchtext-group'>
+      <input class='search-input' placeholder-class='placeholder' placeholder="查找关键字" maxlength="25" bindinput='setTxt'></input>
+    </view>
+  </view>
+
+  <view class='submit-button'>
+      <button class='submit' bindtap='search'>查询</button>
+  </view>
+
+  <view class='line'></view>
+
+  <view class='bottom-content' wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
+      <view class='image-group'>
+        <image class='image' mode="aspectFill" src ="data:image/{{member.type}};base64,{{member.content}}"></image>
+      </view>
+
+      <view class='people-time'>
+          <text class='people'>发布人  XXXXX </text>
+          <text class='time'>发布时间   XXXXX/XXXX/XXXXXXX </text>
+      </view>
+      
+      <view class='delete-button'>
+        <button class='delete' bindtap='delet' data-index='{{index}}'>删除</button>
+      </view>
   </view>
 </view>

@@ -1,1 +1,79 @@
 /* pages/timeCapsule/timeCapsule.wxss */
+page{background-color: #D6EAF8;}
+
+.top-container{
+  margin-top: 3%;
+  display: flex;
+  height: 70rpx;
+  flex-direction: row-reverse;
+}
+
+.image-group{margin-right: 4%; margin-left: 10rpx;}
+.top-container .image-group .image{
+  width: 70rpx;
+  height: 70rpx;
+}
+.top-container .change-group{  flex-grow: 1; margin-left: 4%; }
+.top-container .change-group .change-button{
+  height: 70rpx; 
+  /* border-radius: 30rpx; */
+  background-color: #F4F6F6;
+  border: 2rpx solid #104e5e;
+  box-shadow: 0 0 8rpx #104e5e;
+  padding-bottom: 10rpx;
+  line-height: 70rpx;
+}
+
+.done-group{
+  width: 60%; 
+  height: 100rpx; 
+  margin: 30rpx auto; 
+  margin-bottom: 60rpx;
+  border: 4rpx solid white;
+  border-style: dotted;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  line-height: 100rpx;
+  }
+
+.bottom-group{
+  border-style: groove;
+  width: 92%;
+  height: 400rpx;
+  /* border: 2rpx solid black; */
+  box-sizing: border-box;
+  margin: 10rpx auto;
+  box-shadow: 0 0 8rpx #104e5e;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bottom-group .delete-group{
+  width: 40%;
+  margin: 0 auto;
+}
+.bottom-group .delete-group::after{border: none;}
+
+.bottom-group .time{
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0 auto;
+  box-shadow: 0 0 8rpx #104e5e;
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.bottom-group .count{  
+  width: 30%;
+  margin: 0 auto;
+  /* box-shadow: 0 0 8rpx #104e5e; */
+  border-bottom: 2rpx solid #F4F6F6;
+  text-align: center;
+}
+
+.bottom-group button{margin-top: 30rpx;  background-color: #7db9de;}
