@@ -7,7 +7,7 @@ Page({
   data: {
     searchTxt: "",
     memoryList: [1, 2, 3, 4],
-    homeId: "1",
+    homeId: "",
     sequence: 0,
     presentTxt: ""
     //编译需要改homeId "" 为1
@@ -18,6 +18,7 @@ Page({
     this.setData({
       sequence: 0,
       // memoryList : []
+      homeId:getApp().globalData.homeId,
       searchTxt: ""
     })
     var openid = getApp().globalData.openid

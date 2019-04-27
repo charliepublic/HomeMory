@@ -9,7 +9,7 @@ Page({
     name: "",
     location: "",
     homeland: "",
-    picture: "../../static/picture/add.png",
+    picture: "",
     havePicture: getApp().globalData.havePicture
     //调试需要
   },
@@ -118,6 +118,9 @@ Page({
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
     var that = this;
     wx.uploadFile({
+      //Todo
+
+      //修改url
       url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
       filePath: imgPaths[count],
       name: count.toString(), //示例，使用顺序给文件命名
@@ -133,7 +136,7 @@ Page({
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
           wx.showToast({
-            title: '上传成功' + successUp,
+            title: '上传头像成功',
             icon: 'success',
             duration: 2000
           })

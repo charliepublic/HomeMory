@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/main/main",
     "pages/personMemory/timeCapsule",
     "pages/homeInfo/home",
@@ -8,9 +9,7 @@
     "pages/changeInfo/changeInfo",
     "pages/addHomeMemory/addHomeMemory",
     "pages/addPersonMemory/addPersonMemory"
-    
   ],
- 
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -18,8 +17,6 @@
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
-
-
   "tabBar": {
     "list": [
       {
@@ -39,14 +36,14 @@
         "text": "我的家庭信息",
         "iconPath": "./static/picture/family.png",
         "selectedIconPath": "./static/picture/selectedFamily.png"
-      },  
+      },
       {
         "pagePath": "pages/Me/Me",
         "text": "我的信息",
         "iconPath": "./static/picture/Me.png",
         "selectedIconPath": "./static/picture/selectedMe.png"
       }
-     
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

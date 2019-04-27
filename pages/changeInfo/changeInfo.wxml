@@ -4,34 +4,36 @@
 
   <view class='submit-content'>
     <view class='avatar-group'>
-    <view class='avatar-size' wx:if = "{{!havePicture}}">
-      <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl" bindtap='changePicture'></open-data>
-    </view>
+      <view class='avatar-size' wx:if="{{!havePicture}}">
+        <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl" bindtap='changePicture'></open-data>
+      </view>
 
-    <view class='avatar-size' wx:else = "{{havePicture}}">
-      <image  mode="aspectFill" src ="{{picture}}"  bindtap='changePicture'></image>
+      <view class='avatar-size' wx:else="{{havePicture}}">
+        <image mode="aspectFill" class="userinfo" src="{{picture}}" bindtap='changePicture'></image>
+      </view>
+
     </view>
-  </view>
     <view class='birthday-group'>
       <text class='birthday-text'>选择您的生日</text>
-      <picker class='birthday-picker' mode = 'date' bindchange="bindDateChange">
-        <text class='birthday-date'>出生日期: </text> <text class='date'>{{date}}</text>
+      <picker class='birthday-picker' mode='date' bindchange="bindDateChange">
+        <text class='birthday-date'>出生日期: </text>
+        <text class='date'>{{date}}</text>
       </picker>
     </view>
 
     <view class='location-group'>
       <text class='location-text'>输入您的所在地区</text>
-      <input class='input-size' placeholder-class='placeholder-size'  placeholder="地区" maxlength="20" bindinput='setLocation'></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="地区" maxlength="20" bindinput='setLocation'></input>
     </view>
 
     <view class='homeland-group'>
       <text class='homeland-text'>输入您的家乡</text>
-      <input class='input-size' placeholder-class='placeholder-size'  placeholder="家乡" maxlength="20" bindinput='setHomeland'></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="家乡" maxlength="20" bindinput='setHomeland'></input>
     </view>
 
     <view class='name-group'>
       <text class='name-text'>修改您的姓名</text>
-      <input class='input-size' placeholder-class='placeholder-size'  placeholder="姓名" maxlength="20" bindinput='setName'></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="姓名" maxlength="20" bindinput='setName'></input>
     </view>
 
     <button class='submit-button' bindtap='submit'>提交</button>

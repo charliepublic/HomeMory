@@ -11,34 +11,37 @@ Page({
     haveFamily: false,
     homeName: "我爱李自成",
     homeId: "123456",
-    homeMumberList: [1,2,3,4],
-    isAdministrator:false
+    homeMumberList: [1, 2, 3, 4],
+    isAdministrator: false
   },
 
+
+  onLoad: function() {
+    console.log("--------------------")
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function(options) {
-    // this.setData({
-    //   haveFamily: false,
-    //   homeId: "",
-    //   homeName: "",
-    //   homeMumberList: []
-    // })
+    this.setData({
+      haveFamily: false,
+      homeId: "",
+      homeName: "",
+      homeMumberList: []
+    })
     //获取用户的家庭信息
     console.log("传入的option是")
     console.log(options)
     var openid = app.globalData.openid
+    console.log(openid)
     var homeNumber
-
-    
     if (options != null) {
       homeNumber = options.homeNumber
       console.log("homeNumber 在邀请中获取为" + homeNumber)
     } else {
       homeNumber = app.globalData.homeId
     }
-    if (homeNumber != "") {
+    if (homeNumber != "" && homeNumber != undefined) {
       this.setData({
         haveFamily: true,
       })
@@ -99,7 +102,7 @@ Page({
   // 删除函数
   delet: function(e) {
     var that = this
-    if(this.data.isAdministrator == false){
+    if (this.data.isAdministrator == false) {
       wx.showToast({
         title: '您无权删除该成员',
         icon: 'none',
@@ -151,13 +154,13 @@ Page({
 
   //创建家庭
   createNewFamily: function(options) {
-    if(getApp().globalData.homeId != ""){
-        wx.showToast({
-          title: '请退出当前家庭',
-          icon: 'none',
-          duration: 1500 //持续的时间
-        })
-        return
+    if (getApp().globalData.homeId != "" && getApp().globalData.homeId != undefined) {
+      wx.showToast({
+        title: '请退出当前家庭',
+        icon: 'none',
+        duration: 1500 //持续的时间
+      })
+      return
     }
     wx.navigateTo({
       url: '../newFamily/newFamily',
@@ -172,14 +175,14 @@ Page({
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-       
+
           wx.request({
             // TODO：！！！！！！！！！！！！！
             // 修改url
             url: 'www.baidu.com',
             data: {
               openid: that.data.openid,
-              isAdministrator:that.data.isAdministrator
+              isAdministrator: that.data.isAdministrator
             },
             header: {
               'content-type': 'application/json'
@@ -188,8 +191,8 @@ Page({
               that.setData({
                 haveFamily: false,
                 homeId: "",
-                homeName:"",
-                homeMumberList:[]
+                homeName: "",
+                homeMumberList: []
               })
               wx.showToast({
                 title: '删除成功',

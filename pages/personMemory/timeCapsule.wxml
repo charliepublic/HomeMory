@@ -6,7 +6,9 @@
     </view>
 
     <view class='change-group'>
-      <button class='change-button' bindtap='clickButton'><text>{{clickMessage}}</text></button>
+      <button class='change-button' bindtap='clickButton'>
+        <text>{{clickMessage}}</text>
+      </button>
     </view>
   </view>
   <view wx:if="{{isOpen}}">

@@ -2,15 +2,15 @@
 
 <!-- 如果用户没有头像获取微信头像 -->
 <view class='avatar-group'>
-  <view class="userinfo" wx:if = "{{!havePicture}}">
+  <view class="userinfo" wx:if="{{!havePicture}}">
     <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl"></open-data>
   </view>
 
   <!-- 如果用户有头像，获取数据库中头像 -->
-  <view class="userinfo" wx:elif = "{{havePicture}}">
-    <image  mode="aspectFill" src='{{picture}}'></image>
+  <view class="userinfo" wx:elif="{{havePicture}}">
+    <image mode="aspectFill" src='{{picture}}'></image>
   </view>
-</view>  
+</view>
 
 <view class='all-content'>
   <!-- 下半部分 -->
@@ -22,14 +22,14 @@
     <view class='age-group' style=' text-align: center;'>
       <text class='age-text'>年龄：{{age}}</text>
     </view>
-     <view class='city-group' style=' text-align: center;'>
+    <view class='city-group' style=' text-align: center;'>
       <text class='city-text'>所在城市：{{location}}</text>
     </view>
     <view class='homeland-group' style=' text-align: center;'>
       <text class='homeland-text'>家乡：{{homeland}}</text>
     </view>
 
-   
+
 
   </view>
 

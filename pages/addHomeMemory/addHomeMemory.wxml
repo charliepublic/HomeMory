@@ -2,15 +2,15 @@
 <view class='all'>
 
   <view class='content-group'>
-  
+
     <view class='twocontent'>
       <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea>
-      <view class='image-container' wx:for = "{{images}}" wx:for-item = "member">
-        <image class='image' mode="aspectFill" data-idx="{{index}}" src ="{{member}}"></image>
+      <view class='image-container' wx:for="{{images}}" wx:for-item="member">
+        <image class='image' mode="aspectFill" data-idx="{{index}}" src="{{member}}"></image>
       </view>
     </view>
 
-  </view> 
+  </view>
 
   <view class='button-group'>
     <button class='btn1' bindtap="clickButton">{{clickMessage}}</button>
@@ -18,4 +18,4 @@
     <button class='btn3' bindtap='submit'> 完成</button>
   </view>
 
-</view>  
+</view>

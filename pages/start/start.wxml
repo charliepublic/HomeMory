@@ -1,0 +1,8 @@
+<view style=' text-align: center;'>
+  <text>
+    欢迎来到HomeMory 家庭管理
+  </text>
+</view>
+<button bindtap='click'>
+  开启我的家庭记忆
+</button>

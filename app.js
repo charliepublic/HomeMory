@@ -7,14 +7,14 @@ App({
   },
 
 
-  onLaunch: function(res) {
+  onShow: function(res) {
     var that = this
     wx.login({
       //获取code
-      //d0c5dcd84878c4f42f00c8cca148f546 secrets
-      //wx69327bfafa39d94a appId
+      // 此处请求openid要交给后台进行请求
       success: function(res) {
         var code = res.code //返回code
+        console.log(code)
         var secrete = "d0c5dcd84878c4f42f00c8cca148f546"
         var appid = "wx69327bfafa39d94a"
         wx.request({
@@ -25,33 +25,30 @@ App({
           },
           success: function(res) {
             var openid = res.data.openid //返回openid
-            var app = getApp();
-            app.globalData.openid = openid
+            that.globalData.openid = openid
+            console.log(openid)
+            wx.request({
+              // TODO：！！！！！！！！！！！！！
+              // 修改url
+              url: 'http://10.132.50.248:8777/family/gethomeid',
+              data: {
+                openId: openid
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function(res) {
+                that.globalData.homeId = res.data.homeId
+                that.globalData.havePicture = res.data.havePicture
+              }
+            })
           }
         })
-      }
-    })
-    wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'www.baidu.com',
-      data: {
-        openid: that.openid
       },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        that.setData({
-          homeId: res.data.homeId,
-          havePicture: res.data.havePicture
-        })
-        // TODO：！！！！！！！！！！！！！
-      }
+      fail: function() {}
     })
 
-
-  },
+  }
 
 
 })

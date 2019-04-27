@@ -12,7 +12,7 @@ Page({
     timeCapsuleList: [1, 2, 3, 4],
     isOpen: false,
     clickMessage: "切换到解封的记忆",
-    sequence:0
+    sequence: 0
   },
 
 
@@ -32,7 +32,7 @@ Page({
       clickMessage: "切换到解封的记忆",
       sequence: 0
     });
-    
+
     this.changeTimeCapsuleList(0)
 
   },
@@ -90,7 +90,7 @@ Page({
   onReachBottom: function(option) {
     console.log('--------下拉刷新-------')
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    var  sequence = this.data.sequence + 1
+    var sequence = this.data.sequence + 1
     this.changeTimeCapsuleList(sequence)
   },
 
@@ -105,7 +105,7 @@ Page({
       data: {
         openId: openid,
         sequence: sequence,
-        isOpen:that.data.isOpen
+        isOpen: that.data.isOpen
       },
       header: {
         'content-type': 'application/json'

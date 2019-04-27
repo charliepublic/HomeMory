@@ -1,4 +1,4 @@
-  <!--pages/home/home.wxml-->
+<!--pages/home/home.wxml-->
 <view class='both'>
   <view class='search-group'>
     <view class='searchlogo'>
@@ -11,23 +11,23 @@
   </view>
 
   <view class='submit-button'>
-      <button class='submit' bindtap='search'>查询</button>
+    <button class='submit' bindtap='search'>查询</button>
   </view>
 
   <view class='line'></view>
 
-  <view class='bottom-content' wx:for= "{{memoryList}}" wx:for-item = "member" wx:for-index = "index">
-      <view class='image-group'>
-        <image class='image' mode="aspectFill" src ="data:image/{{member.type}};base64,{{member.content}}"></image>
-      </view>
+  <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
+    <view class='image-group'>
+      <image class='image' mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
+    </view>
 
-      <view class='people-time'>
-          <text class='people'>发布人  XXXXX </text>
-          <text class='time'>发布时间   XXXXX/XXXX/XXXXXXX </text>
-      </view>
-      
-      <view class='delete-button'>
-        <button class='delete' bindtap='delet' data-index='{{index}}'>删除</button>
-      </view>
+    <view class='people-time'>
+      <text class='people'>发布人  XXXXX </text>
+      <text class='time'>发布时间   XXXXX/XXXX/XXXXXXX </text>
+    </view>
+
+    <view class='delete-button'>
+      <button class='delete' bindtap='delet' data-index='{{index}}'>删除</button>
+    </view>
   </view>
 </view>
