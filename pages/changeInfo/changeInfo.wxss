@@ -15,7 +15,6 @@ page {
   width: 160rpx;
   height: 160rpx;
   margin: 0 auto;
-
 }
 
 .avatar-group {

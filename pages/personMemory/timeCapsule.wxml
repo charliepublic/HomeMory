@@ -11,37 +11,53 @@
       </button>
     </view>
   </view>
-  <view wx:if="{{isOpen}}">
-    <view style=' text-align: center;'>
-      现在已经打开的个人记忆
-    </view>
-    <view wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
-      <view>
-        <text>title</text>
+
+  <view class='tips-group' style=' text-align: center;' wx:if="{{isOpen}}">
+      <text class='tips-content'>现在已经打开的个人记忆</text>
+  </view>
+
+  <view class='tips-group' style=' text-align: center;' wx:else>
+      <text class='tips-content'>现在已经种下的个人记忆</text>
+  </view>
+
+
+  
+  <view class='bottom-container' wx:if="{{isOpen}}" style=' text-align: center;'>
+
+    <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
+      
+      <view class='title-group'>
+        <text class='title'>title</text>
       </view>
-      <view>
-        <text>context</text> {{capsule}}
+
+      <view class='context-group'>
+        <textarea class='context'>contextsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss {{capsule}}</textarea>
       </view>
-      <view>
-        <text> (种下时间)XXX/xxxxxx/xxxxxxx ------ (打开时间)xxxxxxx/xxxxxxxxx/xxxxxxxxx</text>
+
+      <view class='time-group'>
+        <text class='write-time'>(种下时间)xxx/xxxxxx/xxxxxxx</text>
+        <text class='open-time'>(打开时间)xxxxxxx/xxxxxxxxx/xxxxxxxxx</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
-        <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+        <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'> <text>销毁该记忆</text></button>
       </view>
+
     </view>
   </view>
-  <view wx:else>
-    <view style=' text-align: center;'>
-      现在已经种下的个人记忆
-    </view>
-    <view style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
-      <view>
-        <text>title</text>
+
+  <view class='bottom-container' wx:else>
+
+    <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
+      <view class='title-group'>
+        <text class='title'>title</text>
       </view>
-      <view>
-        <text>  还有xxxx天打开</text>
-        <!-- ToDo!!!!!!!!! 记录记忆的内容-->
-        <button bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>销毁该记忆</button>
+
+      <view class='time-group'>
+          <text class='day-group'>还有xxxx天打开</text>
+          <!-- ToDo!!!!!!!!! 记录记忆的内容-->
+          <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'><text>销毁该记忆</text></button>
       </view>
+
     </view>
   </view>
+
 </view>

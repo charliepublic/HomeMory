@@ -1,8 +1,5 @@
 /* pages/timeCapsule/timeCapsule.wxss */
-
-page {
-  background-color: #d6eaf8;
-}
+page {background-color: #d6eaf8;}
 
 .top-container {
   margin-top: 3%;
@@ -11,20 +8,9 @@ page {
   flex-direction: row-reverse;
 }
 
-.image-group {
-  margin-right: 4%;
-  margin-left: 10rpx;
-}
-
-.top-container .image-group .image {
-  width: 70rpx;
-  height: 70rpx;
-}
-
-.top-container .change-group {
-  flex-grow: 1;
-  margin-left: 4%;
-}
+.image-group {margin-right: 4%;margin-left: 10rpx;}
+.top-container .image-group .image {width: 70rpx;height: 70rpx;}
+.top-container .change-group {flex-grow: 1;margin-left: 4%;}
 
 .top-container .change-group .change-button {
   height: 70rpx;
@@ -64,14 +50,9 @@ page {
   justify-content: space-evenly;
 }
 
-.bottom-group .delete-group {
-  width: 40%;
-  margin: 0 auto;
-}
+.bottom-group .delete-group {width: 40%;margin: 0 auto;}
 
-.bottom-group .delete-group::after {
-  border: none;
-}
+.bottom-group .delete-group::after {border: none;}
 
 .bottom-group .time {
   width: 90%;
@@ -91,7 +72,92 @@ page {
   text-align: center;
 }
 
-.bottom-group button {
-  margin-top: 30rpx;
+.bottom-group button {margin-top: 30rpx;background-color: #7db9de;}
+
+.tips-group{
+  border-bottom: 2rpx solid #dad8d8;
+  padding-bottom: 10rpx;
+  width: 70%;
+  margin: 40rpx auto;
+  font-size: 32rpx;
+}
+.bottom-container{
+  width: 92%;
+  margin: 10rpx auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: 0 0 8rpx #104e5e;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+  background-color: #f4f6f6;
+}
+
+.bottom-container .botton-container-bottomcontent{
+  box-shadow: 0 0 8rpx #104e5e;
+  box-sizing: border-box;
+  margin: 20rpx auto;
+  width: 90%;
+  border-radius: 15rpx;
+  background-color: #f4f6f6;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-container .time-group .delete-button{
+  width: 40%;
+  margin: 30rpx auto;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: whitesmoke;
+}
+
+.bottom-container .botton-container-bottomcontent .title-group{
+  border-bottom: 2rpx solid #dad8d8;
+  padding-bottom: 4rpx;
+  width: 60%;
+  margin: 10rpx auto;
+  font-size: 32rpx;
+}
+
+.bottom-container .botton-container-bottomcontent .time-group{
+  margin-top: 4rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bottom-container .botton-container-bottomcontent .context-group{
+  width: 100%;
+  margin: 4rpx auto;
+  border-bottom: 2rpx solid #dad8d8;
+  box-sizing: border-box;
+  word-break: break-all;
+  float: left;
+  padding-left: 8rpx;
+}
+.bottom-container .botton-container-bottomcontent .context-group .context{float: left;}
+
+.bottom-container .botton-container-bottomcontent .time-group .write-time, .bottom-container .botton-container-bottomcontent .time-group .open-time{
+  /* border: 2rpx solid #104e5e; */
+  font-size: 30rpx;
+}
+
+
+.bottom-container .botton-container-bottomcontent .time-group .day-group{
+  /* border: 2rpx solid red; */
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  width: 98%;
+  margin: 4rpx auto;
+}w
+
+.bottom-container .botton-container-bottomcontent .time-group .delete-button{
+  width: 45%;
+  height: 15%;
   background-color: #7db9de;
+  box-shadow: 0 0 8rpx #104e5e;
+  margin: 30rpx auto;
+  border-radius: 30rpx;
 }

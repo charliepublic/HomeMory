@@ -10,8 +10,8 @@ page {
   align-items: center;
   border-radius: 50%;
   overflow: hidden;
-  width: 160rpx;
-  height: 160rpx;
+  width: 120rpx;
+  height: 120rpx;
   margin: 0 auto;
   margin-top: 5%;
 }
