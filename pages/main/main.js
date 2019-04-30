@@ -1,6 +1,6 @@
 // pages/main/main.js
 
-
+var config = require("../../utils/config.js")
 const app = getApp();
 Page({
 
@@ -11,13 +11,14 @@ Page({
     haveFamily: false,
     homeName: "我爱李自成",
     homeId: "123456",
-    homeMumberList: [1, 2, 3, 4],
-    isAdministrator: false
+    homeMemberList: [111, 2111, 3111, 111114],
+    isAdministrator: true
   },
 
 
   onLoad: function() {
     console.log("--------------------")
+    // this.onShow()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -30,10 +31,9 @@ Page({
       homeMumberList: []
     })
     //获取用户的家庭信息
-    console.log("传入的option是")
-    console.log(options)
+    console.log("传入的option是" + options)
     var openid = app.globalData.openid
-    console.log(openid)
+    console.log("main 第一次获取openid"  + openid)
     var homeNumber
     if (options != null) {
       homeNumber = options.homeNumber
@@ -49,7 +49,7 @@ Page({
       wx.request({
         // TODO：！！！！！！！！！！！！！
         // 修改url
-        url: 'www.baidu.com',
+        url: config.host + '',
         data: {
           openId: that.openid,
           homeId: homeNumber
@@ -76,27 +76,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-    wx.hideShareMenu()
-    const that = this
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: '加入我的家庭吧',
-      path: '/pages/main/main?homeNumber=' + that.data.homeId + '&&invited = true',
-      imageUrl: "",
-      success: function(res) {
-
-      },
-      fail: function(res) {
-        // 分享失败
-        console.log(res)
+    if(this.data.haveFamily){
+      wx.showShareMenu({
+        withShareTicket: true
+      })
+      wx.hideShareMenu()
+      const that = this
+      if (res.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(res.target)
       }
+      return {
+        title: '加入我的家庭吧',
+        path: '/pages/main/main?homeNumber=' + that.data.homeId + '&&invited = true',
+        imageUrl: "",
+        success: function (res) {
+
+        },
+        fail: function (res) {
+          // 分享失败
+          // console.log(res)
+        }
+      }
+    }else{
+      return
     }
+
   },
 
   // 删除函数
@@ -117,19 +122,19 @@ Page({
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          var list = that.data.timeCapsuleList
+          var list = that.data.homeMemberList
           var index = e.currentTarget.dataset.index
           var item = list[index]
           list.splice(index, 1)
           that.setData({
-            timeCapsuleList: list
+            homeMemberList: list
           })
 
           wx.request({
 
             // TODO：！！！！！！！！！！！！！
             // 修改url
-            url: 'www.baidu.com',
+            url: config.host + '',
             data: {
               item: item
             },
@@ -179,7 +184,7 @@ Page({
           wx.request({
             // TODO：！！！！！！！！！！！！！
             // 修改url
-            url: 'www.baidu.com',
+            url: config.host + '',
             data: {
               openid: that.data.openid,
               isAdministrator: that.data.isAdministrator

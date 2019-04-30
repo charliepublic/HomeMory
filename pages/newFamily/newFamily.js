@@ -1,4 +1,6 @@
 // pages/newFamily/newFamily.js
+
+var config = require("../../utils/config.js")
 Page({
 
   /**
@@ -16,12 +18,10 @@ Page({
   goBack: function(options) {
     var openid = getApp().globalData.openid
     var that = this
-
-
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://10.132.50.248:8777/family/createfamily',
+      url: config.host +'/family/createfamily',
       data: {
         openId: openid,
         homeName: that.data.homeName

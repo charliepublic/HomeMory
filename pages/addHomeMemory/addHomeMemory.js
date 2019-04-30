@@ -1,5 +1,5 @@
 // pages/addHomeMemory/addHomeMemory.js
-
+var config = require("../../utils/config.js")
 var util = require("../../utils/util.js")
 
 Page({
@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    txt: "",
-    images: [],
+    txt: "",//添加的文字内容
+    images: [],//上传图片列表
     isPrivate: false,
     clickMessage: "点击修改为仅自己可见"
   },
@@ -21,9 +21,8 @@ Page({
     })
   },
 
-  /**
-   * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
-   */
+  //上传照片选择图片时限制9张，
+  
   upload: function() {
     var that = this;
     wx.chooseImage({
@@ -31,12 +30,22 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
+        //--------限制用户上传的总个数----------
+        var length = that.data.images.length + res.tempFilePaths.length
+        if(length > 8){
+          wx.showToast({
+            title: "图片已经超过9个",
+            icon: 'none',
+            duration: 2000
+          })
+          return
+        }
+        //-----------------------------------
         var images = that.data.images.concat(res.tempFilePaths)
         that.setData({
           images: images
         })
-        console.log(images)
-
+        // console.log(images)
       },
     });
 
@@ -45,7 +54,7 @@ Page({
   /**
    * 采用递归的方式上传多张
    */
-  uploadOneByOne(imgPaths, successUp, failUp, count, length) {
+  uploadOneByOne(imgPaths, successUp, failUp, count, length,newtage) {
     if (length == 0) {
       return
     }
@@ -56,14 +65,15 @@ Page({
       title: '正在上传第' + count + '张',
     })
     wx.uploadFile({
-      url: 'http://192.168.43.130:8777/upload/addhomememory', //仅为示例，非真实的接口地址
+      url: config.host +'/upload/addhomememory', 
       filePath: imgPaths[count],
       name: "file", //示例，使用顺序给文件命名
       formData: {
         isPrivate: that.data.isPrivate,
         openid: openid,
         content: that.data.txt,
-        time: Time
+        time: Time,
+        tag: newtage
       }, // HTTP 请求中其他额外的 form data
       success: function(e) {
         successUp++; //成功+1
@@ -84,7 +94,7 @@ Page({
           })
         } else {
           //递归调用，上传下一张
-          that.uploadOneByOne(imgPaths, successUp, failUp, count, length);
+          that.uploadOneByOne(imgPaths, successUp, failUp, count, length,newtage);
           console.log('正在上传第' + count + '张');
         }
       }
@@ -113,7 +123,8 @@ Page({
     var failUp = 0; //失败
     var length = this.data.images.length; //总数
     var count = 0; //第几张
-    this.uploadOneByOne(this.data.images, successUp, failUp, count, length);
+    var tag = util.generateMixed(10)
+    this.uploadOneByOne(this.data.images, successUp, failUp, count, length,tag);
     wx.navigateBack({
 
     })

@@ -35,8 +35,8 @@
       </view>
 
       <view class='time-group'>
-        <text class='write-time'>(种下时间)xxx/xxxxxx/xxxxxxx</text>
-        <text class='open-time'>(打开时间)xxxxxxx/xxxxxxxxx/xxxxxxxxx</text>
+        <text class='write-time'>于xxx/xxxxxx/xxxxxxx种下</text>
+        <text class='open-time'>于xxx/xxxxxx/xxxxxxx打开</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'> <text>销毁该记忆</text></button>
       </view>

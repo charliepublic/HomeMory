@@ -2,7 +2,6 @@
 <view class='all'>
 
   <view class='content-group'>
-
     <view class='twocontent'>
       <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea>
       <view class='image-container' wx:for="{{images}}" wx:for-item="member">

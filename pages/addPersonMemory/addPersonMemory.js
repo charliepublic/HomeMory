@@ -1,5 +1,6 @@
 // pages/timeCapsule/timeCapsule.js
 // 导入工具包格式化时间
+var config = require("../../utils/config.js")
 var util = require("../../utils/util.js")
 
 Page({
@@ -9,42 +10,10 @@ Page({
    */
   data: {
     images: [],
-    date: "",
+    date: util.formatDate(new Date()),
     timeTitle: "",
     timeTxt: "",
     t_length: 0
-  },
-
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onShow: function(options) {
-    var DATE = util.formatDate(new Date());
-    var openid = getApp().globalData.openid
-    var that = this
-    this.setData({
-      date: DATE,
-      //获取当前时间，用于返回后台计算剩余多少天可以打开
-    });
-    wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'www.baidu.com',
-      data: {
-        openid: openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        // TODO：！！！！！！！！！！！！！
-        // 加载以往时光胶囊信息
-        that.setData({
-          changeTimeCapsuleList: res.data
-        })
-      }
-    })
   },
 
   //文本绑定函数
@@ -56,7 +25,7 @@ Page({
     })
   },
 
-  setTimeTitle: function() {
+  setTimeTitle: function(e) {
     var title = e.detail.value;
     this.setData({
       timeTitle: title
@@ -66,8 +35,16 @@ Page({
   // 修改页面显示时间
   bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    if (e.detail < util.formatDate(new Date())){
+      wx.showToast({
+        title: "请选择今天以外的时间",
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     this.setData({
-      date: e.detail.value
+      date:e.detail.value
     })
   },
 
@@ -85,6 +62,17 @@ Page({
         var failUp = 0; //失败
         var length = res.tempFilePaths.length; //总数
         var count = 0; //第几张
+
+        var length = that.data.images.length + res.tempFilePaths.length
+        //限制用户上传的总个数
+        if (length > 8) {
+          wx.showToast({
+            title: "图片已经超过9个",
+            icon: 'none',
+            duration: 2000
+          })
+          return
+        }
         var images = that.data.images.concat(res.tempFilePaths)
         that.setData({
           images: images
@@ -95,25 +83,29 @@ Page({
   /**
    * 采用递归的方式上传多张
    */
-  uploadOneByOne(imgPaths, successUp, failUp, count, length) {
+  uploadOneByOne(imgPaths, successUp, failUp, count, length, newTag) {
     if (length == 0) {
       return
     }
     var that = this;
     var openid = getApp().globalData.openid
-    console.log(this.data.timeTxt)
+    console.log(openid)
+    // console.log(this.data.timeTxt)
+    console.log(that.data.date)
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
     wx.uploadFile({
-      url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+      //TODO 修改URL
+      url: config.host + '/timecapsule/submit', 
       filePath: imgPaths[count],
       name: "file", //示例，使用顺序给文件命名
       formData: {
-        timeTitle: that.data.timeTitle,
+        name: that.data.timeTitle,
         openId: openid,
-        date: that.data.date,
-        timeTxt: that.data.timeTxt
+        time: that.data.date,
+        content: that.data.timeTxt,
+        tag: newTag
       }, // HTTP 请求中其他额外的 form data
 
       success: function(e) {
@@ -149,10 +141,12 @@ Page({
     var failUp = 0; //失败
     var length = this.data.images.length; //总数
     var count = 0; //第几张
-    this.uploadOneByOne(this.data.images, successUp, failUp, count, length);
+    
+    var tag = util.generateMixed(10)//唯一识别码
+    this.uploadOneByOne(this.data.images, successUp, failUp, count, length,tag);
     wx.navigateBack({
-
     })
+  
   },
 
 })

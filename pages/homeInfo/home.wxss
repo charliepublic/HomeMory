@@ -18,8 +18,11 @@ page {
   box-shadow: 0 0 8rpx #104e5e;
   box-sizing: border-box;
   flex-grow: 1;
-  border-radius: 25rpx;
+  /* border-radius: 25rpx; */
   margin-left: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .searchtext-group .placeholder {
@@ -27,18 +30,19 @@ page {
   margin-left: 10rpx;
 }
 
-.search-input {
-  margin-left: 20rpx;
+.search-input {margin-left: 20rpx;}
+
+.submit-button .submit{
+  width: 100%; 
+  height: 70rpx; 
+  line-height: 70rpx; 
+  /* border-radius: 25rpx;  */
+  box-sizing:border-box;
+  font-size: 32rpx;
 }
 
-.searchtext-group .search-input, .searchlogo .search-button {
-  height: 70rpx;
-}
-
-.searchlogo {
-  margin-right: 3%;
-}
-
+.searchtext-group .search-input, .searchlogo .search-button {height: 70rpx;}
+.searchlogo {margin-right: 3%;}
 .searchlogo .image {
   width: 70rpx;
   height: 70rpx;
@@ -51,14 +55,14 @@ page {
   margin: 30rpx auto;
 }
 
-.submit-button .submit, .bottom-content .delete-button .delete {
+.bottom-content .delete-button .delete {
   width: 25%;
   height: 15%;
   background-color: whitesmoke;
   box-shadow: 0 0 8rpx #104e5e;
   margin: 0 auto;
   margin-bottom: 30rpx;
-  border-radius: 30rpx;
+  /* border-radius: 30rpx; */
 }
 
 .bottom-content {
@@ -67,7 +71,7 @@ page {
   height: 780rpx;
   box-shadow: 0 0 8rpx #104e5e;
   background-color: #f4f6f6;
-  border-radius: 15rpx;
+  /* border-radius: 15rpx; */
   margin: 10rpx auto;
 }
 
@@ -79,7 +83,7 @@ page {
   /* border: 2rpx solid #104e5e; */
   box-shadow: 0 0 8rpx #104e5e;
   overflow: hidden;
-  border-radius: 15rpx;
+  /* border-radius: 15rpx; */
 }
 
 .bottom-content .people-time {
@@ -87,7 +91,7 @@ page {
   height: 150rpx;
   box-shadow: 0 0 8rpx #104e5e;
   text-align: center;
-  border-radius: 15rpx;
+  /* border-radius: 15rpx; */
   margin: 0 auto;
   margin-bottom: 50rpx;
   display: flex;

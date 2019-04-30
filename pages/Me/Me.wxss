@@ -1,10 +1,6 @@
-page {
-  background-color: #d6eaf8;
-}
+page {background-color: #d6eaf8;}
 
 .userinfo {
-  /* border: 1px solid black;
-  box-sizing: border-box; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,19 +9,18 @@ page {
   width: 120rpx;
   height: 120rpx;
   margin: 0 auto;
-  margin-top: 5%;
 }
 
-.userinfo .nickname-group {
-  margin-bottom: 20rpx;
-  font-size: 40rpx;
+.avatar-group{
+  padding-top: 10%;
+  height: 250rpx; 
+  background-color: #8ac0e2;
+  box-shadow: 0 0 10rpx #104e5e;
 }
 
-.userinfo .nickname-group .userinfo-nickname {
-  color: black;
-}
+.userinfo .nickname-group {margin-bottom: 20rpx;font-size: 40rpx;}
 
-/************************************************/
+.userinfo .nickname-group .userinfo-nickname {color: black;}
 
 .all-content .bottom-content {
   display: flex;
@@ -33,9 +28,7 @@ page {
   align-items: center;
 }
 
-.file-group {
-  margin-top: 80rpx;
-}
+.file-group {margin-top: 80rpx;}
 
 .age-group, .city-group, .homeland-group, .file-group, .openid-group {
   width: 95%;
@@ -45,7 +38,7 @@ page {
   line-height: 80rpx;
   background-color: #f4f6f6;
   box-shadow: 0 0 8rpx #104e5e;
-  border-radius: 10rpx;
+  /* border-radius: 10rpx; */
 }
 
 .age-group .age-text, .city-group .city-text, .homeland-group .homeland-text,
@@ -56,12 +49,12 @@ page {
   font-family: Microsoft Yahei;
 }
 
-.button-group {
-  margin-top: 40rpx;
-}
+.button-group {margin-top: 40rpx;}
 
 .button-group .button1 {
   background-color: #d1e4f0;
   color: #787b7d;
   width: 95%;
 }
+.button-group .button1::after{border: none;}
+

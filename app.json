@@ -45,6 +45,6 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "backgroundTextStyle": "dark"
+  "sitemapLocation": "sitemap.json"
+
 }

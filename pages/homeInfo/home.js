@@ -1,4 +1,5 @@
 // pages/home/home.js
+var config = require("../../utils/config.js")
 Page({
 
   /**
@@ -9,8 +10,18 @@ Page({
     memoryList: [1, 2, 3, 4],
     homeId: "",
     sequence: 0,
-    presentTxt: ""
-    //编译需要改homeId "" 为1
+    presentTxt: "",//用于获取当前搜索字 在搜索时传值给searchTxt
+    flag: true,//用于保证网络请求
+    items: [
+      { name: 'people', value: '发布人' },
+      { name: 'content', value: '内容' },
+      { name: 'time', value: '时间' },
+    ]
+  },
+
+
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
   },
 
   // 加载函数，加载所有的家庭说说信息
@@ -18,7 +29,7 @@ Page({
     this.setData({
       sequence: 0,
       // memoryList : []
-      homeId:getApp().globalData.homeId,
+      homeId: getApp().globalData.homeId,
       searchTxt: ""
     })
     var openid = getApp().globalData.openid
@@ -31,7 +42,6 @@ Page({
     this.setData({
       presentTxt: e.detail.value
     })
-    console.log(this.data.searchTxt)
   },
 
 
@@ -84,7 +94,7 @@ Page({
           var index = e.currentTarget.dataset.index
           var item = list[index]
 
-          //此处进行权限认证
+          //---------此处进行权限认证--------
           if (item.openid != that.data.openid) {
             wx.showToast({
               title: '您无权删除该项说说',
@@ -92,6 +102,7 @@ Page({
               duration: 1500 //持续的时间
             })
             return
+           //-----------------
           } else {
             list.splice(index, 1) //删除功能实现
             that.setData({
@@ -100,7 +111,7 @@ Page({
             wx.request({
               // TODO：！！！！！！！！！！！！！
               // 修改url deletememory
-              url: 'http://192.168.43.130:8777/upload/deletememory',
+              url: config.host + '/upload/deletememory',
               data: {
                 id: item.id,
                 openId: getApp().globalData.openid
@@ -128,19 +139,26 @@ Page({
   //  下拉刷新函数
   onReachBottom: function(option) {
     console.log('--------下拉刷新-------')
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    var sequence = this.data.sequence + 1
-    this.changeMemoryList(sequence)
+    // 加锁flag
+    if (this.data.flag == true) {
+      wx.showNavigationBarLoading() //在标题栏中显示加载
+      var sequence = this.data.sequence + 1
+      this.changeMemoryList(sequence)
+    }
   },
 
   //响应修改函数内容
   changeMemoryList: function(sequence) {
     var openid = getApp().globalData.openid
     var that = this
+    // 加锁flag
+    this.setData({
+      flag: false
+    })
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://192.168.43.130:8777/upload/*******',
+      url: config.host + '/upload/*******',
       data: {
         openId: openid,
         homeId: that.data.homeId,
@@ -152,9 +170,14 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        var newFlag = true
+        if (res.data.length < 1) {
+          newFlag = false
+        }
         var newList = that.data.memoryList.concat(res.data)
         that.setData({
-          memoryList: newList
+          memoryList: newList,
+          flag: true
         })
         // TODO：！！！！！！！！！！！！！
         // 加载以往说说信息即修改memoryList
@@ -162,6 +185,7 @@ Page({
       },
       complete: function() {
         // complete
+
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
 

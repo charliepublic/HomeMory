@@ -1,4 +1,5 @@
 // pages/changeInfo/changeInfo.js
+var config = require("../../utils/config.js")
 Page({
 
   /**
@@ -12,6 +13,33 @@ Page({
     picture: "",
     havePicture: getApp().globalData.havePicture
     //调试需要
+  },
+
+  onShow:function(){
+      //此处请求服务器的图片
+      // TODO：！！！！！！！！！！！！！
+      //添加其他相对应键值对
+      var openid = getApp().globalData.openid
+      var that = this 
+      wx.request({
+        url: config.host + '',
+        method: "POST",
+        data: {
+          openId: openid,
+          // TODO：！！！！！！！！！！！！！
+          //添加其他相对应键值对
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          that.setData({
+            // havePicture:
+            // picture:
+            // TODO：！！！！！！！！！！！！！
+          })
+        },
+      })
   },
 
   /////////////组件绑定函数/////////////////
@@ -52,7 +80,7 @@ Page({
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://192.168.43.130:8777/changeInfo',
+      url: config.host + '/changeInfo',
       method: "POST",
       data: {
         openId: openid,
@@ -121,7 +149,7 @@ Page({
       //Todo
 
       //修改url
-      url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+      url: config.host + '', //仅为示例，非真实的接口地址
       filePath: imgPaths[count],
       name: count.toString(), //示例，使用顺序给文件命名
       success: function(e) {

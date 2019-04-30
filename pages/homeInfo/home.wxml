@@ -7,13 +7,17 @@
     </view>
     <view class='searchtext-group'>
       <input class='search-input' placeholder-class='placeholder' placeholder="查找关键字" maxlength="25" bindinput='setTxt'></input>
+      <view class='submit-button'>
+        <button class='submit' bindtap='search'>查询</button>
+      </view>
     </view>
   </view>
 
-  <view class='submit-button'>
-    <button class='submit' bindtap='search'>查询</button>
-  </view>
-
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}">
+      <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
+    </label>
+  </radio-group>
   <view class='line'></view>
 
   <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">

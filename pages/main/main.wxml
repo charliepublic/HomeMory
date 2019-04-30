@@ -1,52 +1,53 @@
 <!--pages/main/main.wxml-->
-<view style=' text-align: center;'>
-  <text>
-    欢迎来到HomeMory 家庭管理
-  </text>
-</view>
+<view class='all-container'>
+    <view class='welcome-group' style=' text-align: center;'>
+      <text class='text'>
+        欢迎来到HomeMory 家庭管理
+      </text>
+    </view>
 
-<!-- 是否显示家庭信息 -->
+    <!-- 是否显示家庭信息 -->
 
-<!-- Todo: 修改 havefamily -->
-<view wx:if="{{!haveFamily}}">
-  <button type='primary' bindtap='createNewFamily'>新建一个家庭</button>
-</view>
+    <!-- Todo: 修改 havefamily -->
+    <view class='create-group' wx:if="{{!haveFamily}}">
+      <button class='create-button' bindtap='createNewFamily'>新建一个家庭</button>
+    </view>
 
-
-
-<view wx:else="{{haveFamily}}">
-  <view style=' text-align: center;'>
-    <text>家庭信息</text>
-    <view>家庭名称————{{homeName}}</view>
-  </view>
-
-  <!-- 此处需要将button缩小并去掉边框颜色 -->
-  <button open-type='share' plain='true'>
-    <image src='../../static/picture/invite.png' mode='widthFix'></image>
-  </button>
+  <view wx:else="{{haveFamily}}">
+    <view style=' text-align: center;'>
+      <text>家庭信息</text>
+      <view>家庭名称————{{homeName}}</view>
+    </view>
+    <!-- 此处需要将button缩小并去掉边框颜色 -->
+    <button open-type='share' plain='true'>
+      <image src='../../static/picture/invite.png' mode='widthFix'></image>
+    </button>
 
 
-  <view wx:for="{{homeMumberList}}" wx:for-item="member">
+    <view wx:for="{{homeMemberList}}" wx:for-item="member">
+      <view>
+        {{member}}成员姓名
+        <image mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
+        <view wx:if="{{isAdministrator}}">
+          <button bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
+        </view>
+
+      </view>
+    </view>
+
     <view>
-      {{member}}成员姓名
-      <image mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
       <view wx:if="{{isAdministrator}}">
-        <button bindtap='delet'>删除该成员</button>
+        <button bindtap='quit'>
+          解散家庭
+        </button>
+      </view>
+      <view wx:else>
+        <button bindtap='quit'>
+          退出该家庭
+        </button>
       </view>
 
     </view>
-  </view>
-  <view>
-    <view wx:if="{{isAdministrator}}">
-      <button bindtap='quit'>
-        解散家庭
-      </button>
-    </view>
-    <view wx:else>
-      <button bindtap='quit'>
-        退出该家庭
-      </button>
-    </view>
 
   </view>
-</view>
+</view>  

@@ -1,6 +1,6 @@
 // pages/Me/Me.js
 const app = getApp()
-
+var config = require("../../utils/config.js")
 Page({
   /*
    * 页面的初始数据
@@ -11,9 +11,8 @@ Page({
     age: "",
     homeland: "",
     location: "",
-    record: "",
     picture: "",
-    havePicture: getApp().globalData.havePicture
+    havePicture:false//用于判断用户是否上传图片到服务器
   },
 
   /**
@@ -22,13 +21,14 @@ Page({
   onShow: function() {
     // 初始化openid
     var openid = getApp().globalData.openid
-    console.log(openid)
     var that = this
+    // console.log(openid)
+    
+
+
     //获取用户信息
     wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: 'http://192.168.1.101:8777/getInfo',
+      url: config.host + '/getInfo',
       data: {
         openId: openid
       },
@@ -42,7 +42,9 @@ Page({
           name: res.data.userName,
           homeland: res.data.homeLand,
           location: res.data.location,
-          // record: "",
+          //此处对于用户的进行其他键值对的添加
+          // picture: "",
+          // havePicture: false
         })
       }
     })

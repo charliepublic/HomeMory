@@ -1,1 +1,28 @@
 /* pages/main/main.wxss */
+page {background-color: #d6eaf8;}
+.all-container{
+  
+  width: 90%; 
+  
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-top: 250rpx;
+}
+.welcome-group{
+  width: 80%;
+  height: 150rpx;
+  background-color: white;
+  margin: 0 auto;
+  box-shadow: 0 0 10rpx #104e5e;
+}
+
+.create-group .create-button{
+  width: 55%;
+  background-color: #51a8dd;
+  box-shadow: 0 0 10rpx #104e5e;
+  height: 100rpx;
+  border-radius: 0;
+}
+.create-group .create-button::after{border: none;}

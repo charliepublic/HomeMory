@@ -1,7 +1,7 @@
 // pages/timeCapsule/timeCapsule.js
 // 导入工具包格式化时间
 var util = require("../../utils/util.js")
-
+var config = require("../../utils/config.js")
 Page({
 
   /**
@@ -10,9 +10,12 @@ Page({
   data: {
     date: "",
     timeCapsuleList: [1, 2, 3, 4],
+    tempTimeCapsuleList: [1, , 2, 3, 4],
     isOpen: false,
     clickMessage: "切换到解封的记忆",
-    sequence: 0
+    sequence: 0,
+    tempsequence: 0,
+    flag:true
   },
 
 
@@ -57,7 +60,7 @@ Page({
 
             // TODO：！！！！！！！！！！！！！
             // 修改url
-            url: 'www.baidu.com',
+            url: config.host + '',
             data: {
               item: item
             },
@@ -86,22 +89,29 @@ Page({
       url: '../addPersonMemory/addPersonMemory',
     })
   },
+
   //  下拉刷新函数
   onReachBottom: function(option) {
-    console.log('--------下拉刷新-------')
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    var sequence = this.data.sequence + 1
-    this.changeTimeCapsuleList(sequence)
+    if(this.data.flag == true){
+      console.log('--------下拉刷新-------')
+      wx.showNavigationBarLoading() //在标题栏中显示加载
+      var sequence = this.data.sequence + 1
+      this.changeTimeCapsuleList(sequence)
+    }
   },
 
   //响应修改函数内容
   changeTimeCapsuleList: function(sequence) {
+
     var openid = getApp().globalData.openid
     var that = this
+    this.setData({
+      flag:false
+    })
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: 'http://192.168.43.130:8777/upload/*******',
+      url: config.host + '/upload/*******',
       data: {
         openId: openid,
         sequence: sequence,
@@ -111,9 +121,14 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        var newFlag = true
+        if (res.data.length <1){
+          newFlag = false
+        }
         var newList = that.data.timeCapsuleList.concat(res.data)
         that.setData({
-          timeCapsuleList: newList
+          timeCapsuleList: newList,
+          flag:newFlag
         })
         // TODO：！！！！！！！！！！！！！
         console.log(that.data.changeTimeCapsuleList)
@@ -127,9 +142,17 @@ Page({
     })
   },
 
+  //点击button进行切换
   clickButton: function() {
+    var tempList = this.data.timeCapsuleList
+    var tempSeq = this.data.sequence
+    // 作为副本进行切换，显示不同的胶囊和显示效果
     this.setData({
-      isOpen: !this.data.isOpen
+      isOpen: !this.data.isOpen,
+      timeCapsuleList: this.data.tempTimeCapsuleList,
+      tempTimeCapsuleList: tempList,
+      sequence: this.data.tempsequence,
+      tempsequence: tempSeq
     })
     if (this.data.isOpen == false) {
       this.setData({
@@ -144,7 +167,6 @@ Page({
     this.changeTimeCapsuleList(0)
   },
 })
-
 
 //计算时间的相差天数
 function dateDifference(presentData, openData) {
