@@ -12,7 +12,7 @@ Page({
     homeland: "",
     location: "",
     picture: "",
-    havePicture:false//用于判断用户是否上传图片到服务器
+    havePicture: false //用于判断用户是否上传图片到服务器
   },
 
   /**
@@ -23,7 +23,7 @@ Page({
     var openid = getApp().globalData.openid
     var that = this
     // console.log(openid)
-    
+
 
 
     //获取用户信息

@@ -1,17 +1,22 @@
 <!--pages/main/main.wxml-->
+<!-- <modal hidden="{{hidden}}" title="这里是title" cancel-text="自定义取消按钮" bindcancel="cancel">
+    这是对话框的内容。做时光机功能返回其中的所有统计信息
+    XXX 家庭在 20XX 年，总共上传了 296 份档案，照片是上传最多的档案格
+     式，“宝宝康乐”是上传最多的档案类型，@图图妈 是上传档案最多的成员，“图图
+    出生啦”是查阅次数最多的档案，
+</modal> -->
 <view class='all-container'>
-    <view class='welcome-group' style=' text-align: center;'>
-      <text class='text'>
-        欢迎来到HomeMory 家庭管理
-      </text>
-    </view>
+  <view class='welcome-group' style=' text-align: center;'>
+    <text class='animated infinite bounce'>
+      欢迎来到HomeMory 家庭管理
+    </text>
+  </view>
+  <!-- 是否显示家庭信息 -->
 
-    <!-- 是否显示家庭信息 -->
-
-    <!-- Todo: 修改 havefamily -->
-    <view class='create-group' wx:if="{{!haveFamily}}">
-      <button class='create-button' bindtap='createNewFamily'>新建一个家庭</button>
-    </view>
+  <!-- Todo: 修改 havefamily -->
+  <view class='create-group' wx:if="{{!haveFamily}}">
+    <button class='create-button' bindtap='createNewFamily'>新建一个家庭</button>
+  </view>
 
   <view wx:else="{{haveFamily}}">
     <view style=' text-align: center;'>
@@ -50,4 +55,4 @@
     </view>
 
   </view>
-</view>  
+</view>

@@ -30,19 +30,27 @@ page {
   margin-left: 10rpx;
 }
 
-.search-input {margin-left: 20rpx;}
+.search-input {
+  margin-left: 20rpx;
+}
 
-.submit-button .submit{
-  width: 100%; 
-  height: 70rpx; 
-  line-height: 70rpx; 
+.submit-button .submit {
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
   /* border-radius: 25rpx;  */
-  box-sizing:border-box;
+  box-sizing: border-box;
   font-size: 32rpx;
 }
 
-.searchtext-group .search-input, .searchlogo .search-button {height: 70rpx;}
-.searchlogo {margin-right: 3%;}
+.searchtext-group .search-input, .searchlogo .search-button {
+  height: 70rpx;
+}
+
+.searchlogo {
+  margin-right: 3%;
+}
+
 .searchlogo .image {
   width: 70rpx;
   height: 70rpx;

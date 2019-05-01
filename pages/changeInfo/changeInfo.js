@@ -15,31 +15,31 @@ Page({
     //调试需要
   },
 
-  onShow:function(){
-      //此处请求服务器的图片
-      // TODO：！！！！！！！！！！！！！
-      //添加其他相对应键值对
-      var openid = getApp().globalData.openid
-      var that = this 
-      wx.request({
-        url: config.host + '',
-        method: "POST",
-        data: {
-          openId: openid,
+  onShow: function() {
+    //此处请求服务器的图片
+    // TODO：！！！！！！！！！！！！！
+    //添加其他相对应键值对
+    var openid = getApp().globalData.openid
+    var that = this
+    wx.request({
+      url: config.host + '',
+      method: "POST",
+      data: {
+        openId: openid,
+        // TODO：！！！！！！！！！！！！！
+        //添加其他相对应键值对
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        that.setData({
+          // havePicture:
+          // picture:
           // TODO：！！！！！！！！！！！！！
-          //添加其他相对应键值对
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          that.setData({
-            // havePicture:
-            // picture:
-            // TODO：！！！！！！！！！！！！！
-          })
-        },
-      })
+        })
+      },
+    })
   },
 
   /////////////组件绑定函数/////////////////
@@ -74,12 +74,11 @@ Page({
   //提交修改信息函数
   submit: function() {
     var openid = getApp().globalData.openid
-    console.log(openid)
     var that = this
-    console.log(that.data)
+    // console.log(openid)
+    // console.log(that.data)
+
     wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
       url: config.host + '/changeInfo',
       method: "POST",
       data: {
@@ -110,7 +109,17 @@ Page({
         console.log(res)
         console.log("----------上传失败----------")
       }
+
+
+
     })
+
+    //上传头像
+    var successUp = 0; //成功
+    var failUp = 0; //失败
+    var length = that.data.images.length; //总数
+    var count = 0; //第几张
+    that.uploadOneByOne(that.data.images, successUp, failUp, count, length);
   },
 
 
@@ -128,12 +137,6 @@ Page({
           havePicture: true,
           picture: images
         })
-        //上传
-        var successUp = 0; //成功
-        var failUp = 0; //失败
-        var length = res.tempFilePaths.length; //总数
-        var count = 0; //第几张
-        that.uploadOneByOne(res.tempFilePaths, successUp, failUp, count, length);
       },
     });
   },
@@ -146,12 +149,11 @@ Page({
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
     var that = this;
     wx.uploadFile({
-      //Todo
-
+      //Todo!!!!!!!!!
       //修改url
-      url: config.host + '', //仅为示例，非真实的接口地址
+      url: config.host + '',
       filePath: imgPaths[count],
-      name: count.toString(), //示例，使用顺序给文件命名
+      name: "file",
       success: function(e) {
         successUp++; //成功+1
       },
@@ -159,19 +161,21 @@ Page({
         failUp++; //失败+1
       },
       complete: function(e) {
-        count++; //下一张
-        if (count == length) {
-          //上传完毕，作一下提示
-          console.log('上传成功' + successUp + ',' + '失败' + failUp);
+        console.log('上传成功' + successUp + ',' + '失败' + failUp);
+        if (successUp == 1) {
           wx.showToast({
             title: '上传头像成功',
             icon: 'success',
             duration: 2000
           })
         } else {
-          //递归调用，上传下一张
-          that.uploadOneByOne(imgPaths, successUp, failUp, count, length);
+          wx.showToast({
+            title: '上传头像失败',
+            icon: 'none',
+            duration: 2000
+          })
         }
+
       }
     })
   },

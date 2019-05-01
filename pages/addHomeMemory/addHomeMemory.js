@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    txt: "",//添加的文字内容
-    images: [],//上传图片列表
+    txt: "", //添加的文字内容
+    images: [], //上传图片列表
     isPrivate: false,
     clickMessage: "点击修改为仅自己可见"
   },
@@ -22,7 +22,7 @@ Page({
   },
 
   //上传照片选择图片时限制9张，
-  
+
   upload: function() {
     var that = this;
     wx.chooseImage({
@@ -32,7 +32,7 @@ Page({
       success: res => {
         //--------限制用户上传的总个数----------
         var length = that.data.images.length + res.tempFilePaths.length
-        if(length > 8){
+        if (length > 8) {
           wx.showToast({
             title: "图片已经超过9个",
             icon: 'none',
@@ -54,7 +54,7 @@ Page({
   /**
    * 采用递归的方式上传多张
    */
-  uploadOneByOne(imgPaths, successUp, failUp, count, length,newtage) {
+  uploadOneByOne(imgPaths, successUp, failUp, count, length, newtage) {
     if (length == 0) {
       return
     }
@@ -65,9 +65,9 @@ Page({
       title: '正在上传第' + count + '张',
     })
     wx.uploadFile({
-      url: config.host +'/upload/addhomememory', 
+      url: config.host + '/upload/addhomememory',
       filePath: imgPaths[count],
-      name: "file", //示例，使用顺序给文件命名
+      name: "file",
       formData: {
         isPrivate: that.data.isPrivate,
         openid: openid,
@@ -94,7 +94,7 @@ Page({
           })
         } else {
           //递归调用，上传下一张
-          that.uploadOneByOne(imgPaths, successUp, failUp, count, length,newtage);
+          that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newtage);
           console.log('正在上传第' + count + '张');
         }
       }
@@ -124,7 +124,7 @@ Page({
     var length = this.data.images.length; //总数
     var count = 0; //第几张
     var tag = util.generateMixed(10)
-    this.uploadOneByOne(this.data.images, successUp, failUp, count, length,tag);
+    this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
     wx.navigateBack({
 
     })

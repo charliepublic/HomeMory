@@ -9,13 +9,18 @@ Page({
    */
   data: {
     date: "",
-    timeCapsuleList: [1, 2, 3, 4],
-    tempTimeCapsuleList: [1, , 2, 3, 4],
-    isOpen: false,
-    clickMessage: "切换到解封的记忆",
+    timeCapsuleList: [],
+    tempTimeCapsuleList: [],
+
     sequence: 0,
     tempsequence: 0,
-    flag:true
+
+    clickMessage: "切换到解封的记忆",
+    url:"",
+
+    isOpen: false,
+    flag: true,
+    isFirstClick: true
   },
 
 
@@ -28,9 +33,7 @@ Page({
     var that = this
     this.setData({
       date: DATE,
-      //获取当前时间，用于返回后台计算剩余多少天可以打开
-      timeCapsuleList: [1, 2, 3, 4],
-      //此处要记得修改
+      timeCapsuleList: [],
       isOpen: false,
       clickMessage: "切换到解封的记忆",
       sequence: 0
@@ -55,9 +58,7 @@ Page({
           that.setData({
             timeCapsuleList: list
           })
-
           wx.request({
-
             // TODO：！！！！！！！！！！！！！
             // 修改url
             url: config.host + '',
@@ -92,7 +93,7 @@ Page({
 
   //  下拉刷新函数
   onReachBottom: function(option) {
-    if(this.data.flag == true){
+    if (this.data.flag == true) {
       console.log('--------下拉刷新-------')
       wx.showNavigationBarLoading() //在标题栏中显示加载
       var sequence = this.data.sequence + 1
@@ -102,16 +103,15 @@ Page({
 
   //响应修改函数内容
   changeTimeCapsuleList: function(sequence) {
-
     var openid = getApp().globalData.openid
     var that = this
     this.setData({
-      flag:false
+      flag: false,
+      url: config.host + '/timecapsule/querycapsulefile?uri='
     })
+
     wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: config.host + '/upload/*******',
+      url: config.host + '/timecapsule/querycapsulelist',
       data: {
         openId: openid,
         sequence: sequence,
@@ -121,17 +121,19 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        console.log(res)
         var newFlag = true
-        if (res.data.length <1){
+        if (res.data.length < 1) {
           newFlag = false
         }
         var newList = that.data.timeCapsuleList.concat(res.data)
         that.setData({
           timeCapsuleList: newList,
-          flag:newFlag
+          flag: newFlag
         })
-        // TODO：！！！！！！！！！！！！！
-        console.log(that.data.changeTimeCapsuleList)
+ 
+        // var a = that.data.timeCapsuleList
+        // console.log(a)
       },
       complete: function() {
         // complete
@@ -162,9 +164,14 @@ Page({
       this.setData({
         clickMessage: "切换到未解封的记忆"
       })
+      // 如果第一次点击按钮加载解封的记忆
+      if (this.data.isFirstClick == true) {
+        this.setData({
+          isFirstClick: false
+        })
+        this.changeTimeCapsuleList(this.data.sequence)
+      }
     }
-
-    this.changeTimeCapsuleList(0)
   },
 })
 

@@ -12,14 +12,12 @@ Page({
     homeName: "我爱李自成",
     homeId: "123456",
     homeMemberList: [111, 2111, 3111, 111114],
-    isAdministrator: true
+    isAdministrator: true,
+    hidden: false,
+    nocancel: false
   },
 
 
-  onLoad: function() {
-    console.log("--------------------")
-    // this.onShow()
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -33,7 +31,7 @@ Page({
     //获取用户的家庭信息
     console.log("传入的option是" + options)
     var openid = app.globalData.openid
-    console.log("main 第一次获取openid"  + openid)
+    console.log("main 第一次获取openid" + openid)
     var homeNumber
     if (options != null) {
       homeNumber = options.homeNumber
@@ -76,7 +74,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    if(this.data.haveFamily){
+    if (this.data.haveFamily) {
       wx.showShareMenu({
         withShareTicket: true
       })
@@ -90,15 +88,14 @@ Page({
         title: '加入我的家庭吧',
         path: '/pages/main/main?homeNumber=' + that.data.homeId + '&&invited = true',
         imageUrl: "",
-        success: function (res) {
+        success: function(res) {
 
         },
-        fail: function (res) {
-          // 分享失败
-          // console.log(res)
+        fail: function(res) {
+
         }
       }
-    }else{
+    } else {
       return
     }
 
@@ -211,5 +208,13 @@ Page({
         }
       }
     })
-  }
+  },
+
+
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
 })

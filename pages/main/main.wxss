@@ -26,3 +26,90 @@ page {background-color: #d6eaf8;}
   border-radius: 0;
 }
 .create-group .create-button::after{border: none;}
+
+/*模态框*/
+.wxapp-modal{
+ width: 100%;
+ height: 100%;
+ position: fixed;
+ top: 0px;
+ left: 0px;
+ z-index:999;
+}
+.wxapp-modal .content{
+ width: 100%;
+ bottom: 10px;
+ text-align: center;
+ position: absolute;
+}
+.wxapp-modal .content .header{
+ margin: auto;
+ width: 93%;
+ height: 60px;
+ line-height: 60px;
+ text-align: center;
+ background-color: #FFFFFF;
+ position: relative;
+ z-index:9999;
+ border-top-left-radius: 8px;
+ border-top-right-radius: 8px;
+ border-bottom: 1px #eee solid;
+}
+.wxapp-modal .content .body{
+ margin: auto;
+ width: 93%;
+ background-color: #FFFFFF;
+ position: relative;
+ z-index:9999;
+ border-bottom-left-radius: 8px;
+ border-bottom-right-radius: 8px;
+ overflow: hidden;
+}
+.wxapp-modal .content .footer{
+ margin: auto;
+ width: 93%;
+ height: 60px;
+ line-height: 60px;
+ background-color: #FFFFFF;
+ position: relative;
+ z-index: 9999;
+ border-radius: 8px;
+ margin-top: 10px;
+ text-align: center;
+}
+.wxapp-modal .content .footer button{
+ display: inline-block;
+ width: 49%;
+ height: 60px;
+ line-height: 60px;
+ background-color: #FFFFFF;
+ margin-left: 0px;
+}
+.wxapp-modal .content .footer button:active{
+ background-color: #eee;
+}
+.wxapp-modal .content .footer button::after{
+ content:none;
+}
+.wxapp-modal .content .footer .cancel{
+ color: #fa5b43;
+ border-right: 1px #eee solid;
+ border-top-right-radius: 0px;
+ border-bottom-right-radius: 0px;
+ border-top-left-radius: 8px;
+ border-bottom-left-radius: 8px;
+}
+.wxapp-modal .content .footer .confirm{
+ color: #1ed3fa;
+ border-top-left-radius: 0px;
+ border-bottom-left-radius: 0px;
+ border-top-right-radius: 8px;
+ border-bottom-right-radius: 8px;
+}
+.wxapp-modal .mask{
+ width: 100%;
+ height: 100%;
+ position: fixed;
+ top: 0px;
+ background-color:rgba(0,0,0,0.5);
+}

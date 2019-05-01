@@ -10,19 +10,29 @@ Page({
     memoryList: [1, 2, 3, 4],
     homeId: "",
     sequence: 0,
-    presentTxt: "",//用于获取当前搜索字 在搜索时传值给searchTxt
-    flag: true,//用于保证网络请求
-    items: [
-      { name: 'people', value: '发布人' },
-      { name: 'content', value: '内容' },
-      { name: 'time', value: '时间' },
-    ]
+    presentTxt: "", //用于获取当前搜索字 在搜索时传值给searchTxt
+    flag: true, //用于保证网络请求
+    items: [{
+        name: 'all',
+        value: '全部',
+        checked: true
+      },
+      {
+        name: 'people',
+        value: '发布人'
+      },
+      {
+        name: 'content',
+        value: '内容'
+      },
+      {
+        name: 'time',
+        value: '时间'
+      },
+    ],
+    value: "all"
   },
 
-
-  radioChange(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-  },
 
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
@@ -37,13 +47,20 @@ Page({
     this.changeMemoryList(0)
   },
 
-  // 控件绑定
+  //-----------------------控件绑定---------------------------
   setTxt: function(e) {
     this.setData({
       presentTxt: e.detail.value
     })
   },
 
+  // 单选
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      value: e.detail.value
+    })
+  },
 
   // 添加说说事件绑定
   input: function() {
@@ -68,6 +85,8 @@ Page({
       })
     }
   },
+  //-----------------------控件绑定---------------------------
+
 
   // 进行查找
   search: function() {
@@ -102,7 +121,7 @@ Page({
               duration: 1500 //持续的时间
             })
             return
-           //-----------------
+            //-----------------
           } else {
             list.splice(index, 1) //删除功能实现
             that.setData({

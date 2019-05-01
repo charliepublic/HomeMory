@@ -21,7 +21,7 @@ Page({
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
-      url: config.host +'/family/createfamily',
+      url: config.host + '/family/createfamily',
       data: {
         openId: openid,
         homeName: that.data.homeName

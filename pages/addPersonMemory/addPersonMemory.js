@@ -35,21 +35,31 @@ Page({
   // 修改页面显示时间
   bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    if (e.detail < util.formatDate(new Date())){
+    if (e.detail.value < util.formatDate(new Date())) {
       wx.showToast({
-        title: "请选择今天以外的时间",
+        title: "请选择今天以后的时间",
         icon: 'none',
         duration: 2000
       })
       return
     }
     this.setData({
-      date:e.detail.value
+      date: e.detail.value
     })
   },
 
+
+  // 提交函数上传时光胶囊 
+  submit: function () {
+    var successUp = 0; //成功
+    var failUp = 0; //失败
+    var length = this.data.images.length; //总数
+    var count = 0; //第几张  
+    var tag = util.generateMixed(10) //唯一识别码
+    this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
+  },
   /**
-   * 上传照片//选择图片时限制9张，如需超过9张，同理亦可参照此方法上传多张照片
+   * 上传照片//选择图片时限制9张
    */
   upload: function() {
     var that = this;
@@ -89,17 +99,17 @@ Page({
     }
     var that = this;
     var openid = getApp().globalData.openid
-    console.log(openid)
+    console.log("openid是   "+openid)
     // console.log(this.data.timeTxt)
-    console.log(that.data.date)
+    console.log("tag   "+newTag)
+    console.log("上传日期 "+ that.data.date)
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
     wx.uploadFile({
-      //TODO 修改URL
-      url: config.host + '/timecapsule/submit', 
+      url: config.host + '/timecapsule/submit',
       filePath: imgPaths[count],
-      name: "file", //示例，使用顺序给文件命名
+      name: "file",
       formData: {
         name: that.data.timeTitle,
         openId: openid,
@@ -120,33 +130,21 @@ Page({
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
           wx.showToast({
-            title: '上传成功' + successUp,
+            title: '上传成功',
             icon: 'success',
             duration: 2000
           })
+          // 上传成功后返回前一页面
+          wx.navigateBack({})
         } else {
           //递归调用，上传下一张
-          that.uploadOneByOne(imgPaths, successUp, failUp, count, length);
+          that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newTag);
           console.log('正在上传第' + count + '张');
         }
       }
     })
   },
 
-  // 提交函数上传时光胶囊 
-  // TODO！！
-  // 修改data内容
-  submit: function() {
-    var successUp = 0; //成功
-    var failUp = 0; //失败
-    var length = this.data.images.length; //总数
-    var count = 0; //第几张
-    
-    var tag = util.generateMixed(10)//唯一识别码
-    this.uploadOneByOne(this.data.images, successUp, failUp, count, length,tag);
-    wx.navigateBack({
-    })
-  
-  },
+
 
 })

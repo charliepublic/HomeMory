@@ -22,7 +22,18 @@
 
   <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
     <view class='image-group'>
-      <image class='image' mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
+
+      <!-- 此处要针对于list进行修改 -->
+      <view>
+        <image class='image' mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
+      </view>
+
+      <view>
+        <video src="" show-play-btn="false" play-btn-position="center"></video>
+      </view>
+
+
+
     </view>
 
     <view class='people-time'>
