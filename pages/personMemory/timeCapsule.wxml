@@ -31,7 +31,7 @@
       </view>
 
       <view class='context-group'>
-        <textarea class='context'>{{capsule.capsuleContent}}</textarea>
+        <textarea class='context'>{{capsule.capsuleList[0].capsuleContent}}</textarea>
          <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="list">
           <image src='{{url+list.capsulePath}}'></image>
          </view>
