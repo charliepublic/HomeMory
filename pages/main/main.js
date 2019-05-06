@@ -8,9 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    haveFamily: false,
-    homeName: "",
-    homeId: "",
+    haveFamily: true,
+    homeName: "1111111",
+    homeId: "1111111",
     homeMemberList: [1, 2, 3, 4],
     isAdministrator: true,
 
@@ -24,12 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function(options) {
-    this.setData({
-      haveFamily: false,
-      homeId: app.globalData.homeId,
-      homeName: "",
-      homeMumberList: []
-    })
+    if (getApp().globalData.isDebug == false) {
+      this.setData({
+        haveFamily: false,
+        homeId: app.globalData.homeId,
+        homeName: "",
+        isAdministrator: false,
+        homeMumberList: []
+      })}
+
+
     //获取用户的家庭信息
     console.log("传入的option是" + options)
     var openid = app.globalData.openid

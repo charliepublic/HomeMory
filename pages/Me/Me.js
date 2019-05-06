@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function() {
-    // 初始化openid
     var openid = getApp().globalData.openid
     var that = this
     console.log("----------------------------------")

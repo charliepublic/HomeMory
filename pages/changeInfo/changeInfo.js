@@ -16,17 +16,13 @@ Page({
   },
 
   onShow: function() {
-    //此处请求服务器的图片
-    // TODO：！！！！！！！！！！！！！
-    //添加其他相对应键值对
     var openid = getApp().globalData.openid
     var that = this
     console.log("----------------------------------")
     console.log(openid)
     console.log("----------------------------------")
     wx.request({
-      url: config.host + '',
-      method: "POST",
+      url: config.host + '/getInfo',
       data: {
         openId: openid,
       },
@@ -36,9 +32,13 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          // havePicture:
-          // picture:
-          // TODO：！！！！！！！！！！！！！
+          // age: res.data.age,
+          name: res.data.userName,
+          homeland: res.data.homeLand,
+          location: res.data.location,
+          //Todo此处对于用户的进行其他键值对的添加
+          // picture: "",
+          // havePicture: false
         })
       },
     })

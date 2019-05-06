@@ -3,7 +3,8 @@
 var config = require("../../utils/config.js")
 Page({
   data: {
-    rippleStyle: ''
+    rippleStyle: '',
+    flag :false
   },
   onShow: function(res) {
     var that = this
@@ -23,7 +24,7 @@ Page({
           },
           header: {
             'content-type': 'application/json'
-          },      
+          },
           success: function(res) {
             console.log(res)
             var openid = res.data //返回openid
@@ -39,12 +40,16 @@ Page({
               },
               success: function(res) {
                 console.log(res)
-                if(res.data == -1){
+                //TODO 此处还需要判断用户是否有头像
+                if (res.data == -1) {
                   getApp().globalData.homeId = null
-                }else{
+                } else {
                   getApp().globalData.homeId = res.data
                 }
-                console.log(" homeID   " +getApp().globalData.homeId)
+                console.log(" homeID   " + getApp().globalData.homeId)
+                that.setData({
+                  flag : true
+                })
               }
             })
           }
@@ -55,15 +60,14 @@ Page({
   },
 
   // 波纹效果
-  containerTap: function (res) {
-    // console.log("111111111111111")
+  containerTap: function(res) {
     var that = this
     var x = res.touches[0].pageX;
     var y = res.touches[0].pageY + 85;
     this.setData({
       rippleStyle: ''
     });
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
       });
@@ -71,8 +75,11 @@ Page({
   },
 
   click: function() {
-    wx.switchTab({
-      url: '/pages/main/main'
-    })
+    if (this.data.flag == true || getApp().globalData.isDebug == true){
+      wx.switchTab({
+        url: '/pages/main/main'
+      })
+    }
+
   }
 })

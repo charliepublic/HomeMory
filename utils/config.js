@@ -1,5 +1,5 @@
 var config = {
-  host:'http://10.132.38.254:8777'
+  host: 'http://192.168.43.130:8777'
 }
 
 module.exports = config

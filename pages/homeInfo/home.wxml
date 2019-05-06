@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<scroll-view scroll-y = true class='both'>
+<view class='both'>
   <view class='search-group'>
     <view class='searchlogo'>
       <!-- 该页面进行文件的上传下载 -->
@@ -21,28 +21,27 @@
   <view class='line'></view>
 
   <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
-    <view class='image-group'>
-
-      <!-- 此处要针对于list进行修改 -->
-      <view>
-        <image class='image' mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
+    <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item">
+     <!-- todo此处在if处判断返回是不是图片 -->
+      <view wx:if="{{item.isPicture}}">
+        <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>
       </view>
-
-      <view>
-        <video src="" show-play-btn="false" play-btn-position="center"></video>
+       <!-- todo此处在if处判断返回是不是图片 -->
+      <view wx:if="{{!item.isPicture}}">
+        <video src="{{url + item.filePath}}" show-play-btn="false" play-btn-position="center"></video>
       </view>
 
 
 
     </view>
-
+    <view>{{member.homeFileList[0].recordContent}}</view>
     <view class='people-time'>
-      <text class='people'>发布人  XXXXX </text>
-      <text class='time'>发布时间   XXXXX/XXXX/XXXXXXX </text>
+      <text class='people'>发布人  {{member.openId}} </text>
+      <text class='time'>发布时间   {{member.time}} </text>
     </view>
 
     <view class='delete-button'>
       <button class='delete' bindtap='delet' data-index='{{index}}'>删除</button>
     </view>
   </view>
-</scroll-view>
+</view>

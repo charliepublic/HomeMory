@@ -6,10 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchTxt: "",
+    searchTxt: "1231432542",
     memoryList: [1, 2, 3, 4],
     homeId: "",
     sequence: 0,
+    url: config.host + "/timecapsule/querycapsulefile?uri=", //TOdo 修改请求图片的url
     presentTxt: "", //用于获取当前搜索字 在搜索时传值给searchTxt
     flag: true, //用于保证网络请求
     items: [{
@@ -36,12 +37,14 @@ Page({
 
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
-    this.setData({
-      sequence: 0,
-      memoryList: [],
-      homeId: getApp().globalData.homeId,
-      searchTxt: ""
-    })
+    if (getApp().globalData.isDebug == false){
+      this.setData({
+        sequence: 0,
+        memoryList: [],
+        homeId: getApp().globalData.homeId,
+        searchTxt: ""
+      })
+    }
     var openid = getApp().globalData.openid
     var that = this
     this.changeMemoryList(0)
@@ -64,7 +67,7 @@ Page({
 
   // 添加说说事件绑定
   input: function() {
-    if (this.data.homeId == "") {
+    if (this.data.homeId == "" && getApp().globalData.isDebug == false) {
       wx.showModal({
         title: '提示',
         content: '请先创建你的家庭',
@@ -128,13 +131,13 @@ Page({
               memoryList: list
             })
             console.log("----------------------------------")
-            console.log(item.id)
+            console.log(item.tag.tag)
             console.log(getApp().globalData.openid)
             console.log("----------------------------------")
             wx.request({
               url: config.host + '/upload/deletememory',
               data: {
-                id: item.id,
+                id: item.tag.tag,
                 openId: getApp().globalData.openid
               },
               header: {
@@ -165,18 +168,16 @@ Page({
     console.log(that.data.flag)
     if (that.data.flag == true) {
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      console.log("11111111111" + that.data.sequence + 1)
       that.setData({
         sequence: that.data.sequence + 1
       })
-      console.log("22222222222222" + that.data.sequence + 1)
-      that.changeMemoryList(sequence)
+      that.changeMemoryList(that.data.sequence)
     }
   },
 
   //响应修改函数内容
   changeMemoryList: function(sequence) {
-    
+
     var openid = getApp().globalData.openid
     var that = this
     // 加锁flag
@@ -187,11 +188,10 @@ Page({
     console.log(sequence)
     console.log(openid)
     console.log(that.data.homeId)
+    console.log(that.data.searchTxt)
     console.log("----------------------------------")
     wx.request({
-      // TODO：！！！！！！！！！！！！！
-      // 修改url
-      url: config.host + '/upload/*******',
+      url: config.host + '/upload/queryfilelist',
       data: {
         openId: openid,
         homeId: that.data.homeId,
@@ -208,13 +208,24 @@ Page({
           newFlag = false
         }
         var newList = that.data.memoryList.concat(res.data)
+        console.log(newList)
+        for (var i = 0; i < newList.length;i++){
+          var list = newList[i].homeFileList
+          for ( var j = 0;j < list.length ;i++){
+            var type = list[j].recordType
+            //根据需求添加图片
+            if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg" ){
+              list[j]["isPicture"] = true
+            } 
+            else{
+              tlist[j]["isPicture"] = false
+            }
+          }
+        }
         that.setData({
           memoryList: newList,
           flag: true
         })
-        // TODO：！！！！！！！！！！！！！
-        // 加载以往说说信息即修改memoryList
-        console.log(that.data.memoryList)
       },
       complete: function() {
         // complete

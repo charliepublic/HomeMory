@@ -1,4 +1,3 @@
-
 // 导入工具包格式化时间
 var util = require("../../utils/util.js")
 var config = require("../../utils/config.js")
@@ -9,14 +8,14 @@ Page({
    */
   data: {
     date: "",
-    timeCapsuleList: [],
-    tempTimeCapsuleList: [],
+    timeCapsuleList: [1, 2, 3, 4],
+    tempTimeCapsuleList: [1, 2, 3, 4],
 
     sequence: 0,
     tempsequence: 0,
 
     clickMessage: "切换到解封的记忆",
-    url:"",
+    url: "",
 
     isOpen: false,
     flag: true,
@@ -31,13 +30,17 @@ Page({
     var DATE = util.formatDate(new Date());
     var openid = getApp().globalData.openid
     var that = this
-    this.setData({
-      date: DATE,
-      timeCapsuleList: [],
-      isOpen: false,
-      clickMessage: "切换到解封的记忆",
-      sequence: 0
-    });
+    if (getApp().globalData.isDebug == false) {
+      this.setData({
+        date: DATE,
+        tempTimeCapsuleList: [],
+        timeCapsuleList: [],
+        isOpen: false,
+        clickMessage: "切换到解封的记忆",
+        sequence: 0
+      });
+    }
+
 
     this.changeTimeCapsuleList(0)
 
@@ -59,14 +62,14 @@ Page({
             timeCapsuleList: list
           })
           console.log("----------------------------------")
-          console.log(item)
+          console.log(item.tag.tag)
           console.log("----------------------------------")
           wx.request({
             // TODO：！！！！！！！！！！！！！
             // 修改url
             url: config.host + '',
             data: {
-              item: item
+              id: item.tag.tag,
             },
             header: {
               'content-type': 'application/json'
@@ -94,10 +97,10 @@ Page({
     if (this.data.flag == true) {
       console.log('--------下拉刷新-------')
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      this.data({
+      this.setData({
         sequence: this.data.sequence + 1
       })
-      this.changeTimeCapsuleList(sequence)
+      this.changeTimeCapsuleList(this.data.sequence)
     }
   },
 
@@ -132,6 +135,20 @@ Page({
         }
         var newList = that.data.timeCapsuleList.concat(res.data)
         console.log(newList)
+
+        for (var i = 0; i < newList.length; i++) {
+          var list = newList[i].capsuleList
+          for (var j = 0; j < list.length; i++) {
+            var type = list[j].recordType
+            //根据需求添加图片
+            if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
+              list[j]["isPicture"] = true
+            }
+            else {
+              tlist[j]["isPicture"] = false
+            }
+          }
+        }
         that.setData({
           timeCapsuleList: newList,
           flag: newFlag
@@ -176,7 +193,7 @@ Page({
     }
   },
   //新建一个人记忆
-  newPersonMemory: function () {
+  newPersonMemory: function() {
     wx.navigateTo({
       url: '../addPersonMemory/addPersonMemory',
     })

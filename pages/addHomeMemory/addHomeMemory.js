@@ -94,7 +94,7 @@ Page({
       name: "file",
       formData: {
         isPrivate: that.data.isPrivate,
-        openid: openid,
+        openId: openid,
         content: that.data.txt,
         time: Time,
         tag: newtage

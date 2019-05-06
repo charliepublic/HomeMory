@@ -15,7 +15,6 @@
 <view class='all-content'>
   <!-- 下半部分 -->
   <view class='bottom-content'>
-
     <view class='file-group' style=' text-align: center;'>
       <text class='file-text'>昵称：{{name}}</text>
     </view>

@@ -27,19 +27,25 @@
     <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
 
       <view class='title-group'>
-        <text class='title'>title</text>
+        <!-- <text class='title'>title</text> -->
       </view>
 
       <view class='context-group'>
         <textarea class='context'>{{capsule.capsuleList[0].capsuleContent}}</textarea>
-         <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="list">
-          <image src='{{url+list.capsulePath}}'></image>
-         </view>
-        
+        <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="item">
+          <!-- todo此处在if处判断返回是不是图片 -->
+          <view wx:if="{{item.isPicture}}">
+            <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>
+          </view>
+          <!-- todo此处在if处判断返回是不是图片 -->
+          <view wx:if="{{item.isPicture}}">
+            <video src="{{url + item.filePath}}" show-play-btn="false" play-btn-position="center" src="{{url + item.filePath}}"></video>
+          </view>
+        </view>
+
       </view>
       <view class='time-group'>
-        <text class='write-time'>于xxx/xxxxxx/xxxxxxx种下</text>
-        <text class='open-time'>于xxx/xxxxxx/xxxxxxx打开</text>
+        <text class='open-time'>于{{item.time}}打开</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>
@@ -53,11 +59,11 @@
 
     <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
       <view class='title-group'>
-        <text class='title'>title</text>
+        <!-- <text class='title'>title</text> -->
       </view>
 
       <view class='time-group'>
-        <text class='day-group'>还有xxxx天打开</text>
+        <text class='day-group'>还有xxx天打开</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>
