@@ -1,4 +1,4 @@
-// pages/timeCapsule/timeCapsule.js
+
 // 导入工具包格式化时间
 var util = require("../../utils/util.js")
 var config = require("../../utils/config.js")
@@ -58,6 +58,9 @@ Page({
           that.setData({
             timeCapsuleList: list
           })
+          console.log("----------------------------------")
+          console.log(item)
+          console.log("----------------------------------")
           wx.request({
             // TODO：！！！！！！！！！！！！！
             // 修改url
@@ -84,19 +87,16 @@ Page({
 
   },
 
-  //新建一个人记忆
-  newPersonMemory: function() {
-    wx.navigateTo({
-      url: '../addPersonMemory/addPersonMemory',
-    })
-  },
+
 
   //  下拉刷新函数
   onReachBottom: function(option) {
     if (this.data.flag == true) {
       console.log('--------下拉刷新-------')
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      var sequence = this.data.sequence + 1
+      this.data({
+        sequence: this.data.sequence + 1
+      })
       this.changeTimeCapsuleList(sequence)
     }
   },
@@ -109,7 +109,11 @@ Page({
       flag: false,
       url: config.host + '/timecapsule/querycapsulefile?uri='
     })
-
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log(sequence)
+    console.log(that.data.isOpen)
+    console.log("----------------------------------")
     wx.request({
       url: config.host + '/timecapsule/querycapsulelist',
       data: {
@@ -127,13 +131,11 @@ Page({
           newFlag = false
         }
         var newList = that.data.timeCapsuleList.concat(res.data)
+        console.log(newList)
         that.setData({
           timeCapsuleList: newList,
           flag: newFlag
         })
- 
-        // var a = that.data.timeCapsuleList
-        // console.log(a)
       },
       complete: function() {
         // complete
@@ -173,7 +175,15 @@ Page({
       }
     }
   },
+  //新建一个人记忆
+  newPersonMemory: function () {
+    wx.navigateTo({
+      url: '../addPersonMemory/addPersonMemory',
+    })
+  },
 })
+
+
 
 //计算时间的相差天数
 function dateDifference(presentData, openData) {

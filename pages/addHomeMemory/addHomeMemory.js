@@ -51,6 +51,22 @@ Page({
 
 
   },
+
+
+  submit: function () {
+    var successUp = 0; //成功
+    var failUp = 0; //失败
+    var length = this.data.images.length; //总数
+    var count = 0; //第几张
+    var tag = util.generateMixed(10)
+    this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
+    wx.navigateBack({
+
+    })
+  },
+
+
+  
   /**
    * 采用递归的方式上传多张
    */
@@ -64,6 +80,14 @@ Page({
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
+
+    console.log("-----------------------------")
+    console.log(that.data.isPrivate)
+    console.log(openid)
+    console.log(that.data.txt)
+    console.log(Time)
+    console.log(newtage)
+    console.log("-----------------------------")
     wx.uploadFile({
       url: config.host + '/upload/addhomememory',
       filePath: imgPaths[count],
@@ -118,15 +142,5 @@ Page({
     }
   },
 
-  submit: function() {
-    var successUp = 0; //成功
-    var failUp = 0; //失败
-    var length = this.data.images.length; //总数
-    var count = 0; //第几张
-    var tag = util.generateMixed(10)
-    this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
-    wx.navigateBack({
 
-    })
-  }
 })

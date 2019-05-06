@@ -1,25 +1,21 @@
 // pages/start/start.js
+//导入对于服务器的配置
 var config = require("../../utils/config.js")
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     rippleStyle: ''
   },
-
   onShow: function(res) {
     var that = this
     wx.login({
-      //获取code
-      // 此处请求openid要交给后台进行请求
       success: function(res) {
-        var code = res.code //返回code
-        console.log(code)
-        // console.log(config.host)
+        var code = res.code //返回code  
         var host = config.host + '/openid/getopenid'
-        console.log(host)
+        // console.log("----------------------------------")
+        // console.log(code)
+        // console.log(config.host)
+        // console.log(host)
+        // console.log("----------------------------------")
         wx.request({
           url: config.host + '/openid/getopenid',
           data: {
@@ -29,12 +25,11 @@ Page({
             'content-type': 'application/json'
           },      
           success: function(res) {
+            console.log(res)
             var openid = res.data //返回openid
             getApp().globalData.openid = openid
             console.log(openid)
             wx.request({
-              // TODO：！！！！！！！！！！！！！
-              // 修改url
               url: config.host + '/family/gethomeid',
               data: {
                 openId: openid
@@ -43,7 +38,13 @@ Page({
                 'content-type': 'application/json'
               },
               success: function(res) {
-                getApp().globalData.homeId = res.data.homeId
+                console.log(res)
+                if(res.data == -1){
+                  getApp().globalData.homeId = null
+                }else{
+                  getApp().globalData.homeId = res.data
+                }
+                console.log(" homeID   " +getApp().globalData.homeId)
               }
             })
           }

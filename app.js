@@ -7,4 +7,8 @@ App({
     homeId: "",
     havePicture: false
   },
+
+  onLaunch:function(options){
+
+  }
 })

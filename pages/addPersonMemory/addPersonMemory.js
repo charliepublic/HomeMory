@@ -16,41 +16,8 @@ Page({
     t_length: 0
   },
 
-  //文本绑定函数
-  setTimeTxt: function(e) {
-    var t_text = e.detail.value.length;
-    this.setData({
-      t_length: t_text,
-      timeTxt: e.detail.value
-    })
-  },
-
-  setTimeTitle: function(e) {
-    var title = e.detail.value;
-    this.setData({
-      timeTitle: title
-    })
-  },
-
-  // 修改页面显示时间
-  bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    if (e.detail.value < util.formatDate(new Date())) {
-      wx.showToast({
-        title: "请选择今天以后的时间",
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
-    this.setData({
-      date: e.detail.value
-    })
-  },
-
-
   // 提交函数上传时光胶囊 
-  submit: function () {
+  submit: function() {
     var successUp = 0; //成功
     var failUp = 0; //失败
     var length = this.data.images.length; //总数
@@ -90,6 +57,41 @@ Page({
       },
     });
   },
+
+
+  // 修改页面显示时间
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    if (e.detail.value < util.formatDate(new Date())) {
+      wx.showToast({
+        title: "请选择今天以后的时间",
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    this.setData({
+      date: e.detail.value
+    })
+  },
+
+
+  //文本绑定函数
+  setTimeTxt: function (e) {
+    var t_text = e.detail.value.length;
+    this.setData({
+      t_length: t_text,
+      timeTxt: e.detail.value
+    })
+  },
+
+  setTimeTitle: function (e) {
+    var title = e.detail.value;
+    this.setData({
+      timeTitle: title
+    })
+  },
+
   /**
    * 采用递归的方式上传多张
    */
@@ -99,13 +101,21 @@ Page({
     }
     var that = this;
     var openid = getApp().globalData.openid
-    console.log("openid是   "+openid)
+    console.log("openid是   " + openid)
     // console.log(this.data.timeTxt)
-    console.log("tag   "+newTag)
-    console.log("上传日期 "+ that.data.date)
+    console.log("tag   " + newTag)
+    console.log("上传日期 " + that.data.date)
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
+
+    console.log("----------------------------------")
+    console.log(that.data.timeTitle)
+    console.log(openid)
+    console.log(that.data.date)
+    console.log(that.data.timeTitle)
+    console.log(newTag)
+    console.log("----------------------------------")
     wx.uploadFile({
       url: config.host + '/timecapsule/submit',
       filePath: imgPaths[count],

@@ -38,7 +38,7 @@ Page({
   onShow: function(options) {
     this.setData({
       sequence: 0,
-      // memoryList : []
+      memoryList: [],
       homeId: getApp().globalData.homeId,
       searchTxt: ""
     })
@@ -112,7 +112,7 @@ Page({
           var list = that.data.memoryList
           var index = e.currentTarget.dataset.index
           var item = list[index]
-
+          console.log("说说是" + item)
           //---------此处进行权限认证--------
           if (item.openid != that.data.openid) {
             wx.showToast({
@@ -127,9 +127,11 @@ Page({
             that.setData({
               memoryList: list
             })
+            console.log("----------------------------------")
+            console.log(item.id)
+            console.log(getApp().globalData.openid)
+            console.log("----------------------------------")
             wx.request({
-              // TODO：！！！！！！！！！！！！！
-              // 修改url deletememory
               url: config.host + '/upload/deletememory',
               data: {
                 id: item.id,
@@ -159,21 +161,33 @@ Page({
   onReachBottom: function(option) {
     console.log('--------下拉刷新-------')
     // 加锁flag
-    if (this.data.flag == true) {
+    var that = this
+    console.log(that.data.flag)
+    if (that.data.flag == true) {
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      var sequence = this.data.sequence + 1
-      this.changeMemoryList(sequence)
+      console.log("11111111111" + that.data.sequence + 1)
+      that.setData({
+        sequence: that.data.sequence + 1
+      })
+      console.log("22222222222222" + that.data.sequence + 1)
+      that.changeMemoryList(sequence)
     }
   },
 
   //响应修改函数内容
   changeMemoryList: function(sequence) {
+    
     var openid = getApp().globalData.openid
     var that = this
     // 加锁flag
     this.setData({
       flag: false
     })
+    console.log("----------------------------------")
+    console.log(sequence)
+    console.log(openid)
+    console.log(that.data.homeId)
+    console.log("----------------------------------")
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url

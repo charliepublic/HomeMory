@@ -22,10 +22,9 @@ Page({
     // 初始化openid
     var openid = getApp().globalData.openid
     var that = this
-    // console.log(openid)
-
-
-
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log("----------------------------------")
     //获取用户信息
     wx.request({
       url: config.host + '/getInfo',
@@ -38,7 +37,7 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          age: res.data.age,
+          // age: res.data.age,
           name: res.data.userName,
           homeland: res.data.homeLand,
           location: res.data.location,

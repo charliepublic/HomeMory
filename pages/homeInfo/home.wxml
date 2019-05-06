@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<view class='both'>
+<scroll-view scroll-y = true class='both'>
   <view class='search-group'>
     <view class='searchlogo'>
       <!-- 该页面进行文件的上传下载 -->
@@ -45,4 +45,4 @@
       <button class='delete' bindtap='delet' data-index='{{index}}'>删除</button>
     </view>
   </view>
-</view>
+</scroll-view>

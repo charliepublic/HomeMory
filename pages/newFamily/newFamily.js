@@ -9,15 +9,16 @@ Page({
   data: {
     homeName: ""
   },
-  homeName(e) {
-    this.setData({
-      homeName: e.detail.value
-    })
-  },
+
 
   goBack: function(options) {
     var openid = getApp().globalData.openid
     var that = this
+
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log(that.data.homeName)
+    console.log("----------------------------------")
     wx.request({
       // TODO：！！！！！！！！！！！！！
       // 修改url
@@ -30,10 +31,9 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        // 提交成功之后更新数据库，在返回main页面时会重新加载，考虑将onload中内容写到onshow,此处需要返回homeId
-        getApp().globalData.homeId = res.data.homeId
+        console.log(res)
+        getApp().globalData.homeId = res.data
         console.log(getApp().globalData.homeId)
-        //此处主要对应数据库返回的属性名称homeId!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         wx.showToast({
           title: '创建家庭成功',
           icon: 'success',
@@ -54,4 +54,10 @@ Page({
 
   },
 
+  //绑定home的name
+  homeName(e) {
+    this.setData({
+      homeName: e.detail.value
+    })
+  },
 })

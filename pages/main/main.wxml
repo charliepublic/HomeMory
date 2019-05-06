@@ -13,7 +13,6 @@
   </view>
   <!-- 是否显示家庭信息 -->
 
-  <!-- Todo: 修改 havefamily -->
   <view class='create-group' wx:if="{{!haveFamily}}">
     <button class='create-button' bindtap='createNewFamily'>新建一个家庭</button>
   </view>
@@ -23,7 +22,6 @@
       <text>家庭信息</text>
       <view>家庭名称————{{homeName}}</view>
     </view>
-    <!-- 此处需要将button缩小并去掉边框颜色 -->
     <button open-type='share' plain='true'>
       <image src='../../static/picture/invite.png' mode='widthFix'></image>
     </button>

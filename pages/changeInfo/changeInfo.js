@@ -21,18 +21,20 @@ Page({
     //添加其他相对应键值对
     var openid = getApp().globalData.openid
     var that = this
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log("----------------------------------")
     wx.request({
       url: config.host + '',
       method: "POST",
       data: {
         openId: openid,
-        // TODO：！！！！！！！！！！！！！
-        //添加其他相对应键值对
       },
       header: {
         'content-type': 'application/json'
       },
       success: function(res) {
+        console.log(res)
         that.setData({
           // havePicture:
           // picture:
@@ -42,42 +44,15 @@ Page({
     })
   },
 
-  /////////////组件绑定函数/////////////////
-  setLocation: function(e) {
-    this.setData({
-      location: e.detail.value
-    })
-  },
-
-  setHomeland: function(e) {
-    this.setData({
-      homeland: e.detail.value
-    })
-  },
-
-  setName: function(e) {
-    this.setData({
-      name: e.detail.value
-    })
-  },
-
-  bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      date: e.detail.value
-    })
-  },
-
-  /////////////组件绑定函数结束/////////////////
-
 
   //提交修改信息函数
   submit: function() {
     var openid = getApp().globalData.openid
     var that = this
-    // console.log(openid)
-    // console.log(that.data)
-
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log(that.data)
+    console.log("----------------------------------")
     wx.request({
       url: config.host + '/changeInfo',
       method: "POST",
@@ -142,18 +117,53 @@ Page({
   },
 
 
+  /////////////组件绑定函数/////////////////
+  setLocation: function (e) {
+    this.setData({
+      location: e.detail.value
+    })
+  },
+
+  setHomeland: function (e) {
+    this.setData({
+      homeland: e.detail.value
+    })
+  },
+
+  setName: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
+
+  /////////////组件绑定函数结束/////////////////
+
   /**
    * 采用递归的方式上传多张
    *此处只需要调用一次，只有一个头像
    */
   uploadOneByOne(imgPaths, successUp, failUp, count, length) {
     var that = this;
+    var openid = getApp().globalData.openId
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log("----------------------------------")
     wx.uploadFile({
       //Todo!!!!!!!!!
       //修改url
       url: config.host + '',
       filePath: imgPaths[count],
       name: "file",
+      formData: {
+        openId: openid,
+      }, // HTTP 请求中其他额外的 form data
       success: function(e) {
         successUp++; //成功+1
       },
