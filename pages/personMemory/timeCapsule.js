@@ -19,7 +19,20 @@ Page({
 
     isOpen: false,
     flag: true,
-    isFirstClick: true
+    isFirstClick: true,
+    test: [{
+      capsuleList: [{
+        recordType: "jpeg"
+      }, {
+        recordType: "png"
+      }, {
+        recordType: "bmp"
+      }]
+    }, {
+      capsuleList: [{
+        recordType: "gif"
+      }, {}, {}]
+    }]
   },
 
 
@@ -27,6 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function(options) {
+
     var DATE = util.formatDate(new Date());
     var openid = getApp().globalData.openid
     var that = this
@@ -133,22 +147,23 @@ Page({
         if (res.data.length < 1) {
           newFlag = false
         }
-        var newList = that.data.timeCapsuleList.concat(res.data)
-        console.log(newList)
-
-        for (var i = 0; i < newList.length; i++) {
-          var list = newList[i].capsuleList
-          for (var j = 0; j < list.length; i++) {
+        //此处对于返回的每一个内容的处理！！！！！！！！！
+        var result = res.data
+        for (var i = 0; i < result.length; i++) {
+          var list = result[i].capsuleList
+          console.log(list)
+          for (var j = 0; j < list.length; j++) {
             var type = list[j].recordType
+            console.log(type)
             //根据需求添加图片
             if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
               list[j]["isPicture"] = true
-            }
-            else {
-              tlist[j]["isPicture"] = false
+            } else {
+              list[j]["isPicture"] = false
             }
           }
         }
+        var newList = this.data.timeCapsuleList.concat(result)
         that.setData({
           timeCapsuleList: newList,
           flag: newFlag

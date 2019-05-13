@@ -11,7 +11,7 @@ Page({
     txt: "", //添加的文字内容
     images: [], //上传图片列表
     isPrivate: false,
-    clickMessage: "点击修改为仅自己可见"
+    clickMessage: "修改为仅自己可见"
   },
 
   // 绑定函数
@@ -125,6 +125,12 @@ Page({
     })
   },
 
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.files // 需要预览的图片http链接列表
+    })
+  },
 
   // 点击设置权限为是否都可见
   clickButton: function() {
@@ -133,11 +139,11 @@ Page({
     })
     if (this.data.isPrivate == true) {
       this.setData({
-        clickMessage: "点击修改为所有人可见"
+        clickMessage: "修改为所有人可见"
       })
     } else {
       this.setData({
-        clickMessage: "点击修改为仅自己可见"
+        clickMessage: "修改为仅自己可见"
       })
     }
   },

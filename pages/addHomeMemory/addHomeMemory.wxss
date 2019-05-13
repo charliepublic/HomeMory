@@ -6,7 +6,7 @@ page {
 
 .all {
   width: 90%;
-  height: 1000rpx;
+  height: auto;
   border: 2rpx solid white;
   box-sizing: border-box;
   border-radius: 15rpx;
@@ -20,8 +20,8 @@ page {
 }
 
 .content-group {
-  width: 92%;
-  height: 500rpx;
+  width: 90%;
+  height: auto;
   border: 2rpx solid #e4e4e4;
   box-sizing: border-box;
   border-radius: 15rpx;

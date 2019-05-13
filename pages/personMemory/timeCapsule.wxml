@@ -27,19 +27,22 @@
     <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
 
       <view class='title-group'>
-        <!-- <text class='title'>title</text> -->
+        <text class='title'>title</text>
       </view>
 
-      <view class='context-group'>
-        <textarea class='context'>{{capsule.capsuleList[0].capsuleContent}}</textarea>
+      <view class='context-group '>
+        
+        <text class='weui-article__p'>{{capsule.capsuleList[0].capsuleContent}}</text>
+
         <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="item">
-          <!-- todo此处在if处判断返回是不是图片 -->
+          <!-- 此处在if处判断返回是不是图片 -->
           <view wx:if="{{item.isPicture}}">
-            <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>
+            <image mode="aspectFill" src="{{url + item.filePath}}"></image>
           </view>
-          <!-- todo此处在if处判断返回是不是图片 -->
-          <view wx:if="{{item.isPicture}}">
-            <video src="{{url + item.filePath}}" show-play-btn="false" play-btn-position="center" src="{{url + item.filePath}}"></video>
+          <!-- 此处在if处判断返回是不是图片 -->
+          <view wx:if="{{!item.isPicture}}">
+          <!-- TODO视频的css需要进行对应的调整 -->
+            <video show-play-btn="false" play-btn-position="center" src="{{url + item.filePath}}"></video>
           </view>
         </view>
 
@@ -59,7 +62,7 @@
 
     <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
       <view class='title-group'>
-        <!-- <text class='title'>title</text> -->
+        <text class='title'>title</text>
       </view>
 
       <view class='time-group'>

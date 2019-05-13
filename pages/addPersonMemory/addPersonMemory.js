@@ -18,6 +18,14 @@ Page({
 
   // 提交函数上传时光胶囊 
   submit: function() {
+    if(this.data.timeTitle == ""){
+      wx.showToast({
+        title: "请填写你的记忆名称",
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     var successUp = 0; //成功
     var failUp = 0; //失败
     var length = this.data.images.length; //总数

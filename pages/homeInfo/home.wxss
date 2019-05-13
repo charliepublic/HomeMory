@@ -65,10 +65,10 @@ page {
 
 .bottom-content .delete-button .delete {
   width: 25%;
-  height: 15%;
+  height: auto;
   background-color: whitesmoke;
   box-shadow: 0 0 8rpx #104e5e;
-  margin: 0 auto;
+  margin: 10rpx auto;
   margin-bottom: 30rpx;
   /* border-radius: 30rpx; */
 }
@@ -76,7 +76,7 @@ page {
 .bottom-content {
   padding-top: 4rpx;
   width: 90%;
-  height: 780rpx;
+  height: auto;
   box-shadow: 0 0 8rpx #104e5e;
   background-color: #f4f6f6;
   /* border-radius: 15rpx; */
@@ -85,7 +85,7 @@ page {
 
 .bottom-content .image-group {
   width: 90%;
-  height: 400rpx;
+  height: auto;
   margin: 30rpx auto;
   margin-top: 30rpx;
   /* border: 2rpx solid #104e5e; */
@@ -96,7 +96,7 @@ page {
 
 .bottom-content .people-time {
   width: 90%;
-  height: 150rpx;
+  height: auto;
   box-shadow: 0 0 8rpx #104e5e;
   text-align: center;
   /* border-radius: 15rpx; */

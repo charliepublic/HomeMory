@@ -31,13 +31,15 @@ Page({
         value: '时间'
       },
     ],
-    value: "all"
+    value: "all",
+
   },
 
 
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
-    if (getApp().globalData.isDebug == false){
+
+    if (getApp().globalData.isDebug == false) {
       this.setData({
         sequence: 0,
         memoryList: [],
@@ -207,29 +209,27 @@ Page({
         if (res.data.length < 1) {
           newFlag = false
         }
-        var newList = that.data.memoryList.concat(res.data)
-        console.log(newList)
-        for (var i = 0; i < newList.length;i++){
-          var list = newList[i].homeFileList
-          for ( var j = 0;j < list.length ;i++){
+        //此处对于返回的每一个内容的处理！！！！！！！！！
+        var result = res.data
+        for (var i = 0; i < result.length; i++) {
+          var list = result[i].homeFileList
+          for (var j = 0; j < list.length; j++) {
             var type = list[j].recordType
             //根据需求添加图片
-            if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg" ){
+            if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
               list[j]["isPicture"] = true
-            } 
-            else{
-              tlist[j]["isPicture"] = false
+            } else {
+              list[j]["isPicture"] = false
             }
           }
         }
+        var newList = that.data.memoryList.concat(result)
         that.setData({
           memoryList: newList,
           flag: true
         })
       },
       complete: function() {
-        // complete
-
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
 

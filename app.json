@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/start/start",
     "pages/main/main",
+    "pages/start/start",
+    "pages/addHomeMemory/addHomeMemory",
+    "pages/addPersonMemory/addPersonMemory",
     "pages/personMemory/timeCapsule",
+    
     "pages/homeInfo/home",
     "pages/newFamily/newFamily",
     "pages/Me/Me",
-    "pages/changeInfo/changeInfo",
-    "pages/addHomeMemory/addHomeMemory",
-    "pages/addPersonMemory/addPersonMemory"
+    "pages/changeInfo/changeInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,5 +47,4 @@
     ]
   },
   "sitemapLocation": "sitemap.json"
-
 }

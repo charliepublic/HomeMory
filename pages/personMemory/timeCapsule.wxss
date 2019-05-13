@@ -105,7 +105,7 @@ page {background-color: #d6eaf8;}
 }
 
 .bottom-container .time-group .delete-button{
-  width: 40%;
+  width: 50%;
   margin: 30rpx auto;
   height: 70rpx;
   line-height: 70rpx;

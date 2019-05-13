@@ -22,12 +22,13 @@
 
   <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
     <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item">
-     <!-- todo此处在if处判断返回是不是图片 -->
+      <!-- todo此处在if处判断返回是不是图片 -->
       <view wx:if="{{item.isPicture}}">
         <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>
       </view>
-       <!-- todo此处在if处判断返回是不是图片 -->
+      <!-- todo此处在if处判断返回是不是图片 -->
       <view wx:if="{{!item.isPicture}}">
+      <!-- TODO此处的video样式需要调整 -->
         <video src="{{url + item.filePath}}" show-play-btn="false" play-btn-position="center"></video>
       </view>
 

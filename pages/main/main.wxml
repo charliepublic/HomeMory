@@ -6,8 +6,14 @@
     出生啦”是查阅次数最多的档案，
 </modal> -->
 <view class='all-container'>
-  <view class='welcome-group' style=' text-align: center;'>
-    <text class='animated infinite bounce'>
+  <view class='welcome-group1' style=' text-align: center;'  wx:if = "{{!haveFamily}}">
+    <text >
+      欢迎来到HomeMory 家庭管理
+    </text>
+  </view>
+
+  <view class='welcome-group2' style=' text-align: center;'  wx:if = "{{haveFamily}}">
+    <text >
       欢迎来到HomeMory 家庭管理
     </text>
   </view>
@@ -19,22 +25,21 @@
 
   <view wx:else="{{haveFamily}}">
     <view style=' text-align: center;'>
-      <text>家庭信息</text>
       <view>家庭名称————{{homeName}}</view>
     </view>
     <button open-type='share' plain='true'>
-      <image src='../../static/picture/invite.png' mode='widthFix'></image>
+      添加你的家庭成员
     </button>
-
-
+    
     <view wx:for="{{homeMemberList}}" wx:for-item="member">
-      <view>
-        {{member}}成员姓名
-        <image mode="aspectFill" src="data:image/{{member.type}};base64,{{member.content}}"></image>
-        <view wx:if="{{isAdministrator}}">
-          <button bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image src="data:image/{{member.type}};base64,{{member.content}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </view>
-
+        <view class="weui-cell__bd">{{member}}成员姓名</view>
+        <view wx:if="{{isAdministrator}}">
+          <button class="weui-cell__ft" bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
+        </view>
       </view>
     </view>
 

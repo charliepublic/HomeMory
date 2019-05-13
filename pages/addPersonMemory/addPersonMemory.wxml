@@ -1,30 +1,52 @@
 <view class='all'>
   <view class='memory-name'>
     <input class='memory-input' placeholder-class='memory-name-text' placeholder="快给你的记忆取个名字" maxlength="18" bindinput='setTimeTitle'></input>
+
+
   </view>
 
   <view class='memory-content'>
     <textarea class='memory-text' placeholder-class='memory-size' placeholder="写下你的个人记忆吧..." maxlength="300" bindinput='setTimeTxt'></textarea>
-    <view wx:for="{{images}}" wx:for-item="member">
-      <image mode="aspectFill" data-idx="{{index}}" src="{{member}}"></image>
+    <view class='size-tips-group'>
+      <view class='add-tips'>
+        <text class='text-length-group'>{{t_length}}/300</text>
+      </view>
     </view>
-  </view>
-
-  <view class='size-tips-group'>
-    <view class='add-tips'>
-      <text>添加标签</text>
+    <view class="page__bd">
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">图片上传</view>
+                <view class="weui-uploader__info">{{images.length}}/9</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for="{{images}}" wx:key="*this">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="upload"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
-    <view class='text-length-group'>
-      <text class='text-length'>{{t_length}}/300</text>
-    </view>
-  </view>
-
-  <view class='mid-group'>
-    <button class='upload-button' bindtap='upload'>上传图片</button>
-    <button class='submit-button' bindtap='submit'>完成</button>
   </view>
 
   <view class='bottom-group'>
     <picker mode='date' bindchange="bindDateChange">记忆将会在{{date}}再次打开</picker>
   </view>
+
+  <view class='mid-group'>
+    <button class='submit-button' bindtap='submit'>完成</button>
+  </view>
+
+
 </view>

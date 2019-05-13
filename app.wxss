@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import './utils/animate.wxss'; 
+@import './utils/weui.wxss'; 
 
 .container {
   height: 100%;

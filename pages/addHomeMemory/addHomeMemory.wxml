@@ -1,19 +1,36 @@
 <!--pages/addHomeMemory/addHomeMemory.wxml-->
-<view class='all'>
 
   <view class='content-group'>
-    <view class='twocontent'>
-      <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea>
-      <view class='image-container' wx:for="{{images}}" wx:for-item="member">
-        <image class='image' mode="aspectFill" data-idx="{{index}}" src="{{member}}"></image>
+    <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea>
+    <view class="page__bd">
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">图片上传</view>
+                <view class="weui-uploader__info">{{images.length}}/9</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for="{{images}}" wx:key="*this">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="upload"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
 
-  </view>
-
   <view class='button-group'>
     <button class='btn1' bindtap="clickButton">{{clickMessage}}</button>
-    <button class='btn2' bindtap='upload'>上传照片</button>
     <button class='btn3' bindtap='submit'> 完成</button>
   </view>
 
