@@ -8,13 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    rippleStyle: '',
     haveFamily: true,
     homeName: "1111111",
     homeId: "1111111",
-    homeMemberList: [1, 2, 3, 4],
+    homeMemberList: [1, 2, 3, 4, 1, 2, 3, 4],
     isAdministrator: true,
-
-
+    
     hidden: false,
     nocancel: false
   },
@@ -31,7 +31,8 @@ Page({
         homeName: "",
         isAdministrator: false,
         homeMumberList: []
-      })}
+      })
+    }
 
 
     //获取用户的家庭信息
@@ -232,6 +233,23 @@ Page({
     }
 
   },
+
+
+  // 波纹效果
+  containerTap: function (res) {
+    var that = this
+    var x = res.touches[0].pageX;
+    var y = res.touches[0].pageY + 85;
+    this.setData({
+      rippleStyle: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
+      });
+    }, 200)
+  },
+
   cancel: function() {
     this.setData({
       hidden: true

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    rippleStyle: '',
     homeName: ""
   },
 
@@ -54,6 +55,20 @@ Page({
 
   },
 
+  // 波纹效果
+  containerTap: function (res) {
+    var that = this
+    var x = res.touches[0].pageX;
+    var y = res.touches[0].pageY + 85;
+    this.setData({
+      rippleStyle: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
+      });
+    }, 200)
+  },
   //绑定home的name
   homeName(e) {
     this.setData({

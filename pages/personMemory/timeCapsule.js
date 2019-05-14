@@ -8,8 +8,9 @@ Page({
    */
   data: {
     date: "",
-    timeCapsuleList: [1, 2, 3, 4],
-    tempTimeCapsuleList: [1, 2, 3, 4],
+    rippleStyle: '',
+    timeCapsuleList: [1, 2, 3, 4, 2, 3, 4, 2, 3, 4],
+    tempTimeCapsuleList: [1, 2, 3, 4, 2, 3, 4, 2, 3, 4],
 
     sequence: 0,
     tempsequence: 0,
@@ -207,6 +208,23 @@ Page({
       }
     }
   },
+
+  // 波纹效果
+  containerTap: function (res) {
+    var that = this
+    var x = res.touches[0].pageX;
+    var y = res.touches[0].pageY + 85;
+    this.setData({
+      rippleStyle: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
+      });
+    }, 200)
+  },
+
+
   //新建一个人记忆
   newPersonMemory: function() {
     wx.navigateTo({

@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    rippleStyle: '',
     searchTxt: "1231432542",
-    memoryList: [1, 2, 3, 4],
+    memoryList: [1, 2, 3, 42, 3, 4, 2, 3, ],
     homeId: "",
     sequence: 0,
     url: config.host + "/timecapsule/querycapsulefile?uri=", //TOdo 修改请求图片的url
@@ -191,6 +192,7 @@ Page({
     console.log(openid)
     console.log(that.data.homeId)
     console.log(that.data.searchTxt)
+    console.log(that.data.value)
     console.log("----------------------------------")
     wx.request({
       url: config.host + '/upload/queryfilelist',
@@ -198,7 +200,8 @@ Page({
         openId: openid,
         homeId: that.data.homeId,
         sequence: sequence,
-        searchTxt: this.data.searchTxt
+        searchTxt: that.data.searchTxt,
+        value: that.data.value
         //如果searchTxt为""则显示所有，否则显示对应的内容
       },
       header: {
@@ -235,5 +238,20 @@ Page({
 
       }
     })
-  }
+  },
+
+  // 波纹效果
+  containerTap: function (res) {
+    var that = this
+    var x = res.touches[0].pageX;
+    var y = res.touches[0].pageY + 85;
+    this.setData({
+      rippleStyle: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
+      });
+    }, 200)
+  },
 })

@@ -1,6 +1,8 @@
+
+<view class="ripple" style="{{rippleStyle}}"></view>
 <!--pages/home/home.wxml-->
 <view class='both'>
-  <view class='search-group'>
+  <view class='search-group animated fadeInLeft'>
     <view class='searchlogo'>
       <!-- 该页面进行文件的上传下载 -->
       <image bindtap='input' class='image' src='../../static/picture/add.png' mode='top right '></image>
@@ -13,14 +15,17 @@
     </view>
   </view>
 
-  <radio-group class="radio-group" bindchange="radioChange">
-    <label class="radio" wx:for="{{items}}">
-      <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
-    </label>
-  </radio-group>
+  <view class='radio'>
+    <radio-group class="radio-group animated fadeInRight" bindchange="radioChange">
+      <label class="radio-label" wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
+      </label>
+    </radio-group>
+  </view>  
+
   <view class='line'></view>
 
-  <view class='bottom-content' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
+  <view class='bottom-content animated fadeInUp' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
     <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item">
       <!-- todo此处在if处判断返回是不是图片 -->
       <view wx:if="{{item.isPicture}}">
@@ -31,8 +36,6 @@
       <!-- TODO此处的video样式需要调整 -->
         <video src="{{url + item.filePath}}" show-play-btn="false" play-btn-position="center"></video>
       </view>
-
-
 
     </view>
     <view>{{member.homeFileList[0].recordContent}}</view>

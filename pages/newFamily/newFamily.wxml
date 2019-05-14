@@ -1,3 +1,4 @@
+<view class="ripple" style="{{rippleStyle}}"></view>
 <!--pages/newFamily/newFamily.wxml-->
 <view class='addfamily'>
   <text class='input-familyname'>输入你的家庭的姓名</text>

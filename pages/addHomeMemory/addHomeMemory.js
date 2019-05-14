@@ -8,17 +8,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    rippleStyle: '',
     txt: "", //添加的文字内容
     images: [], //上传图片列表
     isPrivate: false,
-    clickMessage: "修改为仅自己可见"
+    clickMessage: "修改为仅自己可见",
+    t_length:0
   },
 
   // 绑定函数
   setTxt: function(e) {
+    var t_text = e.detail.value.length;
     this.setData({
+      t_length: t_text,
       txt: e.detail.value
     })
+
   },
 
   //上传照片选择图片时限制9张，
@@ -148,5 +153,18 @@ Page({
     }
   },
 
-
+  // 波纹效果
+  containerTap: function (res) {
+    var that = this
+    var x = res.touches[0].pageX;
+    var y = res.touches[0].pageY + 85;
+    this.setData({
+      rippleStyle: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
+      });
+    }, 200)
+  },
 })

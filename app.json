@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/main/main",
     "pages/start/start",
+    "pages/main/main",
     "pages/addHomeMemory/addHomeMemory",
     "pages/addPersonMemory/addPersonMemory",
+   
     "pages/personMemory/timeCapsule",
-    
     "pages/homeInfo/home",
     "pages/newFamily/newFamily",
     "pages/Me/Me",
@@ -19,6 +19,7 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
+    "selectedColor": "#8a8a8a",
     "list": [
       {
         "pagePath": "pages/main/main",

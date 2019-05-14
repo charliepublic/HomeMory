@@ -1,3 +1,4 @@
+<view class="ripple" style="{{rippleStyle}}"></view>
 <!--pages/changeInfo/changeInfo.wxml-->
 <view class='both'>
 
@@ -23,17 +24,17 @@
 
     <view class='location-group'>
       <text class='location-text'>输入您的所在地区</text>
-      <input class='input-size' placeholder-class='placeholder-size' placeholder="地区" maxlength="20" bindinput='setLocation' auto-focus placeholder="{{location}}"></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="地区" maxlength="20" bindinput='setLocation' placeholder="{{location}}"></input>
     </view>
 
     <view class='homeland-group'>
       <text class='homeland-text'>输入您的家乡</text>
-      <input class='input-size' placeholder-class='placeholder-size' placeholder="家乡" maxlength="20" bindinput='setHomeland' auto-focus placeholder="{{homeland}}"></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="家乡" maxlength="20" bindinput='setHomeland' placeholder="{{homeland}}"></input>
     </view>
 
     <view class='name-group'>
       <text class='name-text'>修改您的姓名</text>
-      <input class='input-size' placeholder-class='placeholder-size' placeholder="姓名" maxlength="20" bindinput='setName' auto-focus placeholder="{{name}}"></input>
+      <input class='input-size' placeholder-class='placeholder-size' placeholder="姓名" maxlength="20" bindinput='setName' placeholder="{{name}}"></input>
     </view>
 
     <button class='submit-button' bindtap='submit'>提交</button>

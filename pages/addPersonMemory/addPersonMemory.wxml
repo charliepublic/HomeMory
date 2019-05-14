@@ -1,15 +1,18 @@
+<view style=' text-align: center;'>
+添加你的个人记忆吧
+</view>
 <view class='all'>
   <view class='memory-name'>
     <input class='memory-input' placeholder-class='memory-name-text' placeholder="快给你的记忆取个名字" maxlength="18" bindinput='setTimeTitle'></input>
-
-
   </view>
-
+  
   <view class='memory-content'>
-    <textarea class='memory-text' placeholder-class='memory-size' placeholder="写下你的个人记忆吧..." maxlength="300" bindinput='setTimeTxt'></textarea>
-    <view class='size-tips-group'>
-      <view class='add-tips'>
-        <text class='text-length-group'>{{t_length}}/300</text>
+    <view class=" weui-cells weui-cells_after-title ">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="memory-text weui-textarea" placeholder="写下你的个人记忆吧..." maxlength="300" bindinput='setTimeTxt' placeholder-class='memory-size' />
+          <view class="weui-textarea-counter">{{t_length}}/300</view>
+        </view>
       </view>
     </view>
     <view class="page__bd">

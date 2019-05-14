@@ -1,18 +1,18 @@
 <!--pages/Me/Me.wxml-->
-
+<view class="ripple" style="{{rippleStyle}}"></view>
 <!-- 如果用户没有头像获取微信头像 -->
-<view class='avatar-group'>
+<view class='avatar-group animated zoomIn'>
   <view class="userinfo" wx:if="{{!havePicture}}">
     <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl"></open-data>
   </view>
 
   <!-- 如果用户有头像，获取数据库中头像 -->
-  <view class="userinfo" wx:elif="{{havePicture}}">
+  <view class="userinfo animated zoomIn" wx:elif="{{havePicture}}">
     <image mode="aspectFill" src='{{picture}}'></image>
   </view>
 </view>
 
-<view class='all-content'>
+<view class='all-content animated zoomIn'>
   <!-- 下半部分 -->
   <view class='bottom-content'>
     <view class='file-group' style=' text-align: center;'>
@@ -32,7 +32,7 @@
 
   </view>
 
-  <view class='button-group'>
+  <view class='button-group animated zoomIn'>
     <button class='button1' bindtap='changeInfo'>修改信息</button>
   </view>
 </view>

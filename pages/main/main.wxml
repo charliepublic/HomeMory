@@ -1,33 +1,27 @@
-<!--pages/main/main.wxml-->
-<!-- <modal hidden="{{hidden}}" title="这里是title" cancel-text="自定义取消按钮" bindcancel="cancel">
-    这是对话框的内容。做时光机功能返回其中的所有统计信息
-    XXX 家庭在 20XX 年，总共上传了 296 份档案，照片是上传最多的档案格
-     式，“宝宝康乐”是上传最多的档案类型，@图图妈 是上传档案最多的成员，“图图
-    出生啦”是查阅次数最多的档案，
-</modal> -->
+<view class="ripple" style="{{rippleStyle}}"></view>
 <view class='all-container'>
-  <view class='welcome-group1' style=' text-align: center;'  wx:if = "{{!haveFamily}}">
-    <text >
+  <view class='welcome-group1 animated rotateInDownLeft' style=' text-align: center;'  wx:if = "{{!haveFamily}}">
+    <text>
       欢迎来到HomeMory 家庭管理
     </text>
   </view>
 
-  <view class='welcome-group2' style=' text-align: center;'  wx:if = "{{haveFamily}}">
-    <text >
+  <view class='welcome-group2 animated rotateInDownLeft' style=' text-align: center;'  wx:if = "{{haveFamily}}">
+    <text>
       欢迎来到HomeMory 家庭管理
     </text>
   </view>
   <!-- 是否显示家庭信息 -->
 
-  <view class='create-group' wx:if="{{!haveFamily}}">
-    <button class='create-button' bindtap='createNewFamily'>新建一个家庭</button>
+  <view class='create-group animated zoomIn' wx:if="{{!haveFamily}}">
+    <button type="primary" class='create-button weui-btn' bindtap='createNewFamily'>新建一个家庭</button>
   </view>
 
-  <view wx:else="{{haveFamily}}">
-    <view style=' text-align: center;'>
+  <view class='animated fadeInUp' wx:else="{{haveFamily}}">
+    <view style=' text-align: center; '>
       <view>家庭名称————{{homeName}}</view>
     </view>
-    <button open-type='share' plain='true'>
+    <button class="weui-btn" type="primary" open-type='share' >
       添加你的家庭成员
     </button>
     
@@ -45,12 +39,12 @@
 
     <view>
       <view wx:if="{{isAdministrator}}">
-        <button bindtap='quit'>
+        <button class="weui-btn" type="warn" bindtap='quit'>
           解散家庭
         </button>
       </view>
       <view wx:else>
-        <button bindtap='quit'>
+        <button class="weui-btn" type="warn" bindtap='quit'>
           退出该家庭
         </button>
       </view>
