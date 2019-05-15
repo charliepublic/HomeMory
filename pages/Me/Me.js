@@ -7,29 +7,32 @@ Page({
    */
   data: {
     rippleStyle: '',
-    openid: "", //用户唯一识别码
+    openid: app.globalData.openid, //用户唯一识别码
     name: "",
     age: "",
     homeland: "",
     location: "",
-    picture: "",
-    havePicture: false //用于判断用户是否上传图片到服务器
+    userInfo: {},
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function() {
-    var openid = getApp().globalData.openid
     var that = this
+    that.setData({
+      userInfo: getApp().globalData.userInfo
+    })
+    console.log(that.data.userInfo)
     console.log("----------------------------------")
-    console.log(openid)
+    console.log(that.data.openid)
     console.log("----------------------------------")
     //获取用户信息
     wx.request({
       url: config.host + '/getInfo',
       data: {
-        openId: openid
+        openId: that.data.openid
       },
       header: {
         'content-type': 'application/json'

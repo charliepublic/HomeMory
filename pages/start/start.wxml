@@ -4,7 +4,7 @@
   <view  class=' title animated tada ' style=' text-align: center;'> 
       欢迎来到HomeMory 家庭管理
   </view>
-  <button class='button' bindtap='click'>
+  <button class='button'  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
     开启我的家庭记忆
   </button>
 </view>

@@ -37,7 +37,7 @@ page {
   border: 1rpx solid #badbef;
   box-sizing: border-box;
   border-radius: 20rpx;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 10px #b6d9f0 inset;
 }
 .birthday-group, .location-group, .homeland-group, .name-group, .avatar-group {

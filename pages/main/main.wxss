@@ -6,12 +6,17 @@ page {
   background-size: 110% 100%;
   }
 .all-container {
-  width: 90%;
-  margin: 0 auto;
+    height: auto;
+  margin: 15% auto;
+  width: 95%;
   display: flex;
-  justify-content: space-evenly;
   flex-direction: column;
-  margin-top: 20rpx;
+  align-items: center;
+  border: 1rpx solid #badbef;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 0px 10px #b6d9f0 inset;
 }
 .image {width: 30rpx;height: 30rpx;}
 .welcome-group1, .welcome-group2 {

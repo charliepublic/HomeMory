@@ -17,7 +17,7 @@
 
   <view class='radio'>
     <radio-group class="radio-group animated fadeInRight" bindchange="radioChange">
-      <label class="radio-label" wx:for="{{items}}">
+      <label class="radio-label" wx:for="{{items}}" wx:key="*this">
         <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
       </label>
     </radio-group>
@@ -25,8 +25,8 @@
 
   <view class='line'></view>
 
-  <view class='bottom-content animated fadeInUp' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index">
-    <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item">
+  <view class='bottom-content animated fadeInUp' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index" wx:key="*this">
+    <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item" wx:key="*this">
       <!-- todo此处在if处判断返回是不是图片 -->
       <view wx:if="{{item.isPicture}}">
         <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>

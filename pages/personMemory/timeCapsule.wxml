@@ -25,7 +25,7 @@
 
   <view class='bottom-container' wx:if="{{isOpen}}" style=' text-align: center;'>
 
-    <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule">
+    <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:key="*this">
 
       <view class='title-group'>
         <text class='title'>title</text>
@@ -35,7 +35,7 @@
         
         <text class='weui-article__p'>{{capsule.capsuleList[0].capsuleContent}}</text>
 
-        <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="item">
+        <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="item" wx:key="*this">
           <!-- 此处在if处判断返回是不是图片 -->
           <view wx:if="{{item.isPicture}}">
             <image mode="aspectFill" src="{{url + item.filePath}}"></image>
@@ -61,7 +61,7 @@
 
   <view class='bottom-container' wx:else>
 
-    <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index">
+    <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index" wx:key="*this">
       <view class='title-group'>
         <text class='title'>title</text>
       </view>

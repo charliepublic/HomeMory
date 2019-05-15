@@ -2,7 +2,6 @@
 <!--pages/changeInfo/changeInfo.wxml-->
 <view class='both'>
 
-
   <view class='submit-content'>
     <view class='avatar-group'>
       <view class='avatar-size' wx:if="{{!havePicture}}">

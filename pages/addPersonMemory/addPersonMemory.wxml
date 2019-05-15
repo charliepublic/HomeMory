@@ -1,11 +1,11 @@
-<view style=' text-align: center;'>
-添加你的个人记忆吧
-</view>
 <view class='all'>
+  <view style=' text-align: center;'>
+    添加你的个人记忆吧
+  </view>
   <view class='memory-name'>
     <input class='memory-input' placeholder-class='memory-name-text' placeholder="快给你的记忆取个名字" maxlength="18" bindinput='setTimeTitle'></input>
   </view>
-  
+
   <view class='memory-content'>
     <view class=" weui-cells weui-cells_after-title ">
       <view class="weui-cell">
