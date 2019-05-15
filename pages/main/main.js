@@ -13,8 +13,7 @@ Page({
     homeName: "1111111",
     homeId: "1111111",
     homeMemberList: [1, 2, 3, 4, 11, 12, 13, 14],
-    isAdministrator: false,
-    
+    isAdministrator: true,
     hidden: false,
     nocancel: false
   },

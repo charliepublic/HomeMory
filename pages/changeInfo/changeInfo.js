@@ -59,7 +59,6 @@ Page({
       method: "POST",
       data: {
         openId: openid,
-        // date: that.data.date,
         age: 18,
         userName: that.data.name,
         location: that.data.location,
@@ -78,16 +77,12 @@ Page({
         })
         console.log("请求结束")
         wx.navigateBack({
-
         })
       },
       fail: function(res) {
         console.log(res)
         console.log("----------上传失败----------")
       }
-
-
-
     })
 
     //上传头像

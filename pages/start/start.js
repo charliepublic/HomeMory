@@ -71,9 +71,44 @@ Page({
       // 获取到用户的信息了，打印到控制台上看下
       // console.log("用户的信息如下：");
       // console.log(e.detail.userInfo);
-      getApp().globalData.userInfo = e.detail.userInfo
+      var userinfo = e.detail.userInfo
+      getApp().globalData.userInfo = userinfo
       // console.log("用户的信息如下：");
-      // console.log(getApp().globalData.userInfo)
+      console.log(getApp().globalData.userInfo)
+      var openid = getApp().globalData.openid
+      var that = this
+      console.log("----------------------------------")
+      console.log(openid)
+      console.log(that.data)
+      console.log("----------------------------------")
+      wx.request({
+        url: config.host + '/changeInfo',
+        method: "POST",
+        data: {
+          openId: openid,
+          age: 18,
+          userName: userinfo.nickName,
+          location: userinfo.city,
+          homeLand: userinfo.country
+          // TODO：！！！！！！！！！！！！！
+          //添加其他相对应键值对
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+        },
+        fail: function (res) {
+        }
+      })
+
+      //上传头像
+      var successUp = 0; //成功
+      var failUp = 0; //失败
+      var length = 1; //总数
+      var count = 0; //第几张
+      that.uploadOneByOne(userinfo.avatarUrl, successUp, failUp, count, length);
+
       //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
       if (this.data.flag == true || getApp().globalData.isDebug == true) {
         wx.switchTab({
@@ -111,5 +146,31 @@ Page({
         rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
       });
     }, 200)
+  },
+
+  uploadOneByOne(imgPaths, successUp, failUp, count, length) {
+    var that = this;
+    var openid = getApp().globalData.openId
+    console.log("----------------------------------")
+    console.log(openid)
+    console.log("----------------------------------")
+    wx.uploadFile({
+      //Todo!!!!!!!!!
+      //修改url
+      url: config.host + '',
+      filePath: imgPaths[count],
+      name: "file",
+      formData: {
+        openId: openid,
+      }, // HTTP 请求中其他额外的 form data
+      success: function (e) {
+        successUp++; //成功+1
+      },
+      fail: function (e) {
+        failUp++; //失败+1
+      },
+      complete: function (e) {
+      }
+    })
   },
 })

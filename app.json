@@ -1,20 +1,13 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/personMemory/timeCapsule",
     "pages/Me/Me",
     "pages/addHomeMemory/addHomeMemory",
     "pages/addPersonMemory/addPersonMemory",
-    "pages/start/start",
-   
-    
     "pages/main/main",
-    
-    
-   
-    
     "pages/homeInfo/home",
     "pages/newFamily/newFamily",
-    
     "pages/changeInfo/changeInfo"
   ],
   "window": {
