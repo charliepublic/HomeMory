@@ -25,10 +25,10 @@
 
   <view class='bottom-container' wx:if="{{isOpen}}" style=' text-align: center;'>
 
-    <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:key="*this">
+    <view class='botton-container-bottomcontent' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:key="*this.tag.tag">
 
       <view class='title-group'>
-        <text class='title'>title</text>
+        <text class='title'>{{capsule.tag.title}}</text>
       </view>
 
       <view class='context-group '>
@@ -49,7 +49,7 @@
 
       </view>
       <view class='time-group'>
-        <text class='open-time'>于{{item.time}}打开</text>
+        <text class='open-time'>于{{capsule.openTime}}打开</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>
@@ -61,13 +61,13 @@
 
   <view class='bottom-container' wx:else>
 
-    <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index" wx:key="*this">
+    <view class='botton-container-bottomcontent' style=' text-align: center;' wx:for="{{timeCapsuleList}}" wx:for-item="capsule" wx:for-index="index" wx:key="*this.tag.tag">
       <view class='title-group'>
-        <text class='title'>title</text>
+        <text class='title'>{{capsule.tag.title}}</text>
       </view>
 
       <view class='time-group'>
-        <text class='day-group'>还有xxx天打开</text>
+        <text class='day-group'>还有{{capsule.leftTime}}天打开</text>
         <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>

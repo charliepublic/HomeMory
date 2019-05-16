@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rippleStyle: '',
+
     txt: "", //添加的文字内容
     images: [], //上传图片列表
     isPrivate: false,
@@ -37,7 +37,7 @@ Page({
       success: res => {
         //--------限制用户上传的总个数----------
         var length = that.data.images.length + res.tempFilePaths.length
-        if (length > 8) {
+        if (length > 9) {
           wx.showToast({
             title: "图片已经超过9个",
             icon: 'none',
@@ -153,18 +153,4 @@ Page({
     }
   },
 
-  // 波纹效果
-  containerTap: function (res) {
-    var that = this
-    var x = res.touches[0].pageX;
-    var y = res.touches[0].pageY + 85;
-    this.setData({
-      rippleStyle: ''
-    });
-    setTimeout(function () {
-      that.setData({
-        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
-      });
-    }, 200)
-  },
 })

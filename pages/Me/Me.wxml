@@ -24,7 +24,7 @@
     </view>
   </view>
 
-  <!-- <view class='button-group animated zoomIn'>
+  <view class='button-group animated zoomIn'>
     <button class='button1' bindtap='changeInfo'>修改信息</button>
-  </view> -->
+  </view>
 </view>

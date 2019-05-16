@@ -8,7 +8,8 @@
     "pages/main/main",
     "pages/homeInfo/home",
     "pages/newFamily/newFamily",
-    "pages/changeInfo/changeInfo"
+    "pages/changeInfo/changeInfo",
+    "pages/timeMachine/timeMachine"
   ],
   "window": {
     "backgroundTextStyle": "light",

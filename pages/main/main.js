@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rippleStyle: '',
     haveFamily: true,
     homeName: "1111111",
     homeId: "1111111",
@@ -45,41 +44,54 @@ Page({
     if (options != null) {
       homeNumber = options.homeNumber
       console.log("homeNumber 在邀请中获取为" + homeNumber)
+      if (homeNumber != "" && homeNumber != undefined) {
+        var that = this
+        console.log("----------------------------------")
+        console.log(that.data.openId)
+        console.log(homeNumber)
+        console.log("----------------------------------")
+        wx.request({
+          url: config.host + '/family/joinfamily',
+          data: {
+            openId: that.data.openId,
+            homeId: homeNumber
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function(res) {
+            console.log(res)
+          }
+        })
+      }
     } else {
       homeNumber = app.globalData.homeId
+      console.log("homeID "+homeNumber)
     }
+
+    //加载家庭信息
     if (homeNumber != "" && homeNumber != undefined) {
+      var that = this
       this.setData({
         haveFamily: true,
       })
-      var that = this
-      console.log("----------------------------------")
-      console.log(that.data.openId)
-      console.log(homeNumber)
-      console.log("----------------------------------")
       wx.request({
-        // TODO：！！！！！！！！！！！！！
-        // 修改url
-        url: config.host + '',
+        url: config.host + '/family/getfamilymembers',
         data: {
-          openId: that.data.openId,
           homeId: homeNumber
-          // homeNumber作为更新或者进入已有家庭
         },
         header: {
           'content-type': 'application/json'
         },
         success: function(res) {
+          console.log(res)
           that.setData({
-            // TODO：！！！！！！！！！！！！！
-            // 显示家庭人员的信息列表
-            // homeName: res.data,
-            // homeMemberList: res.data,
-            // isAdministrator: res.data
+            homeMemberList: res.data
           })
         }
       })
     }
+
   },
 
 
@@ -110,13 +122,14 @@ Page({
           })
           console.log("--------------删除家庭成员-----------------")
           console.log(that.data.homeId)
-          console.log(item.openid)
+          console.log(item)
           console.log("----------------------------------")
           wx.request({
             url: config.host + '/family/deletemember',
             data: {
               homeId: that.data.homeId,
-              openId: item.openid
+              openId: item.openid,
+              isQuit: false
               // TODO： 此处可能有bug
             },
             header: {
@@ -162,7 +175,7 @@ Page({
             data: {
               openId: openid,
               homeId: that.data.homeId,
-              isAdministrator: that.data.isAdministrator
+              isQuit: true
             },
             header: {
               'content-type': 'application/json'
@@ -233,21 +246,6 @@ Page({
 
   },
 
-
-  // 波纹效果
-  containerTap: function (res) {
-    var that = this
-    var x = res.touches[0].pageX;
-    var y = res.touches[0].pageY + 85;
-    this.setData({
-      rippleStyle: ''
-    });
-    setTimeout(function () {
-      that.setData({
-        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
-      });
-    }, 200)
-  },
 
   cancel: function() {
     this.setData({

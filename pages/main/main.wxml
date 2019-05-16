@@ -19,7 +19,7 @@
 
   <view class='animated fadeInUp' wx:else="{{haveFamily}}">
     <view style=' text-align: center; '>
-      <view>家庭名称————{{homeName}}</view>
+      <view>家庭名称————{{homeMemberList[0].homeName}}</view>
     </view>
     <button class="weui-btn" type="primary" open-type='share' >
       添加你的家庭成员
@@ -29,9 +29,9 @@
       <view class="weui-cell">
         <view class="weui-cell__hd">
         <!--TODo：  这里是否需要解析member中的图片url？ -->
-          <image src="" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          <image src="{{member.icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </view>
-        <view class="weui-cell__bd">{{member}}成员姓名</view>
+        <view class="weui-cell__bd">成员姓名</view>
         <view wx:if="{{isAdministrator}}">
           <button class="weui-cell__ft" bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
         </view>

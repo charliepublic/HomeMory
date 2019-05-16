@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rippleStyle: '',
+
     images: [],
     date: util.formatDate(new Date()),
     timeTitle: "",
@@ -33,6 +33,8 @@ Page({
     var count = 0; //第几张  
     var tag = util.generateMixed(10) //唯一识别码
     this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
+    // 上传成功后返回前一页面
+    wx.navigateBack({})
   },
   /**
    * 上传照片//选择图片时限制9张
@@ -51,7 +53,7 @@ Page({
 
         var length = that.data.images.length + res.tempFilePaths.length
         //限制用户上传的总个数
-        if (length > 8) {
+        if (length > 9) {
           wx.showToast({
             title: "图片已经超过9个",
             icon: 'none',
@@ -130,7 +132,7 @@ Page({
       filePath: imgPaths[count],
       name: "file",
       formData: {
-        name: that.data.timeTitle,
+        title: that.data.timeTitle,
         openId: openid,
         time: that.data.date,
         content: that.data.timeTxt,
@@ -153,8 +155,7 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          // 上传成功后返回前一页面
-          wx.navigateBack({})
+
         } else {
           //递归调用，上传下一张
           that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newTag);
@@ -162,21 +163,6 @@ Page({
         }
       }
     })
-  },
-
-  // 波纹效果
-  containerTap: function (res) {
-    var that = this
-    var x = res.touches[0].pageX;
-    var y = res.touches[0].pageY + 85;
-    this.setData({
-      rippleStyle: ''
-    });
-    setTimeout(function () {
-      that.setData({
-        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
-      });
-    }, 200)
   },
 
 })

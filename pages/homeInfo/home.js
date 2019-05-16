@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rippleStyle: '',
     searchTxt: "1231432542",
     memoryList: [1, 2, 3, 42, 3, 4, 2, 3, ],
     homeId: "",
@@ -37,6 +36,15 @@ Page({
   },
 
 
+  onLoad(){
+    var myDate = new Date();
+    var day = myDate.getDate(); //获取当前日(1-31)
+    if(day == 1){
+      wx.navigateTo({
+        url: '../timeMachine/timeMachine',
+      })
+    }
+  },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
 
@@ -163,20 +171,20 @@ Page({
     })
   },
 
-  //  下拉刷新函数
-  onReachBottom: function(option) {
-    console.log('--------下拉刷新-------')
-    // 加锁flag
-    var that = this
-    console.log(that.data.flag)
-    if (that.data.flag == true) {
-      wx.showNavigationBarLoading() //在标题栏中显示加载
-      that.setData({
-        sequence: that.data.sequence + 1
-      })
-      that.changeMemoryList(that.data.sequence)
-    }
-  },
+  // //  下拉刷新函数
+  // onReachBottom: function(option) {
+  //   console.log('--------下拉刷新-------')
+  //   // 加锁flag
+  //   var that = this
+  //   console.log(that.data.flag)
+  //   if (that.data.flag == true) {
+  //     wx.showNavigationBarLoading() //在标题栏中显示加载
+  //     that.setData({
+  //       sequence: that.data.sequence + 1
+  //     })
+  //     that.changeMemoryList(that.data.sequence)
+  //   }
+  // },
 
   //响应修改函数内容
   changeMemoryList: function(sequence) {
@@ -226,7 +234,7 @@ Page({
             }
           }
         }
-        var newList = that.data.memoryList.concat(result)
+        var newList = result
         that.setData({
           memoryList: newList,
           flag: true
@@ -240,18 +248,5 @@ Page({
     })
   },
 
-  // 波纹效果
-  containerTap: function (res) {
-    var that = this
-    var x = res.touches[0].pageX;
-    var y = res.touches[0].pageY + 85;
-    this.setData({
-      rippleStyle: ''
-    });
-    setTimeout(function () {
-      that.setData({
-        rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
-      });
-    }, 200)
-  },
+
 })

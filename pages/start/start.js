@@ -13,7 +13,7 @@ Page({
     var that = this
     wx.login({
       success: function(res) {
-        var code = res.code //返回code  
+        var code = res.code
         var host = config.host + '/openid/getopenid'
         // console.log("----------------------------------")
         // console.log(code)
@@ -30,9 +30,12 @@ Page({
           },
           success: function(res) {
             console.log(res)
-            var openid = res.data //返回openid
+            var openid = res.data.openId // //TODO此处需要做调整
+            var isNew = !Boolean(res.data.tag)          
             getApp().globalData.openid = openid
-            console.log(openid)
+            getApp().globalData.isNew = isNew
+            // console.log(isNew)
+            // console.log(openid)
             wx.request({
               url: config.host + '/family/gethomeid',
               data: {
@@ -42,7 +45,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function(res) {
-                console.log(res)
+                // console.log(res)
                 if (res.data == -1) {
                   getApp().globalData.homeId = null
                 } else {
@@ -65,71 +68,81 @@ Page({
 
 
   bindGetUserInfo: function(e) {
-    if (e.detail.userInfo) {
-      //用户按了允许授权按钮
-      var that = this;
-      // 获取到用户的信息了，打印到控制台上看下
-      // console.log("用户的信息如下：");
-      // console.log(e.detail.userInfo);
-      var userinfo = e.detail.userInfo
-      getApp().globalData.userInfo = userinfo
-      // console.log("用户的信息如下：");
-      console.log(getApp().globalData.userInfo)
-      var openid = getApp().globalData.openid
-      var that = this
-      console.log("----------------------------------")
-      console.log(openid)
-      console.log(that.data)
-      console.log("----------------------------------")
-      wx.request({
-        url: config.host + '/changeInfo',
-        method: "POST",
-        data: {
-          openId: openid,
-          age: 18,
-          userName: userinfo.nickName,
-          location: userinfo.city,
-          homeLand: userinfo.country
-          // TODO：！！！！！！！！！！！！！
-          //添加其他相对应键值对
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-        },
-        fail: function (res) {
+    if (this.data.flag == true || getApp().globalData.isDebug == true ){
+      if (e.detail.userInfo) {
+        var that = this;
+        var userinfo = e.detail.userInfo
+        userinfo["age"] = "1008-10-12"
+        if (getApp().globalData.isNew == true) {
+          // console.log("----------------------------------")
+          // console.log(getApp().globalData.openid)
+          // console.log(userinfo)
+          // console.log("----------------------------------")
+          wx.request({
+            url: config.host + '/changeInfo',
+            method: "POST",
+            data: {
+              openId: getApp().globalData.openid,
+              age: userinfo.age,
+              userName: userinfo.nickName,
+              location: userinfo.city,
+              homeLand: userinfo.country,
+              avatarUrl: userinfo.avatarUrl
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) { },
+            fail: function (res) { }
+          })
+        } else {
+
+          wx.request({
+            url: config.host + '/getInfo',
+            data: {
+              openId: getApp().globalData.openid
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              userinfo.age = res.data.age
+              userinfo.nickName = res.data.userName
+              userinfo.location = res.data.location
+              userinfo.country = res.data.homeLand
+            }
+          })
         }
-      })
+        getApp().globalData.userInfo = userinfo
+        console.log("用户的信息如下：");
+        console.log(getApp().globalData.userInfo)
+        var openid = getApp().globalData.openid
+        var that = this
 
-      //上传头像
-      var successUp = 0; //成功
-      var failUp = 0; //失败
-      var length = 1; //总数
-      var count = 0; //第几张
-      that.uploadOneByOne(userinfo.avatarUrl, successUp, failUp, count, length);
 
-      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      if (this.data.flag == true || getApp().globalData.isDebug == true) {
-        wx.switchTab({
-          url: '/pages/main/main'
-        })
-      }
-    } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权',
-        success: function(res) {
-          // 用户没有授权成功，不需要改变 isHide 的值
-          if (res.confirm) {
-            console.log('用户点击了“返回授权”');
+        //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+        if (this.data.flag == true || getApp().globalData.isDebug == true) {
+          wx.switchTab({
+            url: '/pages/main/main'
+          })
+        }
+      } else {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+          showCancel: false,
+          confirmText: '返回授权',
+          success: function (res) {
+            // 用户没有授权成功，不需要改变 isHide 的值
+            if (res.confirm) {
+              console.log('用户点击了“返回授权”');
+            }
           }
-        }
-      });
+        });
+      }
     }
+
+
   },
 
 
@@ -148,29 +161,4 @@ Page({
     }, 200)
   },
 
-  uploadOneByOne(imgPaths, successUp, failUp, count, length) {
-    var that = this;
-    var openid = getApp().globalData.openId
-    console.log("----------------------------------")
-    console.log(openid)
-    console.log("----------------------------------")
-    wx.uploadFile({
-      //Todo!!!!!!!!!
-      //修改url
-      url: config.host + '',
-      filePath: imgPaths[count],
-      name: "file",
-      formData: {
-        openId: openid,
-      }, // HTTP 请求中其他额外的 form data
-      success: function (e) {
-        successUp++; //成功+1
-      },
-      fail: function (e) {
-        failUp++; //失败+1
-      },
-      complete: function (e) {
-      }
-    })
-  },
 })

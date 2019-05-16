@@ -33,22 +33,9 @@ const generateMixed = n => {
   return res;
 }
 
-// 箭头函数没有=>
-const ripple = res => {
-  var x = res.touches[0].pageX;
-  var y = res.touches[0].pageY + 85;
-  this.setData({
-    rippleStyle: ''
-  });
-  setTimeout(function() {
-    that.setData({
-      rippleStyle: 'top:' + y + 'px;left:' + x + 'px;-webkit-animation: ripple 0.4s linear;animation:ripple 0.4s linear;'
-    });
-  }, 200)
-}
+
 
 module.exports = {
-  ripple: ripple,
   formatTime: formatTime,
   formatDate: formatDate,
   generateMixed: generateMixed
