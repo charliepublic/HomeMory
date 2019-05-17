@@ -9,31 +9,21 @@ Page({
   data: {
     date: "",
     rippleStyle: '',
-    timeCapsuleList: [1, 2, 3, 4, 2, 3, 4, 2, 3, 4],
-    tempTimeCapsuleList: [1, 2, 3, 4, 2, 3, 4, 2, 3, 4],
-
-    // sequence: 0,
-    // tempsequence: 0,
-
+    timeCapsuleList: {
+      "capsuleList": [1, 2, 3, 4, 2, 3, 4, 2, 3, 4]
+    },
+    tempTimeCapsuleList: [{
+        "capsuleList": [1, 2]
+      },
+      {
+        "capsuleList": [3, 4]
+      }
+    ],
     clickMessage: "切换到解封的记忆",
     url: "",
-
     isOpen: false,
     flag: true,
-    isFirstClick: true,
-    test: [{
-      capsuleList: [{
-        recordType: "jpeg"
-      }, {
-        recordType: "png"
-      }, {
-        recordType: "bmp"
-      }]
-    }, {
-      capsuleList: [{
-        recordType: "gif"
-      }, {}, {}]
-    }]
+
   },
 
 
@@ -106,18 +96,7 @@ Page({
 
 
 
-  // //  下拉刷新函数
-  // onReachBottom: function(option) {
-  //   if (this.data.flag == true) {
-  //     console.log('--------下拉刷新-------')
-  //     wx.showNavigationBarLoading() //在标题栏中显示加载
-  //     this.setData({
-  //       sequence: this.data.sequence + 1
-  //     })
-  //     console.log(this.data.timeCapsuleList)
-  //     this.changeTimeCapsuleList(this.data.sequence)
-  //   }
-  // },
+
 
   //响应修改函数内容
   changeTimeCapsuleList: function(sequence) {
@@ -125,7 +104,6 @@ Page({
     var openid = getApp().globalData.openid
     var that = this
     this.setData({
-      flag: false,
       url: config.host + '/timecapsule/querycapsulefile?uri='
     })
     console.log("----------------------------------")
@@ -137,7 +115,6 @@ Page({
       url: config.host + '/timecapsule/querycapsulelist',
       data: {
         openId: openid,
-        // sequence: sequence,
         isOpen: that.data.isOpen
       },
       header: {
@@ -145,10 +122,6 @@ Page({
       },
       success: function(res) {
         console.log(res)
-        var newFlag = true
-        if (res.data.length < 1) {
-          newFlag = false
-        }
         var result = res.data
         for (var i = 0; i < result.length; i++) {
           var openTime = result[i].tag.time.substring(0, 10)
@@ -160,7 +133,7 @@ Page({
           var list = result[i].capsuleList
           // console.log(list)
           for (var j = 0; j < list.length; j++) {
-            var type = list[j].recordType
+            var type = list[j].fileType
             console.log(type)
             //根据需求添加图片
             if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
@@ -174,40 +147,30 @@ Page({
         console.log(newList)
         that.setData({
           timeCapsuleList: newList,
-          flag: newFlag
         })
       },
-      // complete: function() {
-      //   // complete
-      //   wx.hideNavigationBarLoading() //完成停止加载
-      //   wx.stopPullDownRefresh() //停止下拉刷新
-
-      // }
     })
   },
 
   //点击button进行切换
   clickButton: function() {
     var tempList = this.data.timeCapsuleList
-    // var tempSeq = this.data.sequence
     // 作为副本进行切换，显示不同的胶囊和显示效果
     this.setData({
       isOpen: !this.data.isOpen,
       timeCapsuleList: this.data.tempTimeCapsuleList,
       tempTimeCapsuleList: tempList,
-      // sequence: this.data.tempsequence,
-      // tempsequence: tempSeq
     })
     if (this.data.isOpen == false) {
       this.setData({
         clickMessage: "切换到解封的记忆"
       })
-      this.changeTimeCapsuleList(0)  
+      this.changeTimeCapsuleList(0)
     } else {
       this.setData({
         clickMessage: "切换到未解封的记忆"
       })
-      this.changeTimeCapsuleList(0)  
+      this.changeTimeCapsuleList(0)
     }
   },
 
@@ -225,7 +188,7 @@ Page({
     presentData = Date.parse(presentData);
     openData = Date.parse(openData);
     dateSpan = openData - presentData;
-    iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
+    iDays = Math.floor(dateSpan / (24 * 3600 * 1000)) + 2;
     return iDays
   },
 })

@@ -13,7 +13,7 @@ Page({
     images: [], //上传图片列表
     isPrivate: false,
     clickMessage: "修改为仅自己可见",
-    t_length:0
+    t_length: 0
   },
 
   // 绑定函数
@@ -50,7 +50,6 @@ Page({
         that.setData({
           images: images
         })
-        // console.log(images)
       },
     });
 
@@ -58,20 +57,26 @@ Page({
   },
 
 
-  submit: function () {
+  submit: function() {
+    if(tihs.data.images.length == 0){
+      wx.showToast({
+        title: "请务必上传图片",
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     var successUp = 0; //成功
     var failUp = 0; //失败
     var length = this.data.images.length; //总数
     var count = 0; //第几张
     var tag = util.generateMixed(10)
     this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
-    wx.navigateBack({
-
-    })
+    wx.navigateBack({})
   },
 
 
-  
+
   /**
    * 采用递归的方式上传多张
    */
@@ -117,7 +122,7 @@ Page({
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
           wx.showToast({
-            title: '上传成功' + successUp,
+            title: '上传成功' ,
             icon: 'success',
             duration: 2000
           })
@@ -130,7 +135,7 @@ Page({
     })
   },
 
-  previewImage: function (e) {
+  previewImage: function(e) {
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: this.data.files // 需要预览的图片http链接列表

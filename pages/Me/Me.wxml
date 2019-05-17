@@ -1,7 +1,7 @@
 <!--pages/Me/Me.wxml-->
 
 <view class='avatar-group animated zoomIn'>
-  <view >
+  <view>
     <image class="userinfo" src='{{userInfo.avatarUrl}}'></image>
   </view>
 </view>

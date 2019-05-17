@@ -66,7 +66,7 @@ Page({
       }
     } else {
       homeNumber = app.globalData.homeId
-      console.log("homeID "+homeNumber)
+      console.log("homeID " + homeNumber)
     }
 
     //加载家庭信息

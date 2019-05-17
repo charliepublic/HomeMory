@@ -8,7 +8,7 @@ Page({
 
 
   onShow: function() {
-    var that= this
+    var that = this
     var openid = getApp().globalData.openid
     var homeId = getApp().globalData.homeId
     console.log(homeId)
@@ -21,7 +21,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res){
+      success: function(res) {
         console.log(res)
       }
     })

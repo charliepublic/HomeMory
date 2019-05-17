@@ -1,13 +1,13 @@
 <!--pages/addHomeMemory/addHomeMemory.wxml-->
 <view style=' text-align: center;'>
-添加你的家庭记忆吧
+  添加你的家庭记忆吧
 </view>
 <view class='content-group'>
   <!-- <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea> -->
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">
-        <textarea class="text-containe weui-textarea" placeholder="写下你的备注吧..." placeholder-class='input-style' maxlength="300"  bindinput='setTxt'/>
+        <textarea class="text-containe weui-textarea" placeholder="写下你的备注吧..." placeholder-class='input-style' maxlength="300" bindinput='setTxt' />
         <view class="weui-textarea-counter">{{t_length}}/300</view>
       </view>
     </view>

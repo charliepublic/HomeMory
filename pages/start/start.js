@@ -31,7 +31,7 @@ Page({
           success: function(res) {
             console.log(res)
             var openid = res.data.openId // //TODO此处需要做调整
-            var isNew = !Boolean(res.data.tag)          
+            var isNew = !Boolean(res.data.tag)
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             // console.log(isNew)
@@ -68,7 +68,7 @@ Page({
 
 
   bindGetUserInfo: function(e) {
-    if (this.data.flag == true || getApp().globalData.isDebug == true ){
+    if (this.data.flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {
         var that = this;
         var userinfo = e.detail.userInfo
@@ -92,8 +92,8 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (res) { },
-            fail: function (res) { }
+            success: function(res) {},
+            fail: function(res) {}
           })
         } else {
 
@@ -105,7 +105,7 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (res) {
+            success: function(res) {
               userinfo.age = res.data.age
               userinfo.nickName = res.data.userName
               userinfo.location = res.data.location
@@ -132,7 +132,7 @@ Page({
           content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
           showCancel: false,
           confirmText: '返回授权',
-          success: function (res) {
+          success: function(res) {
             // 用户没有授权成功，不需要改变 isHide 的值
             if (res.confirm) {
               console.log('用户点击了“返回授权”');

@@ -6,13 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{}
+    userInfo: {}
   },
 
   onShow: function() {
     var openid = getApp().globalData.openid
     this.setData({
-      userInfo : getApp().globalData.userInfo
+      userInfo: getApp().globalData.userInfo
     })
     console.log(this.data.userInfo)
   },
@@ -45,8 +45,7 @@ Page({
           icon: 'success',
           duration: 1500 //持续的时间
         })
-        wx.navigateBack({
-        })
+        wx.navigateBack({})
       },
       fail: function(res) {
         console.log(res)
@@ -60,25 +59,25 @@ Page({
 
 
   /////////////组件绑定函数/////////////////
-  setLocation: function (e) {
+  setLocation: function(e) {
     this.setData({
       'userInfo.city': e.detail.value
     })
   },
 
-  setHomeland: function (e) {
+  setHomeland: function(e) {
     this.setData({
       "userInfo.country": e.detail.value
     })
   },
 
-  setName: function (e) {
+  setName: function(e) {
     this.setData({
       "userInfo.nickName": e.detail.value
     })
   },
 
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       "userInfo.age": e.detail.value

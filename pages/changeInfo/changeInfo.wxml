@@ -25,7 +25,7 @@
       <text class='name-text'>修改您的姓名{{userInfo.nickName}}</text>
       <input class='input-size' placeholder-class='placeholder-size' placeholder="姓名" maxlength="20" bindinput='setName' placeholder="{{userInfo.nickName}}"></input>
     </view>
-    
+
     <view class='location-group'>
       <text class='location-text'>输入您的所在地区</text>
       <input class='input-size' placeholder-class='placeholder-size' placeholder="地区" maxlength="20" bindinput='setLocation' placeholder="{{userInfo.city}}"></input>

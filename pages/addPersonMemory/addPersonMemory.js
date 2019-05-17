@@ -19,9 +19,17 @@ Page({
 
   // 提交函数上传时光胶囊 
   submit: function() {
-    if(this.data.timeTitle == ""){
+    if (this.data.timeTitle == "") {
       wx.showToast({
         title: "请填写你的记忆名称",
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (tihs.data.images.length == 0) {
+      wx.showToast({
+        title: "请务必上传图片",
         icon: 'none',
         duration: 2000
       })
@@ -71,7 +79,7 @@ Page({
 
 
   // 修改页面显示时间
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     if (e.detail.value < util.formatDate(new Date())) {
       wx.showToast({
@@ -88,7 +96,7 @@ Page({
 
 
   //文本绑定函数
-  setTimeTxt: function (e) {
+  setTimeTxt: function(e) {
     var t_text = e.detail.value.length;
     this.setData({
       t_length: t_text,
@@ -96,7 +104,7 @@ Page({
     })
   },
 
-  setTimeTitle: function (e) {
+  setTimeTitle: function(e) {
     var title = e.detail.value;
     this.setData({
       timeTitle: title

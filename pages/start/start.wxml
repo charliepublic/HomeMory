@@ -1,10 +1,10 @@
 <view class="ripple" style="{{rippleStyle}}"></view>
 <view class='container' bindtouchstart="containerTap">
   <!-- 使用动画包 只能在view标签使用 text标签无效 加入的class 必定包含 animated类 可加入其他自定义样式 以及animate的动画效果（具体查看文档）  -->
-  <view  class=' title animated tada ' style=' text-align: center;'> 
-      欢迎来到HomeMory 家庭管理
+  <view class=' title animated tada ' style=' text-align: center;'>
+    欢迎来到HomeMory 家庭管理
   </view>
-  <button class='button'  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+  <button class='button' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
     开启我的家庭记忆
   </button>
 </view>

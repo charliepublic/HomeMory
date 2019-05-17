@@ -7,7 +7,13 @@ Page({
    */
   data: {
     searchTxt: "1231432542",
-    memoryList: [1, 2, 3, 42, 3, 4, 2, 3, ],
+    memoryList: [{
+        "homeFileList": [1, 2]
+      },
+      {
+        "homeFileList": [3, 4]
+      }
+    ],
     homeId: "",
     sequence: 0,
     url: config.host + "/timecapsule/querycapsulefile?uri=", //TOdo 修改请求图片的url
@@ -36,10 +42,10 @@ Page({
   },
 
 
-  onLoad(){
+  onLoad() {
     var myDate = new Date();
     var day = myDate.getDate(); //获取当前日(1-31)
-    if(day == 1){
+    if (day == 1) {
       wx.navigateTo({
         url: '../timeMachine/timeMachine',
       })
