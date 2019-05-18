@@ -18,9 +18,9 @@ Page({
   },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  onLoad:function(res){
+    console.log(res)
+  },
   onShow: function(options) {
     if (getApp().globalData.isDebug == false) {
       this.setData({
@@ -31,47 +31,18 @@ Page({
         homeMumberList: []
       })
     }
-
-
     //获取用户的家庭信息
-    console.log("传入的option是" + options)
-    var openid = app.globalData.openid
-    console.log("main 第一次获取openid      " + openid)
-    this.setData({
-      openId: openid
-    })
-    var homeNumber
-    if (options != null) {
-      homeNumber = options.homeNumber
-      console.log("homeNumber 在邀请中获取为" + homeNumber)
-      if (homeNumber != "" && homeNumber != undefined) {
-        var that = this
-        console.log("----------------------------------")
-        console.log(that.data.openId)
-        console.log(homeNumber)
-        console.log("----------------------------------")
-        wx.request({
-          url: config.host + '/family/joinfamily',
-          data: {
-            openId: that.data.openId,
-            homeId: homeNumber
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function(res) {
-            console.log(res)
-          }
-        })
-      }
-    } else {
-      homeNumber = app.globalData.homeId
-      console.log("homeID " + homeNumber)
-    }
+    this.loadFamliy()
 
+
+  },
+
+  loadFamliy:function(){
+    var that = this
+    var homeNumber = app.globalData.homeId
+    console.log("homeID " + homeNumber)
     //加载家庭信息
-    if (homeNumber != "" && homeNumber != undefined) {
-      var that = this
+    if (Boolean(homeNumber)) {
       this.setData({
         haveFamily: true,
       })
@@ -83,7 +54,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function(res) {
+        success: function (res) {
           console.log(res)
           that.setData({
             homeMemberList: res.data
@@ -91,10 +62,7 @@ Page({
         }
       })
     }
-
   },
-
-
   // 删除函数
   delet: function(e) {
     var that = this
@@ -205,7 +173,7 @@ Page({
 
   //创建家庭
   createNewFamily: function(options) {
-    if (getApp().globalData.homeId != undefined && getApp().globalData.homeId != "") {
+    if (Boolean(getApp().globalData.homeId)) {
       wx.showToast({
         title: '请退出当前家庭',
         icon: 'none',
@@ -217,24 +185,25 @@ Page({
       url: '../newFamily/newFamily',
     })
   },
+
   /**
    * 用户点击右上角分享
    */
+
   onShareAppMessage: function(res) {
+    const that = this
     if (this.data.haveFamily) {
       wx.showShareMenu({
         withShareTicket: true
       })
       wx.hideShareMenu()
-      const that = this
       if (res.from === 'button') {
         // 来自页面内转发按钮
         console.log(res.target)
       }
       return {
         title: '加入我的家庭吧',
-        path: '/pages/main/main?homeNumber=' + that.data.homeId + '&&invited = true',
-
+        path: '/pages/start/start?homeNumber=' + that.data.homeId ,
         //TODO 添加对应的分享链接的图片
         imageUrl: "",
         success: function(res) {},

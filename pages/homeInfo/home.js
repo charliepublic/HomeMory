@@ -53,7 +53,6 @@ Page({
   },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
-
     if (getApp().globalData.isDebug == false) {
       this.setData({
         sequence: 0,
@@ -177,21 +176,6 @@ Page({
     })
   },
 
-  // //  下拉刷新函数
-  // onReachBottom: function(option) {
-  //   console.log('--------下拉刷新-------')
-  //   // 加锁flag
-  //   var that = this
-  //   console.log(that.data.flag)
-  //   if (that.data.flag == true) {
-  //     wx.showNavigationBarLoading() //在标题栏中显示加载
-  //     that.setData({
-  //       sequence: that.data.sequence + 1
-  //     })
-  //     that.changeMemoryList(that.data.sequence)
-  //   }
-  // },
-
   //响应修改函数内容
   changeMemoryList: function(sequence) {
 
@@ -232,7 +216,6 @@ Page({
           var list = result[i].homeFileList
           for (var j = 0; j < list.length; j++) {
             var type = list[j].recordType
-            //根据需求添加图片
             if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
               list[j]["isPicture"] = true
             } else {
@@ -245,11 +228,6 @@ Page({
           memoryList: newList,
           flag: true
         })
-      },
-      complete: function() {
-        wx.hideNavigationBarLoading() //完成停止加载
-        wx.stopPullDownRefresh() //停止下拉刷新
-
       }
     })
   },

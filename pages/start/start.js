@@ -1,12 +1,27 @@
-// pages/start/start.js
-//导入对于服务器的配置
 var config = require("../../utils/config.js")
 
 Page({
   data: {
     rippleStyle: '',
-    flag: false
+    flag: false,
+    option: ""
   },
+
+
+  onLoad: function(opt) {
+    console.log("传入的option是")
+    console.log(opt)
+    var count = Object.keys(opt).length;
+    // console.log(count)
+    if (count == 0) {
+      opt = ""
+    }
+    this.setData({
+      option: opt
+    })
+
+  },
+
 
 
   onShow: function(res) {
@@ -14,12 +29,6 @@ Page({
     wx.login({
       success: function(res) {
         var code = res.code
-        var host = config.host + '/openid/getopenid'
-        // console.log("----------------------------------")
-        // console.log(code)
-        // console.log(config.host)
-        // console.log(host)
-        // console.log("----------------------------------")
         wx.request({
           url: config.host + '/openid/getopenid',
           data: {
@@ -29,33 +38,14 @@ Page({
             'content-type': 'application/json'
           },
           success: function(res) {
-            console.log(res)
-            var openid = res.data.openId // //TODO此处需要做调整
+            // console.log(res)
+            var openid = res.data.openId
             var isNew = !Boolean(res.data.tag)
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
-            // console.log(isNew)
-            // console.log(openid)
-            wx.request({
-              url: config.host + '/family/gethomeid',
-              data: {
-                openId: openid
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function(res) {
-                // console.log(res)
-                if (res.data == -1) {
-                  getApp().globalData.homeId = null
-                } else {
-                  getApp().globalData.homeId = res.data
-                }
-                console.log(" homeID  " + getApp().globalData.homeId)
-                that.setData({
-                  flag: true
-                })
-              }
+            that.gethomeId(openid)
+            that.setData({
+              flag: true
             })
           }
         })
@@ -65,62 +55,53 @@ Page({
   },
 
 
-
+  gethomeId: function(openId) {
+    var that = this
+    wx.request({
+      url: config.host + '/family/gethomeid',
+      data: {
+        openId: openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        // console.log(res)
+        if (res.data == -1) {
+          getApp().globalData.homeId = null
+          if (Boolean(that.data.option)) {
+            console.log("更新家庭成员")
+            console.log(that.data.option)
+            that.joinFamily(that.data.option.homeNumber)
+          }
+        } else {
+          getApp().globalData.homeId = res.data
+          if (Boolean(that.data.option)) {
+            wx.showToast({
+              title: "如要加入新的家庭请退出当前家庭",
+              icon: 'none',
+              duration: 1000
+            })
+          }
+        }
+      }
+    })
+  },
 
   bindGetUserInfo: function(e) {
+    var that = this
     if (this.data.flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {
-        var that = this;
         var userinfo = e.detail.userInfo
         userinfo["age"] = "1008-10-12"
         if (getApp().globalData.isNew == true) {
-          // console.log("----------------------------------")
-          // console.log(getApp().globalData.openid)
-          // console.log(userinfo)
-          // console.log("----------------------------------")
-          wx.request({
-            url: config.host + '/changeInfo',
-            method: "POST",
-            data: {
-              openId: getApp().globalData.openid,
-              age: userinfo.age,
-              userName: userinfo.nickName,
-              location: userinfo.city,
-              homeLand: userinfo.country,
-              avatarUrl: userinfo.avatarUrl
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(res) {},
-            fail: function(res) {}
-          })
+          that.addUser(userinfo)
         } else {
-
-          wx.request({
-            url: config.host + '/getInfo',
-            data: {
-              openId: getApp().globalData.openid
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(res) {
-              userinfo.age = res.data.age
-              userinfo.nickName = res.data.userName
-              userinfo.location = res.data.location
-              userinfo.country = res.data.homeLand
-            }
-          })
+          userinfo = that.loadUser(userinfo)
         }
         getApp().globalData.userInfo = userinfo
-        console.log("用户的信息如下：");
-        console.log(getApp().globalData.userInfo)
-        var openid = getApp().globalData.openid
-        var that = this
-
-
-        //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+        // console.log("用户的信息如下：");
+        // console.log(getApp().globalData.userInfo)
         if (this.data.flag == true || getApp().globalData.isDebug == true) {
           wx.switchTab({
             url: '/pages/main/main'
@@ -133,7 +114,6 @@ Page({
           showCancel: false,
           confirmText: '返回授权',
           success: function(res) {
-            // 用户没有授权成功，不需要改变 isHide 的值
             if (res.confirm) {
               console.log('用户点击了“返回授权”');
             }
@@ -141,10 +121,72 @@ Page({
         });
       }
     }
-
-
   },
 
+  loadUser: function(userinfo) {
+    wx.request({
+      url: config.host + '/getInfo',
+      data: {
+        openId: getApp().globalData.openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        userinfo.age = res.data.age
+        userinfo.nickName = res.data.userName
+        userinfo.location = res.data.location
+        userinfo.country = res.data.homeLand
+      }
+    })
+    return userinfo
+  },
+
+  addUser: function(userinfo) {
+    // console.log(userinfo)
+    var that = this
+    wx.request({
+      url: config.host + '/changeInfo',
+      method: "POST",
+      data: {
+        openId: getApp().globalData.openid,
+        age: userinfo.age,
+        userName: userinfo.nickName,
+        location: userinfo.city,
+        homeLand: userinfo.country,
+        avatarUrl: userinfo.avatarUrl
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {},
+      fail: function(res) {}
+    })
+  },
+
+  joinFamily: function(homeId) {
+    var that = this
+    var homeNumber = homeId
+    console.log("homeNumber 在邀请中获取为" + homeNumber)
+    console.log("----------------------------------")
+    console.log(getApp().globalData.openid)
+    console.log(homeNumber)
+    console.log("----------------------------------")
+    wx.request({
+      url: config.host + '/family/joinfamily',
+      data: {
+        openId: getApp().globalData.openid,
+        homeId: homeNumber
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        console.log(res)
+      }
+    })
+    getApp().globalData.homeId = homeId
+  },
 
   // 波纹效果
   containerTap: function(res) {

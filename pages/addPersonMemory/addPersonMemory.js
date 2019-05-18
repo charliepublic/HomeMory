@@ -41,11 +41,11 @@ Page({
     var count = 0; //第几张  
     var tag = util.generateMixed(10) //唯一识别码
     this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
-    // 上传成功后返回前一页面
-    wx.navigateBack({})
+
+
   },
   /**
-   * 上传照片//选择图片时限制9张
+   * 上传照片/
    */
   upload: function() {
     var that = this;
@@ -54,10 +54,10 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        var successUp = 0; //成功
-        var failUp = 0; //失败
-        var length = res.tempFilePaths.length; //总数
-        var count = 0; //第几张
+        var successUp = 0;
+        var failUp = 0;
+        var length = res.tempFilePaths.length;
+        var count = 0;
 
         var length = that.data.images.length + res.tempFilePaths.length
         //限制用户上传的总个数
@@ -80,7 +80,6 @@ Page({
 
   // 修改页面显示时间
   bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     if (e.detail.value < util.formatDate(new Date())) {
       wx.showToast({
         title: "请选择今天以后的时间",
@@ -163,7 +162,7 @@ Page({
             icon: 'success',
             duration: 2000
           })
-
+          wx.navigateBack({})
         } else {
           //递归调用，上传下一张
           that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newTag);

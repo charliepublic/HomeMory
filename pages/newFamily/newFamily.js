@@ -14,7 +14,6 @@ Page({
   goBack: function(options) {
     var openid = getApp().globalData.openid
     var that = this
-
     console.log("----------------------------------")
     console.log(openid)
     console.log(that.data.homeName)

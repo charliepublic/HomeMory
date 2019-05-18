@@ -26,28 +26,6 @@ Page({
       homeland: userinfo.country,
       location: userinfo.city,
     })
-
-    // console.log("----------------------------------")
-    // console.log(that.data.openid)
-    // console.log("----------------------------------")
-    //获取用户信息
-    // wx.request({
-    //   url: config.host + '/getInfo',
-    //   data: {
-    //     openId: that.data.openid
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success: function(res) {
-    //     console.log(res)
-    //     that.setData({
-    //       name: res.data.userName,
-    //       homeland: res.data.homeLand,
-    //       location: res.data.location,
-    //     })
-    //   }
-    // })
   },
 
 

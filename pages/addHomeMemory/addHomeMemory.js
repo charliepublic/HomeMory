@@ -58,7 +58,7 @@ Page({
 
 
   submit: function() {
-    if(tihs.data.images.length == 0){
+    if (tihs.data.images.length == 0) {
       wx.showToast({
         title: "请务必上传图片",
         icon: 'none',
@@ -72,7 +72,7 @@ Page({
     var count = 0; //第几张
     var tag = util.generateMixed(10)
     this.uploadOneByOne(this.data.images, successUp, failUp, count, length, tag);
-    wx.navigateBack({})
+
   },
 
 
@@ -90,7 +90,6 @@ Page({
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
-
     console.log("-----------------------------")
     console.log(that.data.isPrivate)
     console.log(openid)
@@ -122,10 +121,11 @@ Page({
           //上传完毕，作一下提示
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
           wx.showToast({
-            title: '上传成功' ,
+            title: '上传成功',
             icon: 'success',
             duration: 2000
           })
+          wx.navigateBack({})
         } else {
           //递归调用，上传下一张
           that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newtage);
