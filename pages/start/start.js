@@ -102,9 +102,13 @@ Page({
         getApp().globalData.userInfo = userinfo
         // console.log("用户的信息如下：");
         // console.log(getApp().globalData.userInfo)
-        if (this.data.flag == true || getApp().globalData.isDebug == true) {
+        if (Boolean(getApp().globalData.homeId)) {
           wx.switchTab({
             url: '/pages/main/main'
+          })
+        }else{
+          wx.navigateTo({
+            url: '../newFamily/newFamily',
           })
         }
       } else {

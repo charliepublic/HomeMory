@@ -119,8 +119,6 @@ Page({
 
   },
 
-
-
   quit: function() {
     var that = this
     var openid = getApp().globalData.openid

@@ -12,41 +12,54 @@ Page({
 
 
   goBack: function(options) {
-    var openid = getApp().globalData.openid
-    var that = this
-    console.log("----------------------------------")
-    console.log(openid)
-    console.log(that.data.homeName)
-    console.log("----------------------------------")
-    wx.request({
-      url: config.host + '/family/createfamily',
-      data: {
-        openId: openid,
-        homeName: that.data.homeName
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        console.log(res)
-        getApp().globalData.homeId = res.data
-        console.log(getApp().globalData.homeId)
-        wx.showToast({
-          title: '创建家庭成功',
-          icon: 'success',
-          duration: 1500 //持续的时间
-        })
-        wx.navigateBack({})
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: '创建家庭失败',
-          icon: 'none',
-          duration: 1500 //持续的时间
-        })
-      }
+    console.log(getApp().globalData.isDebug)
+    if (getApp().globalData.isDebug == true) {
+      console.log("111111111")
+      wx.switchTab({
+        url: '/pages/main/main'
+      })
+      return
+    } else {
 
-    })
+      var openid = getApp().globalData.openid
+      var that = this
+      console.log("----------------------------------")
+      console.log(openid)
+      console.log(that.data.homeName)
+      console.log("----------------------------------")
+      wx.request({
+        url: config.host + '/family/createfamily',
+        data: {
+          openId: openid,
+          homeName: that.data.homeName
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+          console.log(res)
+          getApp().globalData.homeId = res.data
+          console.log(getApp().globalData.homeId)
+          wx.showToast({
+            title: '创建家庭成功',
+            icon: 'success',
+            duration: 1500 //持续的时间
+          })
+          wx.switchTab({
+            url: '/pages/main/main'
+          })
+        },
+        fail: function(res) {
+          wx.showToast({
+            title: '创建家庭失败',
+            icon: 'none',
+            duration: 1500 //持续的时间
+          })
+        }
+
+      })
+    }
+
 
 
   },

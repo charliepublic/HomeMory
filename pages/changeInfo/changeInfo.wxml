@@ -1,15 +1,9 @@
-<view class="ripple" style="{{rippleStyle}}"></view>
-<!--pages/changeInfo/changeInfo.wxml-->
-<view class='both'>
 
+<view class='both'>
   <view class='submit-content'>
     <view class='avatar-group'>
-      <view class='avatar-size' wx:if="{{!havePicture}}">
-        <open-data background-size="cover" class="userinfo-avatar" type="userAvatarUrl" bindtap='changePicture'></open-data>
-      </view>
-
-      <view class='avatar-size' wx:else="{{havePicture}}">
-        <image mode="aspectFill" class="userinfo" src="{{picture}}" bindtap='changePicture'></image>
+      <view class='avatar-size' >
+        <image class="userinfo" src="{{userInfo.avatarUrl}}"></image>
       </view>
 
     </view>
