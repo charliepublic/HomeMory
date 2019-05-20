@@ -123,7 +123,6 @@ Page({
 
   //响应修改函数内容
   changeMemoryList: function(sequence) {
-
     var openid = getApp().globalData.openid
     var that = this
     // 加锁flag
@@ -178,12 +177,6 @@ Page({
 
 
   //-----------------------控件绑定-------start--------------------
-  setTxt: function(e) {
-    this.setData({
-      presentTxt: e.detail.value
-    })
-  },
-
   // 单选
   bindPickerChange: function (e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/start/start",
     "pages/homeInfo/home",
+    "pages/start/start",
     "pages/addHomeMemory/addHomeMemory",
     "pages/main/main",
     "pages/Me/Me",
