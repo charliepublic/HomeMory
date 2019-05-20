@@ -8,6 +8,8 @@
   width: 120rpx;
   height: 120rpx;
   margin: 0 auto;
+  margin-bottom: 20rpx;font-size: 40rpx;
+  color: black;
 }
 .avatar-group{
   padding-top: 10%;
@@ -15,32 +17,14 @@
   /* background-color: #8ac0e2; */
   /* box-shadow: 0 0 10rpx #104e5e; */
 }
-.userinfo .nickname-group {margin-bottom: 20rpx;font-size: 40rpx;}
-.userinfo .nickname-group .userinfo-nickname {color: black;}
+
 .all-content .bottom-content {
-  display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0;
+  position: fixed;
+  bottom: 0;
 }
-.file-group {margin-top: 80rpx;}
-.age-group, .city-group, .homeland-group, .file-group, .openid-group {
-  width: 95%;
-  height: 80rpx;
-  margin-bottom: 20rpx;
-  line-height: 80rpx;
-  background-color: #f4f6f6;
-  box-shadow: 0 0 8rpx #104e5e;
-}
-.age-group>text, .city-group>text, .homeland-group>text,
-.file-group>text, .openid-group>text {
-  float: left;
-  font-size: 30rpx;
-  margin-left: 20rpx;
-  font-family: Microsoft Yahei;
-}
-.button-group {margin-top: 40rpx;}
-.button-group .button1 {background-color: #d1e4f0;color: #787b7d;width: 95%;}
-.button-group .button1::after{border: none;}
 
 page {
   background-color: #fffffb;

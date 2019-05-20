@@ -8,15 +8,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    array: ['家庭历史', '学生时代', '宝宝康乐', '工作成果'],
+    type: "家庭历史",
     txt: "", //添加的文字内容
     images: [], //上传图片列表
     isPrivate: false,
-    clickMessage: "修改为仅自己可见",
+    clickMessage: "仅自己可见",
     t_length: 0
   },
 
   // 绑定函数
+  bindPickerChange: function(e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    var newType = this.data.array[e.detail.value]
+    console.log(newType)
+    this.setData({
+      type: newType
+    })
+  },
   setTxt: function(e) {
     var t_text = e.detail.value.length;
     this.setData({
@@ -57,8 +66,16 @@ Page({
   },
 
 
+  // 单选
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      value: e.detail.value
+    })
+  },
+
   submit: function() {
-    if (tihs.data.images.length == 0) {
+    if (this.data.images.length == 0) {
       wx.showToast({
         title: "请务必上传图片",
         icon: 'none',
@@ -106,7 +123,8 @@ Page({
         openId: openid,
         content: that.data.txt,
         time: Time,
-        tag: newtage
+        tag: newtage,
+        type: that.data.type
       }, // HTTP 请求中其他额外的 form data
       success: function(e) {
         successUp++; //成功+1
@@ -136,9 +154,12 @@ Page({
   },
 
   previewImage: function(e) {
+    var that = this
+    console.log(e)
+    console.log(that.data)
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: this.data.files // 需要预览的图片http链接列表
+      urls: that.data.images // 需要预览的图片http链接列表
     })
   },
 
@@ -149,11 +170,11 @@ Page({
     })
     if (this.data.isPrivate == true) {
       this.setData({
-        clickMessage: "修改为所有人可见"
+        clickMessage: "所有人可见"
       })
     } else {
       this.setData({
-        clickMessage: "修改为仅自己可见"
+        clickMessage: "仅自己可见"
       })
     }
   },

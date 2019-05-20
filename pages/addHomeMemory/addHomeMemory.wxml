@@ -39,9 +39,22 @@
     </view>
   </view>
 
+
+
+
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <button type="default" >
+      记忆类型         {{type}}
+    </button>
+  </picker>
+
+
+
   <view class='button-group'>
-    <button class='btn1' bindtap="clickButton">{{clickMessage}}</button>
+    <button class='btn1 ' bindtap="clickButton">{{clickMessage}}</button>
     <button class='btn3' bindtap='submit'> 完成</button>
   </view>
+
+
 
 </view>

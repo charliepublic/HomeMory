@@ -20,20 +20,6 @@ Page({
     that.setData({
       userInfo: userinfo
     })
-    console.log(that.data.userInfo)
-    that.setData({
-      name: userinfo.nickName,
-      homeland: userinfo.country,
-      location: userinfo.city,
-    })
   },
 
-
-
-  //跳转修改用户信息页面
-  changeInfo: function() {
-    wx.navigateTo({
-      url: '../changeInfo/changeInfo',
-    })
-  }
 })

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    inputShowed: false,
     searchTxt: "1231432542",
     memoryList: [{
         "homeFileList": [1, 2]
@@ -19,25 +20,8 @@ Page({
     url: config.host + "/timecapsule/querycapsulefile?uri=", //TOdo 修改请求图片的url
     presentTxt: "", //用于获取当前搜索字 在搜索时传值给searchTxt
     flag: true, //用于保证网络请求
-    items: [{
-        name: 'all',
-        value: '全部',
-        checked: true
-      },
-      {
-        name: 'people',
-        value: '发布人'
-      },
-      {
-        name: 'content',
-        value: '内容'
-      },
-      {
-        name: 'time',
-        value: '时间'
-      },
-    ],
-    value: "all",
+    array: ['家庭历史', '学生时代', '宝宝康乐', '工作成果'],
+    type: "全部",
 
   },
 
@@ -66,45 +50,6 @@ Page({
     this.changeMemoryList(0)
   },
 
-  //-----------------------控件绑定---------------------------
-  setTxt: function(e) {
-    this.setData({
-      presentTxt: e.detail.value
-    })
-  },
-
-  // 单选
-  radioChange(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    this.setData({
-      value: e.detail.value
-    })
-  },
-
-  // 添加说说事件绑定
-  input: function() {
-    if (!Boolean(this.data.homeId)) {
-      wx.showModal({
-        title: '提示',
-        content: '请先创建你的家庭',
-        success: function(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            wx.navigateTo({
-              url: '../newFamily/newFamily',
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } else {
-      wx.navigateTo({
-        url: '../addHomeMemory/addHomeMemory',
-      })
-    }
-  },
-  //-----------------------控件绑定---------------------------
 
 
   // 进行查找
@@ -199,8 +144,7 @@ Page({
         homeId: that.data.homeId,
         sequence: sequence,
         searchTxt: that.data.searchTxt,
-        value: that.data.value
-        //如果searchTxt为""则显示所有，否则显示对应的内容
+        type: that.data.type
       },
       header: {
         'content-type': 'application/json'
@@ -233,4 +177,66 @@ Page({
   },
 
 
+  //-----------------------控件绑定-------start--------------------
+  setTxt: function(e) {
+    this.setData({
+      presentTxt: e.detail.value
+    })
+  },
+
+  // 单选
+  bindPickerChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    var newType = this.data.array[e.detail.value]
+    console.log(newType)
+    this.setData({
+      type: newType
+    })
+  },
+
+  // 添加说说事件绑定
+  input: function() {
+    if (!Boolean(this.data.homeId)) {
+      wx.showModal({
+        title: '提示',
+        content: '请先创建你的家庭',
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: '../newFamily/newFamily',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../addHomeMemory/addHomeMemory',
+      })
+    }
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      presentTxt: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      presentTxt: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      presentTxt: e.detail.value
+    });
+  }
+  //-----------------------控件绑定-------end--------------------
 })

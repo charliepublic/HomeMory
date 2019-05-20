@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/newFamily/newFamily",
     "pages/start/start",
-    "pages/main/main",
-    "pages/personMemory/timeCapsule",
-    "pages/Me/Me",
-    "pages/addHomeMemory/addHomeMemory",
-    "pages/addPersonMemory/addPersonMemory",
     "pages/homeInfo/home",
+    "pages/addHomeMemory/addHomeMemory",
+    "pages/main/main",
+    "pages/Me/Me",
+    "pages/advice/advice",
+    "pages/aboutUs/aboutUs",
+    "pages/newFamily/newFamily",
+    "pages/personMemory/timeCapsule",
+    "pages/addPersonMemory/addPersonMemory",
     "pages/changeInfo/changeInfo",
     "pages/timeMachine/timeMachine"
   ],
@@ -41,7 +43,7 @@
       },
       {
         "pagePath": "pages/Me/Me",
-        "text": "我的信息",
+        "text": "更多",
         "iconPath": "./static/picture/Me.png",
         "selectedIconPath": "./static/picture/selectedMe.png"
       }

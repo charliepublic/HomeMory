@@ -11,7 +11,8 @@ Page({
     haveFamily: true,
     homeName: "1111111",
     homeId: "1111111",
-    homeMemberList: [1, 2, 3, 4, 11, 12, 13, 14],
+    homeMemberList: [1],
+    // , 2, 3, 4, 5, 6, 7, 8, 90, 12
     isAdministrator: true,
     hidden: false,
     nocancel: false

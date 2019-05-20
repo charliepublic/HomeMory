@@ -1,5 +1,11 @@
 /* pages/home/home.wxss */
 
+ .typePicker{
+   width: auto;
+   height: auto;
+   padding: 0;
+   margin: 0;
+ }
   .all{
   height: auto;
   margin: 10% auto;
