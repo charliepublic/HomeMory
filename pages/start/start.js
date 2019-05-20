@@ -60,13 +60,14 @@ Page({
     wx.request({
       url: config.host + '/family/gethomeid',
       data: {
-        openId: openid
+        openId: openId
       },
       header: {
         'content-type': 'application/json'
       },
       success: function(res) {
-        // console.log(res)
+        console.log(res)
+        //TODO
         if (res.data == -1) {
           getApp().globalData.homeId = null
           if (Boolean(that.data.option)) {
@@ -89,6 +90,7 @@ Page({
   },
 
   bindGetUserInfo: function(e) {
+    console.log(getApp().globalData.isDebug)
     var that = this
     if (this.data.flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {

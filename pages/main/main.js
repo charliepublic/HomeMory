@@ -28,7 +28,7 @@ Page({
         haveFamily: false,
         homeId: app.globalData.homeId,
         homeName: "",
-        isAdministrator: false,
+        isAdministrator: true,
         homeMumberList: []
       })
     }
@@ -64,27 +64,30 @@ Page({
       })
     }
   },
+
+
   // 删除函数
   delet: function(e) {
     var that = this
-    if (this.data.isAdministrator == false) {
+    var list = that.data.homeMemberList
+    var index = e.currentTarget.dataset.index
+    var item = list[index]
+    console.log(item)
+    if (this.data.isAdministrator == item.openid) {
       wx.showToast({
-        title: '您无权删除该成员',
+        title: '您不能删除您自己',
         icon: 'none',
         duration: 1500 //持续的时间
       })
       return
     }
-
     wx.showModal({
       title: '提示',
       content: '确认要删除此家庭成员么？',
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          var list = that.data.homeMemberList
-          var index = e.currentTarget.dataset.index
-          var item = list[index]
+
           list.splice(index, 1)
           that.setData({
             homeMemberList: list

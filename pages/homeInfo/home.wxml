@@ -27,7 +27,7 @@
     <view class='bottom-content animated fadeInUp' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index" wx:key="*this">
       <view class='image-group' wx:for="{{member.homeFileList}}" wx:for-item="item" wx:key="*this">
         <!-- 此处用于测试图片效果!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-        <image mode="aspectFill" src="http://pic22.nipic.com/20120727/7614835_122003577172_2.png"></image>
+        <image mode="aspectFill" src="https://img04.sogoucdn.com/app/a/100520021/fa6fed03e6b44b8bc23c9332ac4fe9b2"></image>
         <!-- 此处在if处判断返回是不是图片 -->
         <view wx:if="{{item.isPicture}}">
           <image class='image' mode="aspectFill" src="{{url + item.filePath}}"></image>

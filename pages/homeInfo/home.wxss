@@ -91,7 +91,7 @@
   margin: 30rpx auto;
   margin-top: 30rpx;
   box-shadow: 0 0 8rpx #104e5e;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .bottom-content .people-time {
   width: 90%;
