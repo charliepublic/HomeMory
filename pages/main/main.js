@@ -19,16 +19,14 @@ Page({
   },
 
 
-  onLoad:function(res){
-    console.log(res)
-  },
+
   onShow: function(options) {
     if (getApp().globalData.isDebug == false) {
       this.setData({
         haveFamily: false,
         homeId: app.globalData.homeId,
         homeName: "",
-        isAdministrator: true,
+        isAdministrator: Boolean(app.globalData.openid == app.globalData.manager),
         homeMumberList: []
       })
     }
@@ -73,7 +71,7 @@ Page({
     var index = e.currentTarget.dataset.index
     var item = list[index]
     console.log(item)
-    if (this.data.isAdministrator == item.openid) {
+    if (app.globalData.openid == item.openId) {
       wx.showToast({
         title: '您不能删除您自己',
         icon: 'none',
@@ -136,7 +134,6 @@ Page({
           console.log("----------------------------------")
           console.log(openid)
           console.log(that.data.homeId)
-          console.log(that.data.isAdministrator)
           console.log("----------------------------------")
           wx.request({
             // TODO：！！！！！！！！！！！！！ c此处响应不正确

@@ -1,31 +1,19 @@
 <!--pages/home/home.wxml-->
 <!-- 搜索框 -->
-<view class="page__bd ">
-  <view class="weui-search-bar">
-    <view class="weui-search-bar__form">
-      <view class="weui-search-bar__box">
-        <picker  bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-          <button class='typePicker'>
-            {{type}}
-          </button>
-        </picker>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
-        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
-      </view>
-      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="weui-search-bar__text">搜索</view>
-      </label>
-    </view>
-    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+
+<view class='top-container animated fadeInLeft'>
+  <view class='image-group'>
+    <image class='image' bindtap='input' src='../../static/picture/add.png' mode='top right '></image>
+  </view>
+
+  <view class='change-group'>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <button class='typePicker'>
+        {{type}}
+      </button>
+    </picker>
   </view>
 </view>
-
-
-<!-- 添加符号 -->
-<image src="../../static/picture/add.png" bindtap='input'></image>
 
 <view class='both'>
   <view class='back'>

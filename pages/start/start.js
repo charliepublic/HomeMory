@@ -41,6 +41,7 @@ Page({
             // console.log(res)
             var openid = res.data.openId
             var isNew = !Boolean(res.data.tag)
+            console.log("是否第一次登陆 "+isNew)
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
@@ -67,8 +68,7 @@ Page({
       },
       success: function(res) {
         console.log(res)
-        //TODO
-        if (res.data == -1) {
+        if(!Boolean(res.data)){
           getApp().globalData.homeId = null
           if (Boolean(that.data.option)) {
             console.log("更新家庭成员")
@@ -76,7 +76,8 @@ Page({
             that.joinFamily(that.data.option.homeNumber)
           }
         } else {
-          getApp().globalData.homeId = res.data
+          getApp().globalData.homeId = res.data.homeId
+          getApp().globalData.manager = res.data.manager
           if (Boolean(that.data.option)) {
             wx.showToast({
               title: "如要加入新的家庭请退出当前家庭",
@@ -90,7 +91,7 @@ Page({
   },
 
   bindGetUserInfo: function(e) {
-    console.log(getApp().globalData.isDebug)
+
     var that = this
     if (this.data.flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {

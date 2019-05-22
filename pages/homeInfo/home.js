@@ -42,7 +42,8 @@ Page({
         sequence: 0,
         memoryList: [],
         homeId: getApp().globalData.homeId,
-        searchTxt: ""
+        searchTxt: "",
+        type: "全部",
       })
     }
     var openid = getApp().globalData.openid
@@ -134,7 +135,7 @@ Page({
     console.log(openid)
     console.log(that.data.homeId)
     console.log(that.data.searchTxt)
-    console.log(that.data.value)
+    console.log(that.data.type)
     console.log("----------------------------------")
     wx.request({
       url: config.host + '/upload/queryfilelist',
@@ -167,6 +168,7 @@ Page({
           }
         }
         var newList = result
+        console.log(newList)
         that.setData({
           memoryList: newList,
           flag: true
@@ -179,12 +181,13 @@ Page({
   //-----------------------控件绑定-------start--------------------
   // 单选
   bindPickerChange: function (e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
+ 
     var newType = this.data.array[e.detail.value]
     console.log(newType)
     this.setData({
       type: newType
     })
+    this.changeMemoryList(0)
   },
 
   // 添加说说事件绑定

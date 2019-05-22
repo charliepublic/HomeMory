@@ -64,10 +64,10 @@ Page({
           that.setData({
             timeCapsuleList: list
           })
-          var opneid = getApp().globalData.openid
+          var openid = getApp().globalData.openid
           console.log("----------------------------------")
           console.log(item.tag.tag)
-          console.log(openid)
+   
           console.log("----------------------------------")
           wx.request({
             url: config.host + '/timecapsule/deletecapsule',
@@ -188,7 +188,7 @@ Page({
     presentData = Date.parse(presentData);
     openData = Date.parse(openData);
     dateSpan = openData - presentData;
-    iDays = Math.floor(dateSpan / (24 * 3600 * 1000)) + 2;
+    iDays = Math.floor(dateSpan / (24 * 3600 * 1000)) + 1;
     return iDays
   },
 })

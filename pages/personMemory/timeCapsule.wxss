@@ -150,7 +150,7 @@
   overflow: hidden;
   width: 98%;
   margin: 4rpx auto;
-}w
+}
 
 .bottom-container .botton-container-bottomcontent .time-group .delete-button{
   width: 45%;

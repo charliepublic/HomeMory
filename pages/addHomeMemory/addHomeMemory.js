@@ -113,6 +113,7 @@ Page({
     console.log(that.data.txt)
     console.log(Time)
     console.log(newtage)
+    console.log(that.data.type)
     console.log("-----------------------------")
     wx.uploadFile({
       url: config.host + '/upload/addhomememory',
@@ -125,10 +126,9 @@ Page({
         time: Time,
         tag: newtage,
         type: that.data.type
-      }, // HTTP 请求中其他额外的 form data
+      }, 
       success: function(e) {
         successUp++; //成功+1
-        console.log(e)
       },
       fail: function(e) {
         failUp++; //失败+1
@@ -137,7 +137,7 @@ Page({
         count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示
-          console.log('上传成功' + successUp + ',' + '失败' + failUp);
+
           wx.showToast({
             title: '上传成功',
             icon: 'success',
@@ -147,7 +147,7 @@ Page({
         } else {
           //递归调用，上传下一张
           that.uploadOneByOne(imgPaths, successUp, failUp, count, length, newtage);
-          console.log('正在上传第' + count + '张');
+
         }
       }
     })

@@ -1,11 +1,33 @@
 /* pages/home/home.wxss */
 
+.top-container {
+  margin-top: 3%;
+  display: flex;
+  height: 70rpx;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+.image-group {margin-right: 4%;margin-left: 10rpx;}
+.top-container .image-group .image {width: 70rpx;height: 70rpx;}
+.top-container .change-group {flex-grow: 1;margin-left: 4%;}
+
+.top-container .change-group .change-button {
+  height: 70rpx;
+  /* border-radius: 30rpx; */
+  background-color: #f4f6f6;
+  border: 2rpx solid #104e5e;
+  box-shadow: 0 0 8rpx #104e5e;
+  padding-bottom: 10rpx;
+  line-height: 70rpx;
+}
  .typePicker{
    width: auto;
-   height: auto;
+   height: 70rpx;
    padding: 0;
    margin: 0;
+   line-height: 70rpx;
  }
+ .typePicker text{align-content: center; font-size: 32rpx;}
   .all{
   height: auto;
   margin: 10% auto;
@@ -18,28 +40,9 @@
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 10px #b6d9f0 inset;
 }
-.search-group {
-  padding: 10rpx;
-  margin: 5rpx 0 5rpx 0;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-.searchtext-group {
-  height: 70rpx;
-  background-color: #f4f6f6;
-  box-shadow: 0 0 8rpx #104e5e;
-  box-sizing: border-box;
-  flex-grow: 1;
-  margin-left: 4%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.searchtext-group .placeholder {font-size: 28rpx;padding-left: 0;}
-.search-input {margin-left: 0;}
+
 .submit-button .submit {
-  width: 100%;
+  width: 100%;  
   height: 50rpx;
   line-height: 50rpx;
   box-sizing: border-box;
@@ -64,7 +67,7 @@
   height: auto; 
   background-color: #f4f6f6;
   width: 96%; 
-  margin: 10rpx auto; 
+  margin: 20rpx auto; 
   border: 1rpx solid #badbef;
   box-sizing: border-box;
   box-shadow: 0px 0px 10px #b6d9f0 inset;
@@ -87,12 +90,15 @@
 }
 .bottom-content .image-group {
   width: 90%;
-  height: auto;
+  /* height: auto; */
   margin: 30rpx auto;
   margin-top: 30rpx;
   box-shadow: 0 0 8rpx #104e5e;
   /* overflow: hidden; */
 }
+.bottom-content .image-group .image-size .image{width: 100%; height: 100%;}
+.bottom-content .image-group .video-group{width: 100%; height: 500rpx; background-color: purple;}
+.bottom-content .image-group .video-group .video{width: 100%; height: 100%;}
 .bottom-content .people-time {
   width: 90%;
   height: auto;

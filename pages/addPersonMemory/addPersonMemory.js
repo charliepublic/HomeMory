@@ -27,7 +27,7 @@ Page({
       })
       return
     }
-    if (tihs.data.images.length == 0) {
+    if (this.data.images.length == 0) {
       wx.showToast({
         title: "请务必上传图片",
         icon: 'none',
@@ -93,6 +93,15 @@ Page({
     })
   },
 
+  previewImage: function(e) {
+    var that = this
+    console.log(e)
+    console.log(that.data)
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: that.data.images // 需要预览的图片http链接列表
+    })
+  },
 
   //文本绑定函数
   setTimeTxt: function(e) {
