@@ -41,7 +41,7 @@ Page({
             // console.log(res)
             var openid = res.data.openId
             var isNew = !Boolean(res.data.tag)
-            console.log("是否第一次登陆 "+isNew)
+            console.log("是否第一次登陆 " + isNew)
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
@@ -68,7 +68,7 @@ Page({
       },
       success: function(res) {
         console.log(res)
-        if(!Boolean(res.data)){
+        if (!Boolean(res.data)) {
           getApp().globalData.homeId = null
           if (Boolean(that.data.option)) {
             console.log("更新家庭成员")
@@ -109,7 +109,7 @@ Page({
           wx.switchTab({
             url: '/pages/main/main'
           })
-        }else{
+        } else {
           wx.navigateTo({
             url: '../newFamily/newFamily',
           })

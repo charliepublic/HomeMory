@@ -126,7 +126,7 @@ Page({
         time: Time,
         tag: newtage,
         type: that.data.type
-      }, 
+      },
       success: function(e) {
         successUp++; //成功+1
       },

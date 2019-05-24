@@ -36,7 +36,7 @@ Page({
 
   },
 
-  loadFamliy:function(){
+  loadFamliy: function() {
     var that = this
     var homeNumber = app.globalData.homeId
     console.log("homeID " + homeNumber)
@@ -53,7 +53,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res)
           that.setData({
             homeMemberList: res.data
@@ -202,7 +202,7 @@ Page({
       }
       return {
         title: '加入我的家庭吧',
-        path: '/pages/start/start?homeNumber=' + that.data.homeId ,
+        path: '/pages/start/start?homeNumber=' + that.data.homeId,
         //TODO 添加对应的分享链接的图片
         imageUrl: "",
         success: function(res) {},

@@ -43,8 +43,8 @@
 
 
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <button type="default" >
-      记忆类型         {{type}}
+    <button type="default">
+      记忆类型 {{type}}
     </button>
   </picker>
 

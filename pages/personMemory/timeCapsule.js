@@ -40,7 +40,7 @@ Page({
         date: DATE,
         tempTimeCapsuleList: [],
         timeCapsuleList: [],
-        isOpen: false,
+        isOpen: true,
         clickMessage: "切换到解封的记忆",
         // sequence: 0
       });
@@ -67,7 +67,7 @@ Page({
           var openid = getApp().globalData.openid
           console.log("----------------------------------")
           console.log(item.tag.tag)
-   
+
           console.log("----------------------------------")
           wx.request({
             url: config.host + '/timecapsule/deletecapsule',

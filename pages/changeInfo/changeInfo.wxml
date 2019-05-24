@@ -1,8 +1,7 @@
-
 <view class='both'>
   <view class='submit-content'>
     <view class='avatar-group'>
-      <view class='avatar-size' >
+      <view class='avatar-size'>
         <image class="userinfo" src="{{userInfo.avatarUrl}}"></image>
       </view>
 

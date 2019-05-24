@@ -8,7 +8,7 @@ Page({
 
   },
 
-  goback:function(){
+  goback: function() {
     wx.navigateBack({
 
     })

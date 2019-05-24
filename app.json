@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/personMemory/timeCapsule",
     "pages/homeInfo/home",
     "pages/addHomeMemory/addHomeMemory",
     "pages/main/main",
@@ -8,7 +9,6 @@
     "pages/advice/advice",
     "pages/aboutUs/aboutUs",
     "pages/newFamily/newFamily",
-    "pages/personMemory/timeCapsule",
     "pages/addPersonMemory/addPersonMemory",
     "pages/changeInfo/changeInfo",
     "pages/timeMachine/timeMachine"

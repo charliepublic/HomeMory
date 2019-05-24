@@ -105,8 +105,13 @@ icon {
 }
 
 .weui-cell__ft {
+  /* text-align: right;
+  color: #999; */
   text-align: right;
-  color: #999;
+  margin: center;
+  background-color: rgba(220, 220, 220, 0.041);
+  font-size: 35rpx;
+  border-radius: 25px;
 }
 
 .weui-cell_access {
@@ -634,7 +639,16 @@ icon {
 }
 
 .weui-btn {
+  /* margin-top: 15px; */
+  width: 50%;
+  margin: center;
   margin-top: 15px;
+  /* background-color:rgba(219, 122, 122, 0.459); */
+  background: linear-gradient(to bottom right, rgba(0, 162, 255, 0.37), rgba(0, 0, 255, 0.027));
+  font-size: 35rpx;
+  border-radius: 25px;
+  color: black;
+  box-shadow: 1px 1px 1px 1px rgba(128, 97, 99, 0);
 }
 
 .weui-btn:first-child {
