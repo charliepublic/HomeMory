@@ -48,7 +48,6 @@ Page({
       content: '确认要删除此条信息么？',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           var list = that.data.timeCapsuleList
           var index = e.currentTarget.dataset.index
           var item = list[index]
@@ -57,10 +56,9 @@ Page({
             timeCapsuleList: list
           })
           var openid = getApp().globalData.openid
-          console.log("----------------------------------")
-          console.log(item.tag.tag)
-
-          console.log("----------------------------------")
+          // console.log("----------------------------------")
+          // console.log(item.tag.tag)
+          // console.log("----------------------------------")
           wx.request({
             url: config.host + '/timecapsule/deletecapsule',
             data: {
@@ -79,7 +77,7 @@ Page({
             }
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+
         }
       }
     })
@@ -100,17 +98,16 @@ Page({
 
   //响应修改函数内容
   changeTimeCapsuleList: function(sequence) {
-    console.log(this.data.clickMessage)
     var openid = getApp().globalData.openid
     var that = this
     this.setData({
       url: config.host + '/timecapsule/querycapsulefile?uri='
     })
-    console.log("----------------------------------")
-    console.log(openid)
+    // console.log("----------------------------------")
+    // console.log(openid)
     // console.log(sequence)
-    console.log(that.data.isOpen)
-    console.log("----------------------------------")
+    // console.log(that.data.isOpen)
+    // console.log("----------------------------------")
     wx.request({
       url: config.host + '/timecapsule/querycapsulelist',
       data: {
@@ -121,7 +118,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        console.log(res)
+        // console.log(res)
         var result = res.data
         for (var i = 0; i < result.length; i++) {
           var openTime = result[i].tag.time.substring(0, 10)
@@ -134,7 +131,7 @@ Page({
           // console.log(list)
           for (var j = 0; j < list.length; j++) {
             var type = list[j].fileType
-            console.log(type)
+       
             //根据需求添加图片
             if (type == "jpg" || type == "png" || type == "bmp" || type == "gif" || type == "jpeg") {
               list[j]["isPicture"] = true
@@ -144,7 +141,6 @@ Page({
           }
         }
         var newList = result
-        console.log(newList)
         that.setData({
           timeCapsuleList: newList,
         })

@@ -14,7 +14,7 @@ Page({
     url: config.host + "/timecapsule/querycapsulefile?uri=", 
     presentTxt: "",
     flag: true, 
-    array: ['家庭历史', '学生时代', '宝宝康乐', '工作成果'],
+    array: ["全部",'家庭历史', '学生时代', '宝宝康乐', '工作成果'],
     type: "全部",
 
   },
@@ -61,11 +61,9 @@ Page({
       content: '确认要删除此条信息么？',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           var list = that.data.memoryList
           var index = e.currentTarget.dataset.index
           var item = list[index]
-          console.log("说说是" + item)
           //---------此处进行权限认证--------
           if (item.openid != that.data.openid) {
             wx.showToast({
@@ -80,10 +78,10 @@ Page({
             that.setData({
               memoryList: list
             })
-            console.log("----------------------------------")
-            console.log(item.tag.tag)
-            console.log(getApp().globalData.openid)
-            console.log("----------------------------------")
+            // console.log("----------------------------------")
+            // console.log(item.tag.tag)
+            // console.log(getApp().globalData.openid)
+            // console.log("----------------------------------")
             wx.request({
               url: config.host + '/upload/deletememory',
               data: {
@@ -94,7 +92,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function(res) {
-                console.log(res)
+                // console.log(res)
                 wx.showToast({
                   title: '删除成功',
                   icon: 'success',
@@ -104,7 +102,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+  
         }
       }
     })
@@ -118,12 +116,12 @@ Page({
     this.setData({
       flag: false
     })
-    console.log("----------------------------------")
-    console.log(sequence)
-    console.log(openid)
-    console.log(homeId)
-    console.log(that.data.type)
-    console.log("----------------------------------")
+    // console.log("----------------------------------")
+    // console.log(sequence)
+    // console.log(openid)
+    // console.log(homeId)
+    // console.log(that.data.type)
+    // console.log("----------------------------------")
     wx.request({
       url: config.host + '/upload/queryfilelist',
       data: {
@@ -157,7 +155,6 @@ Page({
           }
         }
         var newList = result
-        console.log(newList)
         that.setData({
           memoryList: newList,
           flag: true
@@ -183,7 +180,6 @@ Page({
   // 单选
   bindPickerChange: function (e) {
     var newType = this.data.array[e.detail.value]
-    console.log(newType)
     this.setData({
       type: newType
     })
@@ -198,12 +194,10 @@ Page({
         content: '请先创建你的家庭',
         success: function(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
             wx.navigateTo({
               url: '../newFamily/newFamily',
             })
           } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })

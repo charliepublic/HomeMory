@@ -9,8 +9,6 @@ Page({
 
 
   onLoad: function(opt) {
-    console.log("传入的option是")
-    console.log(opt)
     var count = Object.keys(opt).length;
     if (count == 0) {
       option = ""
@@ -38,7 +36,7 @@ Page({
             'content-type': 'application/json'
           },
           success: function(res) {
-            console.log(res)
+            // console.log(res)
             var openid = res.data.openId
             var isNew = !Boolean(res.data.tag)
             getApp().globalData.openid = openid
@@ -64,13 +62,10 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function(res) {
-        console.log(res)
+      success: function(res) {  
         if (!Boolean(res.data.homeName)) {
-          console.log("t")
           getApp().globalData.homeId = null
-          if (Boolean(option)) {
-            console.log(option)
+          if (Boolean(option)) {    
             that.joinFamily(option)
           }
           flag = true
@@ -79,7 +74,6 @@ Page({
           getApp().globalData.homeName = res.data.homeName
           getApp().globalData.manager = res.data.manager
           if (Boolean(option)) {
-            console.log(Boolean(option))
             wx.showToast({
               title: "如要加入新的家庭请退出当前家庭",
               icon: 'none',
@@ -107,13 +101,11 @@ Page({
           userinfo = that.loadUser(userinfo)
         }
         getApp().globalData.userInfo = userinfo
-        if (Boolean(getApp().globalData.homeId)) {
-          console.log("1")
+        if (Boolean(getApp().globalData.homeId)) {  
           wx.switchTab({
             url: '/pages/main/main'
           })
         } else {
-          console.log("2")
           wx.navigateTo({
             url: '../newFamily/newFamily',
           })
@@ -183,7 +175,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
     getApp().globalData.homeId = homeId

@@ -94,8 +94,6 @@ Page({
 
   previewImage: function(e) {
     var that = this
-    console.log(e)
-    console.log(that.data)
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: that.data.images // 需要预览的图片http链接列表
@@ -127,21 +125,21 @@ Page({
     }
     var that = this;
     var openid = getApp().globalData.openid
-    console.log("openid是   " + openid)
+    // console.log("openid是   " + openid)
     // console.log(this.data.timeTxt)
-    console.log("tag   " + newTag)
-    console.log("上传日期 " + that.data.date)
+    // console.log("tag   " + newTag)
+    // console.log("上传日期 " + that.data.date)
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
 
-    console.log("----------------------------------")
-    console.log(that.data.timeTitle)
-    console.log(openid)
-    console.log(that.data.date)
-    console.log(that.data.timeTitle)
-    console.log(newTag)
-    console.log("----------------------------------")
+    // console.log("----------------------------------")
+    // console.log(that.data.timeTitle)
+    // console.log(openid)
+    // console.log(that.data.date)
+    // console.log(that.data.timeTitle)
+    // console.log(newTag)
+    // console.log("----------------------------------")
     wx.uploadFile({
       url: config.host + '/timecapsule/submit',
       filePath: imgPaths[count],
@@ -164,7 +162,6 @@ Page({
         count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示
-          console.log('上传成功' + successUp + ',' + '失败' + failUp);
           wx.showToast({
             title: '上传成功',
             icon: 'success',

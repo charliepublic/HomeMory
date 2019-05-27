@@ -14,7 +14,6 @@ Page({
     this.setData({
       userInfo: getApp().globalData.userInfo
     })
-    console.log(this.data.userInfo)
   },
 
 
@@ -22,10 +21,10 @@ Page({
   submit: function() {
     var openid = getApp().globalData.openid
     var that = this
-    console.log("----------------------------------")
-    console.log(openid)
-    console.log(that.data)
-    console.log("----------------------------------")
+    // console.log("----------------------------------")
+    // console.log(openid)
+    // console.log(that.data)
+    // console.log("----------------------------------")
     wx.request({
       url: config.host + '/changeInfo',
       method: "POST",
@@ -48,8 +47,8 @@ Page({
         wx.navigateBack({})
       },
       fail: function(res) {
-        console.log(res)
-        console.log("----------上传失败----------")
+        // console.log(res)
+        // console.log("----------上传失败----------")
       }
     })
 
@@ -78,7 +77,6 @@ Page({
   },
 
   bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       "userInfo.age": e.detail.value
     })

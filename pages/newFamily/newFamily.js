@@ -12,7 +12,6 @@ Page({
 
 
   goBack: function(options) {
-    console.log(getApp().globalData.isDebug)
     if (getApp().globalData.isDebug == true) {
       wx.switchTab({
         url: '/pages/main/main'

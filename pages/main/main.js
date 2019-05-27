@@ -28,7 +28,6 @@ Page({
         homeMumberList: []
       })
       homeId = app.globalData.homeId
-      console.log(homeId)
       openid = getApp().globalData.openid
     }
     //获取用户的家庭信息
@@ -54,7 +53,7 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          console.log(res)
+          // console.log(res)
           that.setData({
             homeMemberList: res.data
           })
@@ -70,7 +69,6 @@ Page({
     var list = that.data.homeMemberList
     var index = e.currentTarget.dataset.index
     var item = list[index]
-    console.log(item)
     if (openid == item.openId) {
       wx.showToast({
         title: '您不能删除您自己',
@@ -84,8 +82,6 @@ Page({
       content: '确认要删除此家庭成员么？',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-
           list.splice(index, 1)
           that.setData({
             homeMemberList: list
@@ -114,7 +110,7 @@ Page({
             }
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+
         }
       }
     })
@@ -128,11 +124,11 @@ Page({
       content: '确认要退出该家庭么？',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-          console.log("----------------------------------")
-          console.log(openid)
-          console.log(homeId)
-          console.log("----------------------------------")
+          // console.log('用户点击确定')
+          // console.log("----------------------------------")
+          // console.log(openid)
+          // console.log(homeId)
+          // console.log("----------------------------------")
           wx.request({
             url: config.host + '/family/deletemember',
             data: {
@@ -159,7 +155,7 @@ Page({
             }
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+
         }
       }
     })
