@@ -463,14 +463,14 @@ icon {
 
 .weui-uploader__file {
   float: left;
-  margin-right: 9px;
-  margin-bottom: 9px;
+  margin-right: 2px;
+  margin-bottom: 2px;
 }
 
 .weui-uploader__img {
   display: block;
-  width: 215rpx;
-  height: 215rpx;
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .weui-uploader__file_status {
@@ -499,10 +499,10 @@ icon {
 .weui-uploader__input-box {
   float: left;
   position: relative;
-  margin-right: 9px;
-  margin-bottom: 9px;
-  width: 77px;
-  height: 77px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  width: 215rpx;
+  height: 215rpx;
   border: 1px solid #d9d9d9;
 }
 

@@ -25,7 +25,9 @@
   text-align: center;
 }
 
-
+.create-group{
+  padding-top: 30%
+}
 
 .icon {
   vertical-align: middle;

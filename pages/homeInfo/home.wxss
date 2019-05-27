@@ -170,7 +170,6 @@
 }
 
 .bottom-content .people-time {
-  width: 90%;
   height: auto;
   box-shadow: 0 0 8rpx #104e5e;
   text-align: center;

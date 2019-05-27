@@ -38,6 +38,7 @@ Page({
   },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
+
     if(a){
       a = false
       return
@@ -50,6 +51,9 @@ Page({
         searchTxt: "",
         type: "全部",
       })
+    }
+    if (!Boolean(getApp().globalData.homeId)) {
+      return
     }
     var openid = getApp().globalData.openid
     var that = this

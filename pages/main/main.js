@@ -11,7 +11,7 @@ Page({
     haveFamily: true,
     homeName: "1111111",
     homeId: "1111111",
-    homeMemberList: [1],
+    homeMemberList: [],
     // , 2, 3, 4, 5, 6, 7, 8, 90, 12
     isAdministrator: true,
     hidden: false,
@@ -39,7 +39,6 @@ Page({
   loadFamliy: function() {
     var that = this
     var homeNumber = app.globalData.homeId
-    console.log("homeID " + homeNumber)
     //加载家庭信息
     if (Boolean(homeNumber)) {
       this.setData({
@@ -136,8 +135,6 @@ Page({
           console.log(that.data.homeId)
           console.log("----------------------------------")
           wx.request({
-            // TODO：！！！！！！！！！！！！！ c此处响应不正确
-            // 修改url 并修改响应函数
             url: config.host + '/family/deletemember',
             data: {
               openId: openid,

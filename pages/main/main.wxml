@@ -1,58 +1,63 @@
 <view class='all-container'>
-  <view class='welcome-group1 animated zoomIn' style=' text-align: center;' wx:if="{{!haveFamily}}">
-    <text>让我们一起新建一个家庭吧</text>
-  </view>
-
-  <!-- 是否显示家庭信息 -->
-
-  <view class='create-group animated zoomIn' wx:if="{{!haveFamily}}">
-
-    <button type="primary" class='create-button weui-btn' bindtap='createNewFamily'>新建一个家庭</button>
-  </view>
-
-
-
-  <!-- 第二部分：家庭名称 -->
-
-  <view class='animated fadeInUp' wx:if="{{haveFamily}}">
-    <view style=' text-align: center;'>
-
-      <view class='NewFamily'>家庭名称———{{homeMemberList[0].homeName}}</view>
+  <view wx:if="{{!haveFamily}}">
+    <view class='welcome-group1 animated zoomIn' style=' text-align: center;'>
+      <text>让我们一起新建一个家庭吧</text>
     </view>
 
+    <!-- 是否显示家庭信息 -->
+
+    <view class='create-group animated zoomIn'>
+      <button type="primary" class=' weui-btn' bindtap='createNewFamily'>新建一个家庭</button>
+    </view>
   </view>
+  <view wx:if="{{haveFamily}}">
+    <!-- 第二部分：家庭名称 -->
 
+    <view class='animated fadeInUp' wx:if="{{haveFamily}}">
+      <view style=' text-align: center;'>
 
-  <!-- 第三部分 :添加家庭成员-->
-
-  <button class="weui-btn" open-type='share'>
-    添加你的家庭成员
-  </button>
-
-  <!-- 分割线 -->
-  <view wx:for="{{homeMemberList}}" wx:for-item="member" wx:key="*this">
-    <view class="weui-cell">
-      <view class="weui-cell__hd">
-        <image src="{{member.icon}}" class='icon'></image>
+        <view class='NewFamily'>家庭名称———{{homeMemberList[0].homeName}}</view>
       </view>
-      <view class="weui-cell__bd" style='text-align: center;'>{{member.userName}}</view>
+
+    </view>
+
+
+    <!-- 第三部分 :添加家庭成员-->
+
+    <button class="weui-btn" open-type='share'>
+      添加你的家庭成员
+    </button>
+
+    <!-- 分割线 -->
+    <view wx:for="{{homeMemberList}}" wx:for-item="member" wx:key="*this">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image src="{{member.icon}}" class='icon'></image>
+        </view>
+        <view class="weui-cell__bd" style='text-align: center;'>{{member.userName}}</view>
+        <view wx:if="{{isAdministrator}}">
+          <button class="weui-cell__ft" style='  box-shadow: 1px 1px 1px 1px gray;' bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
+        </view>
+      </view>
+    </view>
+
+    <view>
       <view wx:if="{{isAdministrator}}">
-        <button class="weui-cell__ft" style='  box-shadow: 1px 1px 1px 1px gray;' bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
+        <button class="weui-btn" bindtap='quit'>
+          解散家庭
+        </button>
       </view>
+      <view wx:else>
+        <button class="weui-btn" bindtap='quit' style="margin-bottom: 20rpx;">
+          退出该家庭
+        </button>
+      </view>
+
     </view>
   </view>
 
-  <view>
-    <view wx:if="{{isAdministrator}}">
-      <button class="weui-btn" bindtap='quit'>
-        解散家庭
-      </button>
-    </view>
-    <view wx:else>
-      <button class="weui-btn" bindtap='quit' style="margin-bottom: 20rpx;">
-        退出该家庭
-      </button>
-    </view>
 
-  </view>
+
+
+
 </view>
