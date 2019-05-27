@@ -3,7 +3,6 @@
   添加你的家庭记忆吧
 </view>
 <view class='content-group'>
-  <!-- <textarea class='text-container' placeholder-class='input-style' auto-focus placeholder="写下你的备注吧..." maxlength="300" bindinput='setTxt'></textarea> -->
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">
@@ -43,7 +42,7 @@
 
 
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <button type="default">
+    <button type="default"> 
       记忆类型 {{type}}
     </button>
   </picker>

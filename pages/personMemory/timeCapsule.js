@@ -9,22 +9,11 @@ Page({
    */
   data: {
     date: "",
-    rippleStyle: '',
-    timeCapsuleList: {
-      "capsuleList": [1, 2, 3, 4, 2, 3, 4, 2, 3, 4]
-    },
-    tempTimeCapsuleList: [{
-        "capsuleList": [1, 2]
-      },
-      {
-        "capsuleList": [3, 4]
-      }
-    ],
+    timeCapsuleList: {},
+    tempTimeCapsuleList: [],
     clickMessage: "切换到解封的记忆",
     url: "",
     isOpen: false,
-    flag: true,
-
   },
 
 
@@ -98,7 +87,7 @@ Page({
 
   },
 
-  previewImage: function (e) {
+  previewImage: function(e) {
     a = true
     var that = this
     var list = []

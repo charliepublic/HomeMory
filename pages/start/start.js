@@ -1,9 +1,9 @@
 var config = require("../../utils/config.js")
-
+var flag = false
 Page({
   data: {
     rippleStyle: '',
-    flag: false,
+
     option: ""
   },
 
@@ -43,9 +43,8 @@ Page({
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
-            that.setData({
-              flag: true
-            })
+            flag = true
+
           }
         })
       },
@@ -90,7 +89,7 @@ Page({
   bindGetUserInfo: function(e) {
 
     var that = this
-    if (this.data.flag == true || getApp().globalData.isDebug == true) {
+    if (flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {
         var userinfo = e.detail.userInfo
         userinfo["age"] = "1008-10-12"
@@ -115,8 +114,7 @@ Page({
           content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
           showCancel: false,
           confirmText: '返回授权',
-          success: function(res) {
-          }
+          success: function(res) {}
         });
       }
     }

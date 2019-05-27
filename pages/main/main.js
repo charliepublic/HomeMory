@@ -1,7 +1,9 @@
 // pages/main/main.js
-
 var config = require("../../utils/config.js")
 const app = getApp();
+var homeId 
+var openid 
+
 Page({
 
   /**
@@ -9,12 +11,9 @@ Page({
    */
   data: {
     haveFamily: true,
-    homeName: "1111111",
-    homeId: "1111111",
+    homeName: "",
     homeMemberList: [],
-    // , 2, 3, 4, 5, 6, 7, 8, 90, 12
     isAdministrator: true,
-    hidden: false,
     nocancel: false
   },
 
@@ -24,11 +23,12 @@ Page({
     if (getApp().globalData.isDebug == false) {
       this.setData({
         haveFamily: false,
-        homeId: app.globalData.homeId,
         homeName: "",
         isAdministrator: Boolean(app.globalData.openid == app.globalData.manager),
         homeMumberList: []
       })
+      homeId = app.globalData.homeId
+      openid = getApp().globalData.openid
     }
     //获取用户的家庭信息
     this.loadFamliy()
@@ -70,7 +70,7 @@ Page({
     var index = e.currentTarget.dataset.index
     var item = list[index]
     console.log(item)
-    if (app.globalData.openid == item.openId) {
+    if (openid == item.openId) {
       wx.showToast({
         title: '您不能删除您自己',
         icon: 'none',
@@ -90,13 +90,13 @@ Page({
             homeMemberList: list
           })
           console.log("--------------删除家庭成员-----------------")
-          console.log(that.data.homeId)
+          console.log(homeId)
           console.log(item)
           console.log("----------------------------------")
           wx.request({
             url: config.host + '/family/deletemember',
             data: {
-              homeId: that.data.homeId,
+              homeId: homeId,
               openId: item.openid,
               isQuit: false
               // TODO： 此处可能有bug
@@ -122,8 +122,6 @@ Page({
 
   quit: function() {
     var that = this
-    var openid = getApp().globalData.openid
-    console.log(openid)
     wx.showModal({
       title: '提示',
       content: '确认要退出该家庭么？',
@@ -132,13 +130,13 @@ Page({
           console.log('用户点击确定')
           console.log("----------------------------------")
           console.log(openid)
-          console.log(that.data.homeId)
+          console.log(homeId)
           console.log("----------------------------------")
           wx.request({
             url: config.host + '/family/deletemember',
             data: {
               openId: openid,
-              homeId: that.data.homeId,
+              homeId: homeId,
               isQuit: true
             },
             header: {
@@ -148,7 +146,6 @@ Page({
               //全部清空
               that.setData({
                 haveFamily: false,
-                homeId: "",
                 homeName: "",
                 homeMumberList: []
               })
@@ -199,7 +196,7 @@ Page({
       }
       return {
         title: '加入我的家庭吧',
-        path: '/pages/start/start?homeNumber=' + that.data.homeId,
+        path: '/pages/start/start?homeNumber=' + homeId,
         //TODO 添加对应的分享链接的图片
         imageUrl: "",
         success: function(res) {},
@@ -211,10 +208,4 @@ Page({
 
   },
 
-
-  cancel: function() {
-    this.setData({
-      hidden: true
-    });
-  },
 })

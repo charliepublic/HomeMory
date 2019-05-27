@@ -1,22 +1,21 @@
 // pages/addHomeMemory/addHomeMemory.js
 var config = require("../../utils/config.js")
 var util = require("../../utils/util.js")
-
+var txt
+var isPrivate
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
     array: ['家庭历史', '学生时代', '宝宝康乐', '工作成果'],
     type: "家庭历史",
-    txt: "", //添加的文字内容
     images: [], //上传图片列表
-    isPrivate: false,
     clickMessage: "仅自己可见",
     t_length: 0
   },
-
+  onLoad:function(){
+    isPrivate = false
+  },
   // 绑定函数
   bindPickerChange: function(e) {
     var newType = this.data.array[e.detail.value]
@@ -27,10 +26,9 @@ Page({
   setTxt: function(e) {
     var t_text = e.detail.value.length;
     this.setData({
-      t_length: t_text,
-      txt: e.detail.value
+      t_length: t_text,  
     })
-
+    txt: e.detail.value
   },
 
   //上传照片选择图片时限制9张，
@@ -101,9 +99,9 @@ Page({
       filePath: imgPaths[count],
       name: "file",
       formData: {
-        isPrivate: that.data.isPrivate,
+        isPrivate: isPrivate,
         openId: openid,
-        content: that.data.txt,
+        content: txt,
         time: Time,
         tag: newtage,
         type: that.data.type
@@ -143,10 +141,8 @@ Page({
 
   // 点击设置权限为是否都可见
   clickButton: function() {
-    this.setData({
-      isPrivate: !this.data.isPrivate
-    })
-    if (this.data.isPrivate == true) {
+      isPrivate=!isPrivate
+    if (isPrivate == true) {
       this.setData({
         clickMessage: "所有人可见"
       })

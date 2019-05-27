@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     images: [],
     date: util.formatDate(new Date()),
     timeTitle: "",

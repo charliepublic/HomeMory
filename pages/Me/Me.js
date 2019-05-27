@@ -6,9 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openid: app.globalData.openid, //用户唯一识别码
     userInfo: {},
-
   },
 
   /**

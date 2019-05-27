@@ -1,5 +1,6 @@
 // pages/home/home.js
 var a = false;
+var homeId
 var config = require("../../utils/config.js")
 Page({
 
@@ -7,20 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    searchTxt: "1231432542",
-    memoryList: [{
-        "homeFileList": [1, 2]
-      },
-      {
-        "homeFileList": [3, 4]
-      }
+    memoryList: [
     ],
-    homeId: "",
     sequence: 0,
-    url: config.host + "/timecapsule/querycapsulefile?uri=", //TOdo 修改请求图片的url
-    presentTxt: "", //用于获取当前搜索字 在搜索时传值给searchTxt
-    flag: true, //用于保证网络请求
+    url: config.host + "/timecapsule/querycapsulefile?uri=", 
+    presentTxt: "",
+    flag: true, 
     array: ['家庭历史', '学生时代', '宝宝康乐', '工作成果'],
     type: "全部",
 
@@ -38,7 +31,7 @@ Page({
   },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
-
+    homeId=getApp().globalData.homeId
     if(a){
       a = false
       return
@@ -47,8 +40,6 @@ Page({
       this.setData({
         sequence: 0,
         memoryList: [],
-        homeId: getApp().globalData.homeId,
-        searchTxt: "",
         type: "全部",
       })
     }
@@ -61,18 +52,6 @@ Page({
   },
 
 
-
-  // 进行查找
-  search: function() {
-    this.setData({
-      sequence: 0,
-      memoryList: [],
-      searchTxt: this.data.presentTxt
-    })
-    var openid = getApp().globalData.openid
-    var that = this
-    this.changeMemoryList(0)
-  },
 
   // 删除说说，要进行权限验证
   delet: function(e) {
@@ -142,17 +121,16 @@ Page({
     console.log("----------------------------------")
     console.log(sequence)
     console.log(openid)
-    console.log(that.data.homeId)
-    console.log(that.data.searchTxt)
+    console.log(homeId)
     console.log(that.data.type)
     console.log("----------------------------------")
     wx.request({
       url: config.host + '/upload/queryfilelist',
       data: {
         openId: openid,
-        homeId: that.data.homeId,
+        homeId:homeId,
         sequence: sequence,
-        searchTxt: that.data.searchTxt,
+        searchTxt: "",
         type: that.data.type
       },
       header: {
@@ -235,26 +213,5 @@ Page({
       })
     }
   },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      presentTxt: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      presentTxt: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      presentTxt: e.detail.value
-    });
-  }
   //-----------------------控件绑定-------end--------------------
 })
