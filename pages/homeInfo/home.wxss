@@ -49,6 +49,8 @@
   height: 70rpx;
   padding: 0;
   margin: 0;
+  border: 2rpx solid #104e5e;
+  box-shadow: 0 0 8rpx #104e5e;
   line-height: 70rpx;
 }
 

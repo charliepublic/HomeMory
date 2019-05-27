@@ -12,7 +12,6 @@ Page({
     console.log("传入的option是")
     console.log(opt)
     var count = Object.keys(opt).length;
-    // console.log(count)
     if (count == 0) {
       opt = ""
     }
@@ -38,10 +37,9 @@ Page({
             'content-type': 'application/json'
           },
           success: function(res) {
-            // console.log(res)
+            console.log(res)
             var openid = res.data.openId
             var isNew = !Boolean(res.data.tag)
-            console.log("是否第一次登陆 " + isNew)
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
@@ -71,7 +69,6 @@ Page({
         if (!Boolean(res.data)) {
           getApp().globalData.homeId = null
           if (Boolean(that.data.option)) {
-            console.log("更新家庭成员")
             console.log(that.data.option)
             that.joinFamily(that.data.option.homeNumber)
           }
@@ -103,8 +100,6 @@ Page({
           userinfo = that.loadUser(userinfo)
         }
         getApp().globalData.userInfo = userinfo
-        // console.log("用户的信息如下：");
-        // console.log(getApp().globalData.userInfo)
         if (Boolean(getApp().globalData.homeId)) {
           wx.switchTab({
             url: '/pages/main/main'
@@ -121,9 +116,6 @@ Page({
           showCancel: false,
           confirmText: '返回授权',
           success: function(res) {
-            if (res.confirm) {
-              console.log('用户点击了“返回授权”');
-            }
           }
         });
       }
@@ -150,7 +142,6 @@ Page({
   },
 
   addUser: function(userinfo) {
-    // console.log(userinfo)
     var that = this
     wx.request({
       url: config.host + '/changeInfo',
@@ -174,11 +165,6 @@ Page({
   joinFamily: function(homeId) {
     var that = this
     var homeNumber = homeId
-    console.log("homeNumber 在邀请中获取为" + homeNumber)
-    console.log("----------------------------------")
-    console.log(getApp().globalData.openid)
-    console.log(homeNumber)
-    console.log("----------------------------------")
     wx.request({
       url: config.host + '/family/joinfamily',
       data: {

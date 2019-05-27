@@ -14,7 +14,6 @@ Page({
   goBack: function(options) {
     console.log(getApp().globalData.isDebug)
     if (getApp().globalData.isDebug == true) {
-      console.log("111111111")
       wx.switchTab({
         url: '/pages/main/main'
       })
@@ -23,10 +22,10 @@ Page({
 
       var openid = getApp().globalData.openid
       var that = this
-      console.log("----------------------------------")
-      console.log(openid)
-      console.log(that.data.homeName)
-      console.log("----------------------------------")
+      // console.log("----------------------------------")
+      // console.log(openid)
+      // console.log(that.data.homeName)
+      // console.log("----------------------------------")
       wx.request({
         url: config.host + '/family/createfamily',
         data: {
@@ -39,6 +38,7 @@ Page({
         success: function(res) {
           console.log(res)
           getApp().globalData.homeId = res.data
+          getApp().globalData.manager = openid
           console.log(getApp().globalData.homeId)
           wx.showToast({
             title: '创建家庭成功',

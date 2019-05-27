@@ -17,7 +17,7 @@
   <view class='animated fadeInUp' wx:if="{{haveFamily}}">
     <view style=' text-align: center;'>
 
-      <view class='NewFamily'>家庭名称————{{homeMemberList[0].homeName}}</view>
+      <view class='NewFamily'>家庭名称———{{homeMemberList[0].homeName}}</view>
     </view>
 
   </view>
@@ -33,9 +33,9 @@
   <view wx:for="{{homeMemberList}}" wx:for-item="member" wx:key="*this">
     <view class="weui-cell">
       <view class="weui-cell__hd">
-        <image src="{{member.icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        <image src="{{member.icon}}" class='icon'></image>
       </view>
-      <view class="weui-cell__bd">成员姓名</view>
+      <view class="weui-cell__bd" style='text-align: center;'>{{member.userName}}</view>
       <view wx:if="{{isAdministrator}}">
         <button class="weui-cell__ft" style='  box-shadow: 1px 1px 1px 1px gray;' bindtap='delet' data-item='{{memberItem}}' data-index='{{index}}'>删除该成员</button>
       </view>

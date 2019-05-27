@@ -35,24 +35,25 @@
 
         <text class='weui-article__p'>{{capsule.capsuleList[0].capsuleContent}}</text>
 
-        <view class='botton-container-bottomcontent' wx:for="{{capsule.capsuleList}}" wx:for-item="item" wx:key="*this">
-          <!-- 此处用于测试图片效果!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
-          <view wx:if="{{item.isPicture}}">
+        <view class="weui-uploader__bd">
+          <view class="weui-uploader__files">
+            <block wx:for="{{member.homeFileList}}" wx:for-item="item" wx:key="*this">
+              <view wx:if="{{item.isPicture}}" class="weui-uploader__file" bindtap="previewImage" id="{{url + item.capsulePath}}">
+                <image class="weui-uploader__img" src="{{url + item.capsulePath}}" mode="aspectFill" />
+              </view>
+              <view wx:if="{{!item.isPicture}}" class="weui-uploader__file">
+                <video class="weui-uploader__img" src="{{url + item.capsulePath}}" show-play-btn="false" play-btn-position="center"></video>
+              </view>
 
-            <image class="imagem" mode="aspectFill" src="{{url + item.capsulePath}}"></image>
-          </view>
-          <!-- 此处在if处判断返回是不是图片 -->
-          <view wx:if="{{!item.isPicture}}">
-            <!-- TODO视频的css需要进行对应的调整 -->
-            <video class="videom" show-play-btn="false" play-btn-position="center" src="{{url + item.capsulePath}}"></video>
+            </block>
           </view>
         </view>
+
       </view>
 
       <view class='time-group'>
-        <text class='open-time'>于{{capsule.openTime}}打开</text>
-        <!-- ToDo!!!!!!!!! 记录记忆的内容-->
+        <text class='open-time'>于{{capsule.openTime}}后打开</text>
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>
         </button>

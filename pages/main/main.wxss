@@ -25,10 +25,12 @@
   text-align: center;
 }
 
+
+
 .icon {
   vertical-align: middle;
-  width: 110rpx;
-  height: 110rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .haveFamily {

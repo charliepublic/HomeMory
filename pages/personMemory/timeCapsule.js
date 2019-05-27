@@ -1,4 +1,5 @@
 // 导入工具包格式化时间
+var a = false
 var util = require("../../utils/util.js")
 var config = require("../../utils/config.js")
 Page({
@@ -31,7 +32,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function(options) {
-
+    if (a) {
+      a = false
+      return
+    }
     var DATE = util.formatDate(new Date());
     var openid = getApp().globalData.openid
     var that = this
@@ -94,8 +98,16 @@ Page({
 
   },
 
-
-
+  previewImage: function (e) {
+    a = true
+    var that = this
+    var list = []
+    list.push(e.currentTarget.id)
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: list // 需要预览的图片http链接列表
+    })
+  },
 
 
   //响应修改函数内容

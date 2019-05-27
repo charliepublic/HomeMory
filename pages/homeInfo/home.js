@@ -1,4 +1,5 @@
 // pages/home/home.js
+var a = false;
 var config = require("../../utils/config.js")
 Page({
 
@@ -37,6 +38,10 @@ Page({
   },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
+    if(a){
+      a = false
+      return
+    }
     if (getApp().globalData.isDebug == false) {
       this.setData({
         sequence: 0,
@@ -157,6 +162,8 @@ Page({
         //此处对于返回的每一个内容的处理！！！！！！！！！
         var result = res.data
         for (var i = 0; i < result.length; i++) {
+          var time = result[i].tag.time
+          result[i].tag.time = time.substring(0,10)
           var list = result[i].homeFileList
           for (var j = 0; j < list.length; j++) {
             var type = list[j].recordType
@@ -179,9 +186,20 @@ Page({
 
 
   //-----------------------控件绑定-------start--------------------
+
+  previewImage: function (e) {
+    var that = this
+    a = true
+    var list =[]
+    list.push(e.currentTarget.id)
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: list // 需要预览的图片http链接列表
+    })
+  },
+
   // 单选
   bindPickerChange: function (e) {
- 
     var newType = this.data.array[e.detail.value]
     console.log(newType)
     this.setData({

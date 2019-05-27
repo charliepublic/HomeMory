@@ -19,9 +19,7 @@ Page({
 
   // 绑定函数
   bindPickerChange: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
     var newType = this.data.array[e.detail.value]
-    console.log(newType)
     this.setData({
       type: newType
     })
@@ -65,15 +63,6 @@ Page({
 
   },
 
-
-  // 单选
-  radioChange(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    this.setData({
-      value: e.detail.value
-    })
-  },
-
   submit: function() {
     if (this.data.images.length == 0) {
       wx.showToast({
@@ -107,14 +96,6 @@ Page({
     wx.showLoading({
       title: '正在上传第' + count + '张',
     })
-    console.log("-----------------------------")
-    console.log(that.data.isPrivate)
-    console.log(openid)
-    console.log(that.data.txt)
-    console.log(Time)
-    console.log(newtage)
-    console.log(that.data.type)
-    console.log("-----------------------------")
     wx.uploadFile({
       url: config.host + '/upload/addhomememory',
       filePath: imgPaths[count],
@@ -137,7 +118,6 @@ Page({
         count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示
-
           wx.showToast({
             title: '上传成功',
             icon: 'success',
@@ -155,8 +135,6 @@ Page({
 
   previewImage: function(e) {
     var that = this
-    console.log(e)
-    console.log(that.data)
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: that.data.images // 需要预览的图片http链接列表
