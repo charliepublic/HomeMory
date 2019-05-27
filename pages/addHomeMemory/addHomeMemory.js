@@ -1,8 +1,8 @@
 // pages/addHomeMemory/addHomeMemory.js
 var config = require("../../utils/config.js")
 var util = require("../../utils/util.js")
-var txt
-var isPrivate
+var txt = ""
+var isPrivate = false
 Page({
 
 
@@ -15,6 +15,7 @@ Page({
   },
   onLoad:function(){
     isPrivate = false
+    txt = ""
   },
   // 绑定函数
   bindPickerChange: function(e) {
