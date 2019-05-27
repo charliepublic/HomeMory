@@ -1,9 +1,10 @@
 var config = require("../../utils/config.js")
 var flag = false
+var option= ""
 Page({
   data: {
     rippleStyle: '',
-    option: ""
+   
   },
 
 
@@ -12,11 +13,12 @@ Page({
     console.log(opt)
     var count = Object.keys(opt).length;
     if (count == 0) {
-      opt = ""
+      option = ""
+    }else{
+      option = opt.homeId
     }
-    this.setData({
-      option: opt
-    })
+      
+
 
   },
 
@@ -42,7 +44,7 @@ Page({
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
-            flag = true
+            
 
           }
         })
@@ -64,30 +66,33 @@ Page({
       },
       success: function(res) {
         console.log(res)
-        if (!Boolean(res.data)) {
+        if (!Boolean(res.data.homeName)) {
           getApp().globalData.homeId = null
-          if (Boolean(that.data.option)) {
-            console.log(that.data.option)
-            that.joinFamily(that.data.option.homeNumber)
+          if (Boolean(option)) {
+            console.log(option)
+            that.joinFamily(option)
           }
         } else {
           getApp().globalData.homeId = res.data.homeId
           getApp().globalData.homeName = res.data.homeName
           getApp().globalData.manager = res.data.manager
-          if (Boolean(that.data.option)) {
+          if (Boolean(option)) {
             wx.showToast({
               title: "如要加入新的家庭请退出当前家庭",
               icon: 'none',
               duration: 1000
             })
+            flag = false
+          }else{
+            flag = true
           }
+          
         }
       }
     })
   },
 
   bindGetUserInfo: function(e) {
-
     var that = this
     if (flag == true || getApp().globalData.isDebug == true) {
       if (e.detail.userInfo) {

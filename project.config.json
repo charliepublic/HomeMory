@@ -35,7 +35,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -54,6 +54,13 @@
 					"name": "群分享",
 					"pathName": "pages/main/main",
 					"query": "",
+					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "加入",
+					"pathName": "pages/start/start",
+					"query": "homeId= 27",
 					"scene": 1007
 				}
 			]
