@@ -5,6 +5,7 @@ App({
   globalData: {
     openid: "",
     homeId: "",
+    homeName:"",
     userInfo: {},
     isNew: true,
     manager: "",

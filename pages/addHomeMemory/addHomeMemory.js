@@ -107,12 +107,15 @@ Page({
         type: that.data.type
       },
       success: function(e) {
+        console.log("success")
         successUp++; //成功+1
       },
       fail: function(e) {
+        console.log("失败")
         failUp++; //失败+1
       },
       complete: function(e) {
+        console.log("finish")
         count++; //下一张
         if (count == length) {
           //上传完毕，作一下提示

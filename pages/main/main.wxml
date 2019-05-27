@@ -16,7 +16,7 @@
     <view class='animated fadeInUp' wx:if="{{haveFamily}}">
       <view style=' text-align: center;'>
 
-        <view class='NewFamily'>家庭名称———{{homeMemberList[0].homeName}}</view>
+        <view class='NewFamily'>家庭名称———{{homeName}}</view>
       </view>
 
     </view>

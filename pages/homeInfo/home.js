@@ -192,7 +192,7 @@ Page({
 
   // 添加说说事件绑定
   input: function() {
-    if (!Boolean(this.data.homeId)) {
+    if (!Boolean(homeId)) {
       wx.showModal({
         title: '提示',
         content: '请先创建你的家庭',

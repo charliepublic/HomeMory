@@ -11,7 +11,7 @@ Page({
    */
   data: {
     haveFamily: true,
-    homeName: "",
+    homeName: getApp().globalData.homeName,
     homeMemberList: [],
     isAdministrator: true,
     nocancel: false
@@ -23,11 +23,12 @@ Page({
     if (getApp().globalData.isDebug == false) {
       this.setData({
         haveFamily: false,
-        homeName: "",
+        homeName: getApp().globalData.homeName,
         isAdministrator: Boolean(app.globalData.openid == app.globalData.manager),
         homeMumberList: []
       })
       homeId = app.globalData.homeId
+      console.log(homeId)
       openid = getApp().globalData.openid
     }
     //获取用户的家庭信息

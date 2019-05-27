@@ -3,7 +3,6 @@ var flag = false
 Page({
   data: {
     rippleStyle: '',
-
     option: ""
   },
 
@@ -73,6 +72,7 @@ Page({
           }
         } else {
           getApp().globalData.homeId = res.data.homeId
+          getApp().globalData.homeName = res.data.homeName
           getApp().globalData.manager = res.data.manager
           if (Boolean(that.data.option)) {
             wx.showToast({

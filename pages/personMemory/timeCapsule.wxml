@@ -38,7 +38,7 @@
 
         <view class="weui-uploader__bd">
           <view class="weui-uploader__files">
-            <block wx:for="{{member.homeFileList}}" wx:for-item="item" wx:key="*this">
+            <block wx:for="{{capsule.capsuleList}}" wx:for-item="item" wx:key="*this">
               <view wx:if="{{item.isPicture}}" class="weui-uploader__file" bindtap="previewImage" id="{{url + item.capsulePath}}">
                 <image class="weui-uploader__img" src="{{url + item.capsulePath}}" mode="aspectFill" />
               </view>
@@ -71,7 +71,6 @@
 
       <view class='time-group'>
         <text class='day-group'>还有{{capsule.leftTime}}天打开</text>
-        <!-- ToDo!!!!!!!!! 记录记忆的内容-->
         <button class='delete-button' bindtap='delet' data-item='{{capsule}}' data-index='{{index}}'>
           <text>销毁该记忆</text>
         </button>

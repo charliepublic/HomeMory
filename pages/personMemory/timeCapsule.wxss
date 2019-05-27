@@ -113,7 +113,7 @@
 }
 
 .bottom-container .botton-container-bottomcontent {
-  /* box-shadow: 0 0 8rpx #104e5e; */
+  box-shadow: 0 0 8rpx #104e5e;
   box-sizing: border-box;
   /* margin: 20rpx auto; */
   width: 90%;

@@ -11,7 +11,7 @@ Page({
     date: "",
     timeCapsuleList: {},
     tempTimeCapsuleList: [],
-    clickMessage: "切换到解封的记忆",
+    clickMessage: "切换到未解封的记忆",
     url: "",
     isOpen: false,
   },
@@ -34,8 +34,7 @@ Page({
         tempTimeCapsuleList: [],
         timeCapsuleList: [],
         isOpen: true,
-        clickMessage: "切换到解封的记忆",
-        // sequence: 0
+        clickMessage: "切换到未解封的记忆",
       });
     }
     this.changeTimeCapsuleList(0)

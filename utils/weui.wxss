@@ -501,8 +501,8 @@ icon {
   position: relative;
   margin-right: 2px;
   margin-bottom: 2px;
-  width: 215rpx;
-  height: 215rpx;
+  width: 200rpx;
+  height: 200rpx;
   border: 1px solid #d9d9d9;
 }
 
