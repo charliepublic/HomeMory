@@ -87,7 +87,7 @@ Page({
             wx.request({
               url: config.host + '/upload/deletememory',
               data: {
-                id: item.tag.tag,
+                tag: item.tag.tag,
                 openId: getApp().globalData.openid
               },
               header: {

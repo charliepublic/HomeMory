@@ -39,7 +39,7 @@ Page({
           console.log(res)
           getApp().globalData.homeId = res.data
           getApp().globalData.manager = openid
-          console.log(getApp().globalData.homeId)
+          getApp().globalData.homeName = that.data.homeName
           wx.showToast({
             title: '创建家庭成功',
             icon: 'success',

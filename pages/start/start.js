@@ -67,16 +67,19 @@ Page({
       success: function(res) {
         console.log(res)
         if (!Boolean(res.data.homeName)) {
+          console.log("t")
           getApp().globalData.homeId = null
           if (Boolean(option)) {
             console.log(option)
             that.joinFamily(option)
           }
+          flag = true
         } else {
           getApp().globalData.homeId = res.data.homeId
           getApp().globalData.homeName = res.data.homeName
           getApp().globalData.manager = res.data.manager
           if (Boolean(option)) {
+            console.log(Boolean(option))
             wx.showToast({
               title: "如要加入新的家庭请退出当前家庭",
               icon: 'none',
@@ -105,10 +108,12 @@ Page({
         }
         getApp().globalData.userInfo = userinfo
         if (Boolean(getApp().globalData.homeId)) {
+          console.log("1")
           wx.switchTab({
             url: '/pages/main/main'
           })
         } else {
+          console.log("2")
           wx.navigateTo({
             url: '../newFamily/newFamily',
           })

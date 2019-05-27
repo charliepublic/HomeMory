@@ -28,7 +28,8 @@ Page({
     this.setData({
       t_length: t_text,  
     })
-    txt: e.detail.value
+    txt= e.detail.value
+    console.log(txt)
   },
 
   //上传照片选择图片时限制9张，
