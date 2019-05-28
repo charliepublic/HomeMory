@@ -18,7 +18,7 @@
 <view class='both'>
   <view class='back'>
     <view class='bottom-content animated fadeInUp' wx:for="{{memoryList}}" wx:for-item="member" wx:for-index="index" wx:key="*this">
-      <view>{{member.homeFileList[0].recordContent}}</view>
+      <view style='text-align:center;'>{{member.homeFileList[0].recordContent}}</view>
       <view class="weui-uploader__bd">
         <view class="weui-uploader__files">
           <block wx:for="{{member.homeFileList}}" wx:for-item="item" wx:key="*this">

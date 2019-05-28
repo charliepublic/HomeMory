@@ -1,5 +1,4 @@
-<view class="ripple" style="{{rippleStyle}}"></view>
-<!--pages/timeCapsule/timeCapsule.wxml-->
+
 <view class='all'>
   <view class='top-container animated fadeInLeft'>
     <view class='image-group'>

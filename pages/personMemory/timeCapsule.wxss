@@ -108,21 +108,23 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  border-radius:20rpx;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 10px #b6d9f0 inset;
 }
 
-.bottom-container .botton-container-bottomcontent {
+ .botton-container-bottomcontent {
   box-shadow: 0 0 8rpx #104e5e;
   box-sizing: border-box;
-  /* margin: 20rpx auto; */
+  margin: 20rpx ;
   width: 90%;
   background-color: #f4f6f6;
   display: flex;
   flex-direction: column;
+  border-radius:20rpx
 }
 
-.bottom-container .time-group .delete-button {
+.time-group .delete-button {
   width: 50%;
   margin: 30rpx auto;
   height: 70rpx;
@@ -131,7 +133,7 @@
   box-shadow: 0 0 8rpx #104e5e;
 }
 
-.bottom-container .botton-container-bottomcontent .title-group {
+ .botton-container-bottomcontent .title-group {
   border-bottom: 2rpx solid #dad8d8;
   padding-bottom: 4rpx;
   width: 60%;
@@ -139,14 +141,14 @@
   font-size: 32rpx;
 }
 
-.bottom-container .botton-container-bottomcontent .time-group {
+ .botton-container-bottomcontent .time-group {
   margin-top: 4rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.bottom-container .botton-container-bottomcontent .context-group {
+ .botton-container-bottomcontent .context-group {
   width: 100%;
   margin: 4rpx auto;
   border-bottom: 2rpx solid #dad8d8;
@@ -156,17 +158,17 @@
   padding-left: 8rpx;
 }
 
-.bottom-container .botton-container-bottomcontent .context-group .context {
+ .botton-container-bottomcontent .context-group .context {
   float: left;
 }
 
-.bottom-container .botton-container-bottomcontent .time-group .write-time,
-.bottom-container .botton-container-bottomcontent .time-group .open-time {
+ .botton-container-bottomcontent .time-group .write-time,
+ .botton-container-bottomcontent .time-group .open-time {
   /* border: 2rpx solid #104e5e; */
   font-size: 30rpx;
 }
 
-.bottom-container .botton-container-bottomcontent .time-group .day-group {
+.botton-container-bottomcontent .time-group .day-group {
   /* border: 2rpx solid red; */
   height: 80rpx;
   line-height: 80rpx;
@@ -175,7 +177,7 @@
   margin: 4rpx auto;
 }
 
-.bottom-container .botton-container-bottomcontent .time-group .delete-button {
+ .botton-container-bottomcontent .time-group .delete-button {
   width: 45%;
   height: 15%;
   background-color: rgba(0, 162, 255, 0.37);
