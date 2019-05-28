@@ -39,6 +39,7 @@ Page({
   loadFamliy: function() {
     var that = this
     var homeNumber = app.globalData.homeId
+    console.log(homeNumber)
     //加载家庭信息
     if (Boolean(homeNumber)) {
       this.setData({

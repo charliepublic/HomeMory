@@ -1,10 +1,10 @@
 var config = require("../../utils/config.js")
 var flag = false
-var option= ""
+var option = ""
 Page({
   data: {
     rippleStyle: '',
-   
+
   },
 
 
@@ -12,10 +12,10 @@ Page({
     var count = Object.keys(opt).length;
     if (count == 0) {
       option = ""
-    }else{
+    } else {
       option = opt.homeId
     }
-      
+
 
 
   },
@@ -42,7 +42,7 @@ Page({
             getApp().globalData.openid = openid
             getApp().globalData.isNew = isNew
             that.gethomeId(openid)
-            
+
 
           }
         })
@@ -62,13 +62,12 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function(res) {  
+      success: function(res) {
         if (!Boolean(res.data.homeName)) {
           getApp().globalData.homeId = null
-          if (Boolean(option)) {    
+          if (Boolean(option)) {
             that.joinFamily(option)
           }
-          flag = true
         } else {
           getApp().globalData.homeId = res.data.homeId
           getApp().globalData.homeName = res.data.homeName
@@ -79,12 +78,13 @@ Page({
               icon: 'none',
               duration: 1000
             })
-            flag = false
-          }else{
-            flag = true
           }
-          
+
         }
+        flag = true
+      },
+      fail: function(res) {
+
       }
     })
   },
@@ -101,7 +101,7 @@ Page({
           userinfo = that.loadUser(userinfo)
         }
         getApp().globalData.userInfo = userinfo
-        if (Boolean(getApp().globalData.homeId)) {  
+        if (Boolean(getApp().globalData.homeId)) {
           wx.switchTab({
             url: '/pages/main/main'
           })
@@ -175,10 +175,20 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        // console.log(res)
+        console.log(res)
+        if (res.data == "failture") {
+          wx.showToast({
+            title: "该家庭已解散",
+            icon: 'none',
+            duration: 1000
+          })
+          return
+        } else {
+          getApp().globalData.homeId = homeId
+        }
       }
     })
-    getApp().globalData.homeId = homeId
+
   },
 
   // 波纹效果
