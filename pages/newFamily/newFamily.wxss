@@ -60,10 +60,7 @@
   font-size: 35rpx;
 }
 
-.submit:active {
-  border: none;
-  box-shadow: none;
-}
+
 
 .create-button {
   width: 50%;
