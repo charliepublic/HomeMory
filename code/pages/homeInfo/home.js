@@ -21,13 +21,13 @@ Page({
 
 
   onLoad() {
-    var myDate = new Date();
-    var day = myDate.getDate(); //获取当前日(1-31)
-    if (day == 1) {
-      wx.navigateTo({
-        url: '../timeMachine/timeMachine',
-      })
-    }
+    // var myDate = new Date();
+    // var day = myDate.getDate(); //获取当前日(1-31)
+    // if (day == 1) {
+    //   wx.navigateTo({
+    //     url: '../timeMachine/timeMachine',
+    //   })
+    // }
   },
   // 加载函数，加载所有的家庭说说信息
   onShow: function(options) {
